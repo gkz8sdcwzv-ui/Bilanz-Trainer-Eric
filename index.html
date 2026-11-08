@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bilanz-Trainer · Klausurvorbereitung Bilanzierung</title>
+<meta name="description" content="Übungsaufgaben mit Lösungsweg und Paragraphen-Kompass (HGB/IFRS) zur Klausurvorbereitung Bilanzierung">
+<style>
+:root{
+  --bg:#f6f7fb;--card:#ffffff;--ink:#1b1f2a;--muted:#5d6475;--line:#e3e6ee;
+  --brand:#2457f5;--brand-ink:#ffffff;--ok:#1d9a6c;--ok-bg:#e4f6ee;--bad:#d63b3b;--bad-bg:#fdeaea;
+  --warn:#c77a00;--warn-bg:#fff4df;--chip:#eef1f8;--shadow:0 1px 2px rgba(20,30,60,.06),0 6px 20px rgba(20,30,60,.06);
+  --hgb:#1f6feb;--ifrs:#9a3fd6;--sonst:#5b6475;
+  --c-ansatz:#f7d64a;--c-bewertung:#7ad47a;--c-ausweis:#7fb7f5;--c-gob:#ffab5e;--c-rst:#f58ad0;--c-inventur:#8fe3df;--c-analyse:#c7b2ff;--c-allg:#d9d9d9;
+  --radius:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1217;--card:#171b23;--ink:#e9ecf3;--muted:#9aa3b5;--line:#2a3140;--chip:#232a37;
+  --ok-bg:#12302a;--bad-bg:#3a1c1c;--warn-bg:#3a2a10;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--brand)}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:var(--ink)}
+header.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.topbar{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.2px}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#7c4dff);display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px}
+nav.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.tabs button{border:none;background:transparent;color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:600}
+nav.tabs button.active{background:var(--chip);color:var(--ink)}
+nav.tabs button:hover{color:var(--ink)}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 80px}
+.hidden{display:none!important}
+h1{font-size:26px;margin:6px 0 4px;letter-spacing:-.3px}
+h2{font-size:20px;margin:22px 0 10px}
+h3{font-size:16px;margin:14px 0 6px}
+p.lead{color:var(--muted);margin:0 0 16px}
+.grid{display:grid;gap:14px}
+.grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.card.clickable{cursor:pointer;transition:transform .12s ease,border-color .12s}
+.card.clickable:hover{transform:translateY(-2px);border-color:var(--brand)}
+.kpi{font-size:30px;font-weight:800;letter-spacing:-.5px}
+.kpi small{font-size:13px;color:var(--muted);font-weight:600;margin-left:4px}
+.bar{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),#7c4dff);border-radius:99px;transition:width .3s}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border:1px solid transparent;border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;color:var(--ink)}
+.chip.sel{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 14%,var(--chip))}
+.chip.ref{cursor:pointer}
+.chip.ref:hover{border-color:var(--brand)}
+.chip.law-HGB{border-left:4px solid var(--hgb)}
+.chip.law-IFRS{border-left:4px solid var(--ifrs)}
+.chip.law-S{border-left:4px solid var(--sonst)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:10px;font-weight:600}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 10px;font-size:13px;border-radius:8px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.between{justify-content:space-between}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--chip);color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.tag.hgb{background:color-mix(in srgb,var(--hgb) 15%,transparent);color:var(--hgb)}
+.tag.ifrs{background:color-mix(in srgb,var(--ifrs) 15%,transparent);color:var(--ifrs)}
+.tag.both{background:linear-gradient(90deg,color-mix(in srgb,var(--hgb) 15%,transparent),color-mix(in srgb,var(--ifrs) 15%,transparent));color:var(--ink)}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.tag.bad{background:var(--bad-bg);color:var(--bad)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}
+.status-dot{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block}
+.status-dot.ok{background:var(--ok)}.status-dot.bad{background:var(--bad)}.status-dot.part{background:var(--warn)}
+/* task list */
+.tasklist{display:grid;gap:10px}
+.task-item{display:flex;gap:12px;align-items:center;padding:12px 14px}
+.task-item .num{width:38px;height:38px;border-radius:10px;background:var(--chip);display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.task-item .title{font-weight:700}
+.task-item .meta{font-size:13px;color:var(--muted)}
+/* task view */
+.task-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.sachverhalt{background:var(--chip);border-radius:12px;padding:14px 16px;margin:12px 0;white-space:pre-line}
+.frage{font-weight:700;margin:12px 0 8px}
+table.data{border-collapse:collapse;width:100%;margin:10px 0;font-size:14.5px}
+table.data th,table.data td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+table.data th{font-weight:700;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.3px}
+table.data td.num,table.data th.num{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.total td{font-weight:800;border-top:2px solid var(--ink)}
+.answers{display:grid;gap:8px;margin:10px 0}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--card)}
+.opt:hover{border-color:var(--brand)}
+.opt input{margin-top:4px}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.missed{border-style:dashed;border-color:var(--ok)}
+.numgrid{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;margin:10px 0;max-width:560px}
+.numgrid label{font-weight:600}
+.numgrid .inwrap{display:flex;align-items:center;gap:6px}
+.numgrid input{width:150px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-align:right}
+.numgrid input.ok{border-color:var(--ok);background:var(--ok-bg)}
+.numgrid input.bad{border-color:var(--bad);background:var(--bad-bg)}
+.numgrid .unit{color:var(--muted);font-size:13px;min-width:22px}
+.numgrid .expect{font-size:13px;color:var(--ok);font-weight:700}
+.matchgrid{display:grid;gap:8px;margin:10px 0}
+.matchrow{display:grid;grid-template-columns:1fr 230px;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+.matchrow select{padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card)}
+.matchrow.ok{border-color:var(--ok);background:var(--ok-bg)}
+.matchrow.bad{border-color:var(--bad);background:var(--bad-bg)}
+.matchrow .exp{grid-column:1/-1;font-size:13px;color:var(--muted)}
+textarea.own{width:100%;min-height:120px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);resize:vertical}
+.result{border-radius:12px;padding:12px 14px;margin:12px 0;font-weight:700}
+.result.ok{background:var(--ok-bg);color:var(--ok)}
+.result.bad{background:var(--bad-bg);color:var(--bad)}
+.result.part{background:var(--warn-bg);color:var(--warn)}
+.solution{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0}
+.steps li{position:relative;padding:8px 0 8px 40px;border-left:2px solid var(--line);margin-left:14px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:-15px;top:8px;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800}
+.steps li b{display:block}
+.callout{border-left:4px solid var(--brand);background:var(--chip);border-radius:10px;padding:10px 14px;margin:10px 0}
+.callout.merk{border-color:var(--warn)}
+.callout.bsp{border-color:var(--ok)}
+.callout .lbl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:2px}
+details.acc{border:1px solid var(--line);border-radius:12px;padding:0;margin:8px 0;background:var(--card)}
+details.acc summary{cursor:pointer;padding:10px 14px;font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+details.acc[open] summary::before{transform:rotate(90deg)}
+details.acc .body{padding:0 14px 12px}
+.selfcheck{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+/* kompass */
+.filterbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
+.filterbar input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.para{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 14px}
+.para .ref{font-weight:800;font-size:15px;white-space:nowrap;padding:4px 8px;border-radius:8px;min-width:120px;text-align:center;color:#111}
+.para .ttl{font-weight:700}
+.para .one{color:var(--ink);margin:2px 0}
+.para .mark{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.para .mark input{width:22px;height:22px;accent-color:var(--ok)}
+.para.marked{opacity:.86}
+.para.marked .ref{outline:2px solid var(--ok)}
+.para .more{grid-column:1/-1}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.sw-ansatz{background:var(--c-ansatz)}.sw-bewertung{background:var(--c-bewertung)}.sw-ausweis{background:var(--c-ausweis)}.sw-gob{background:var(--c-gob)}.sw-rst{background:var(--c-rst)}.sw-inventur{background:var(--c-inventur)}.sw-analyse{background:var(--c-analyse)}.sw-allg{background:var(--c-allg)}
+/* flashcard */
+.flash{perspective:1200px;max-width:640px;margin:16px auto}
+.flash .inner{position:relative;min-height:300px;transition:transform .5s;transform-style:preserve-3d}
+.flash.flipped .inner{transform:rotateY(180deg)}
+.flash .face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:26px;border-radius:18px}
+.flash .front{background:linear-gradient(135deg,var(--brand),#7c4dff);color:#fff}
+.flash .front .big{font-size:34px;font-weight:900;letter-spacing:-.5px}
+.flash .back{background:var(--card);border:1px solid var(--line);transform:rotateY(180deg);text-align:left;justify-content:flex-start;overflow:auto}
+.quizopt{display:block;width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);margin:6px 0}
+.quizopt:hover{border-color:var(--brand)}
+.quizopt.correct{border-color:var(--ok);background:var(--ok-bg)}
+.quizopt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
+.map .seg{padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:13px}
+.map .seg b{display:block;font-size:14px}
+.map .seg.k1{border-top:4px solid var(--hgb)}.map .seg.k2{border-top:4px solid #7c4dff}.map .seg.k3{border-top:4px solid var(--ifrs)}
+footer.note{max-width:1100px;margin:30px auto 0;padding:0 16px;color:var(--muted);font-size:13px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.navbtns{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+kbd{font:12px ui-monospace,Menlo,monospace;background:var(--chip);padding:2px 6px;border-radius:5px;border:1px solid var(--line)}
+@media (max-width:640px){
+  .para{grid-template-columns:1fr auto}
+  .para .ref{grid-column:1/-1;text-align:left;min-width:0;justify-self:start}
+  .matchrow{grid-template-columns:1fr}
+  .numgrid{grid-template-columns:1fr}
+  nav.tabs{width:100%;margin-left:0}
+}
+@media print{
+  header.top,.filterbar,.btn,nav,footer.note,.no-print{display:none!important}
+  body{background:#fff;color:#000}
+  main{max-width:none;padding:0}
+  .card{box-shadow:none;border-color:#bbb;break-inside:avoid}
+  .para .more{display:block!important}
+  .para .ref{border:1px solid #999}
+}
+
+</style></head>
+<body>
+<header class="top"><div class="topbar"><div class="logo"><div class="mark">§</div>Bilanz-Trainer</div>
+<nav class="tabs"><button data-tab="start">Start</button><button data-tab="ueben">Üben</button><button data-tab="kompass">§-Kompass</button><button data-tab="fortschritt">Fortschritt</button></nav></div></header>
+<main id="main"></main>
+<footer class="note">Inhalte nach den Vorlesungsunterlagen und Musterlösungen des Kurses Bilanzierung (Prof. Dr. L. M. Bauer). Fortschritt und Markierungen werden nur lokal in diesem Browser gespeichert. Gesetzesstand: Schwellenwerte § 267 HGB in der seit 2024 geltenden Fassung.</footer>
+<div class="toast" id="toast"></div>
+<script>
+// Paragraphen-Kompass: alle klausurrelevanten Normen aus dem Kurs "Bilanzierung" (Prof. Bauer)
+// cat: ansatz | bewertung | ausweis | gob | rst | inventur | analyse | allg
+// law: HGB | IFRS | S (Sonstige: EStG, EStR, EGHGB, IDW)
+const PARA = [
+// ---------- HGB: Buchführung, Inventur, Inventar ----------
+{id:"hgb238",law:"HGB",ref:"§ 238 Abs. 1 HGB",title:"Buchführungspflicht",cat:"allg",kap:[3],
+ kurz:"Jeder Kaufmann muss Bücher führen, aus denen ein sachverständiger Dritter die Geschäftsvorfälle und die Lage des Unternehmens nachvollziehen kann.",
+ merk:"238 = der Startschuss: Ohne Bücher kein Abschluss.",
+ bsp:"Ein Einzelkaufmann muss jede Rechnung erfassen, nicht nur die Tagesumsätze schätzen.",
+ trigger:"Wer muss überhaupt Bücher führen? Welche Anforderungen gelten für die Buchführung?"},
+{id:"hgb240_1",law:"HGB",ref:"§ 240 Abs. 1+2 HGB",title:"Inventar (Aufstellungspflicht)",cat:"inventur",kap:[3],
+ kurz:"Zu Beginn des Handelsgewerbes und zum Ende jedes Geschäftsjahres sind alle Vermögensgegenstände und Schulden nach Art, Menge und Wert einzeln zu verzeichnen; Geschäftsjahr max. 12 Monate.",
+ merk:"Inventar = Liste (untereinander), Bilanz = Konto (nebeneinander).",
+ bsp:"Ladeneinrichtung 23.000, Waren 35.000, Bank 21.000, Kasse 2.300 ./. Schulden 50.000 = Reinvermögen 31.300.",
+ trigger:"Aufgabe verlangt ein Inventar, das Reinvermögen oder fragt nach Dauer/Zeitpunkt der Bestandsaufnahme."},
+{id:"hgb240_3",law:"HGB",ref:"§ 240 Abs. 3 HGB",title:"Festwertverfahren (Festbewertung)",cat:"inventur",kap:[2,3,5,6],
+ kurz:"Sachanlagen sowie Roh-, Hilfs- und Betriebsstoffe dürfen mit gleichbleibender Menge und festem Wert angesetzt werden, wenn sie regelmäßig ersetzt werden, ihr Gesamtwert nachrangig ist und der Bestand wenig schwankt; körperliche Inventur i.d.R. alle 3 Jahre.",
+ merk:"FEST = Fortlaufend Ersetzt, Stabil, Tertiär (unbedeutend). Keine Handelsware, keine Aktien, keine Grundstücke!",
+ bsp:"Hotelbestecke mit Festwert 25.000 €. Inventur ergibt 26.900 € (+7,6 %): Festwert bleibt. 35.400 € (+41,6 %): Anhebung Pflicht (R 5.4 EStR: >10 %).",
+ trigger:"Darf etwas 'zum Festwert' bilanziert werden? Welcher Wert nach Inventur bei Festwert?"},
+{id:"hgb240_4",law:"HGB",ref:"§ 240 Abs. 4 HGB",title:"Gruppenbewertung",cat:"inventur",kap:[2,3,6],
+ kurz:"Gleichartige Vorräte sowie gleichartige oder annähernd gleichwertige bewegliche Vermögensgegenstände und Schulden dürfen zu einer Gruppe zusammengefasst und mit dem gewogenen Durchschnittswert angesetzt werden.",
+ merk:"Gruppe = Gleichartig oder Gleichwertig (Preisspanne max. ca. 20 %). Rechenweg: Summe Werte / Summe Mengen.",
+ bsp:"500 kg à 4,00 + 1.000 à 3,50 + 2.500 à 5,00 + 1.200 à 4,10 = 22.920 € / 5.200 kg = 4,41 €/kg. Endbestand 2.000 kg = 8.820 €.",
+ trigger:"Schüttgut, Massenbestände, 'gewogener Durchschnitt', Endbestand und Verbrauch bewerten."},
+{id:"hgb241",law:"HGB",ref:"§ 241 HGB",title:"Inventurvereinfachungen",cat:"inventur",kap:[3],
+ kurz:"Abs. 1: Stichprobeninventur (anerkannte mathematisch-statistische Methoden). Abs. 2: permanente Inventur (Lagerbuchführung, Aufnahme irgendwann im Jahr). Abs. 3: vor- oder nachverlegte Inventur (3 Monate vor / 2 Monate nach Stichtag, wertmäßige Fortschreibung).",
+ merk:"Abs. 1 = Stichprobe, Abs. 2 = Permanent, Abs. 3 = Verlegt (3 vor / 2 nach). Zeitnahe Inventur (10 Tage) steht nicht hier, sondern in R 5.3 EStR.",
+ bsp:"Einzelhändler Folg will Inventur im Juli: nur mit permanenter Inventur möglich; die scheitert, weil Verkäufe nicht mengenmäßig erfasst werden.",
+ trigger:"Inventur zu einem anderen Zeitpunkt als dem Stichtag; Diebstähle/unkontrollierbare Abgänge; fehlende Lagerbuchführung."},
+{id:"hgb241a",law:"HGB",ref:"§ 241a HGB",title:"Befreiung von Buchführung/Inventar",cat:"allg",kap:[3],
+ kurz:"Einzelkaufleute mit höchstens 800.000 € Umsatz und 80.000 € Jahresüberschuss an zwei aufeinanderfolgenden Stichtagen brauchen keine Bücher und kein Inventar.",
+ merk:"800k Umsatz / 80k Gewinn: die kleine Ausnahme vom großen Grundsatz.",
+ bsp:"Ein Kiosk mit 300.000 € Umsatz und 40.000 € Gewinn darf eine Einnahmen-Überschuss-Rechnung machen.",
+ trigger:"Kleiner Einzelkaufmann: besteht überhaupt Inventarpflicht?"},
+{id:"hgb242",law:"HGB",ref:"§ 242 HGB",title:"Pflicht zur Aufstellung von Bilanz und GuV",cat:"allg",kap:[1,2],
+ kurz:"Zu Beginn und zum Ende jedes Geschäftsjahres ist eine Bilanz, zum Ende außerdem eine GuV aufzustellen; Bilanz + GuV = Jahresabschluss.",
+ merk:"242 definiert, was 'Jahresabschluss' heißt: Bilanz + GuV (Kapitalgesellschaften: + Anhang, § 264).",
+ bsp:"Eine OHG legt Bilanz und GuV vor, aber keinen Anhang.",
+ trigger:"Bestandteile des Jahresabschlusses, Dokumentations-/Informationsfunktion."},
+{id:"hgb243",law:"HGB",ref:"§ 243 HGB",title:"Aufstellungsgrundsatz: GoB, Klarheit, Übersichtlichkeit",cat:"gob",kap:[2],
+ kurz:"Der Jahresabschluss ist nach den GoB aufzustellen (Abs. 1), muss klar und übersichtlich sein (Abs. 2) und innerhalb der einem ordnungsmäßigen Geschäftsgang entsprechenden Zeit aufgestellt werden (Abs. 3).",
+ merk:"243 Abs. 2 = Klarheit: Niemand soll suchen müssen.",
+ bsp:"Posten dürfen nicht unter irreführenden Bezeichnungen versteckt werden.",
+ trigger:"Grundsatz der Klarheit und Übersichtlichkeit in einer GoB-Zuordnungsaufgabe."},
+// ---------- HGB: Ansatz ----------
+{id:"hgb246_1",law:"HGB",ref:"§ 246 Abs. 1 HGB",title:"Vollständigkeitsgebot / wirtschaftliche Zurechnung",cat:"ansatz",kap:[2,4,5],
+ kurz:"Alle Vermögensgegenstände, Schulden, RAP, Aufwendungen und Erträge sind aufzunehmen, soweit gesetzlich nichts anderes bestimmt ist. Zurechnung beim wirtschaftlichen Eigentümer (S. 2).",
+ merk:"Vollständigkeit = Aktivierungs-/PassivierungsPFLICHT als Grundregel. Die Ausnahmen (Wahlrechte/Verbote) stehen woanders (§ 248, § 249, § 250).",
+ bsp:"Entgeltlich erworbene Patente müssen aktiviert werden. Leasingobjekt: Bilanzierung beim wirtschaftlichen Eigentümer.",
+ trigger:"Grundsatz der Vollständigkeit; 'muss aktiviert werden'; wirtschaftliches Eigentum (Leasing)."},
+{id:"hgb246_2",law:"HGB",ref:"§ 246 Abs. 2 HGB",title:"Verrechnungsverbot (Saldierungsverbot) und Ausnahme Deckungsvermögen",cat:"ansatz",kap:[2,8],
+ kurz:"Aktiva dürfen nicht mit Passiva, Aufwendungen nicht mit Erträgen verrechnet werden (S. 1). Ausnahme (S. 2): Deckungsvermögen, das ausschließlich der Erfüllung von Altersversorgungsverpflichtungen dient, ist mit den Pensionsrückstellungen zu verrechnen.",
+ merk:"Saldieren verboten, außer bei Pensionen: Planvermögen gegen Pensionsrückstellung (Pflicht!).",
+ bsp:"Deckungsvermögen 80.000 vs. Pensionsrückstellung 120.000: Ausweis nur 40.000 Rückstellung. EK-Quote steigt von 25 % auf 41,7 %.",
+ trigger:"Grundsatz des Verrechnungsverbots; Saldierung von Deckungsvermögen mit Pensionsrückstellungen."},
+{id:"hgb246_3",law:"HGB",ref:"§ 246 Abs. 3 HGB",title:"Ansatzstetigkeit",cat:"gob",kap:[2],
+ kurz:"Einmal gewählte Ansatzmethoden sind beizubehalten (Pendant zur Bewertungsstetigkeit in § 252 Abs. 1 Nr. 6).",
+ merk:"246/3 = Ansatz stetig, 252/1/6 = Bewertung stetig.",
+ bsp:"Wer Entwicklungskosten einmal aktiviert, kann nicht jedes Jahr neu entscheiden.",
+ trigger:"Wechsel eines Ansatzwahlrechts zwischen zwei Jahren."},
+{id:"hgb247",law:"HGB",ref:"§ 247 Abs. 2 HGB",title:"Anlagevermögen (Definition)",cat:"ausweis",kap:[2,3],
+ kurz:"Beim Anlagevermögen sind nur Gegenstände auszuweisen, die dauernd dem Geschäftsbetrieb zu dienen bestimmt sind.",
+ merk:"Dauernd dienen = Anlage; zum Verkauf/Verbrauch = Umlauf.",
+ bsp:"Selbst erstellte Projektmanagement-Software, die verkauft werden soll: Umlaufvermögen, deshalb gilt § 248 Abs. 2 nicht.",
+ trigger:"Abgrenzung Anlage- und Umlaufvermögen, besonders bei immateriellen Gütern."},
+{id:"hgb248",law:"HGB",ref:"§ 248 Abs. 2 HGB",title:"Selbst geschaffene immaterielle Vermögensgegenstände des AV",cat:"ansatz",kap:[2,4],
+ kurz:"S. 1: Aktivierungswahlrecht für selbst geschaffene immaterielle Vermögensgegenstände des Anlagevermögens. S. 2: Aktivierungsverbot für selbst geschaffene Marken, Drucktitel, Verlagsrechte, Kundenlisten und Vergleichbares.",
+ merk:"Selbst gemacht = DARF (S. 1). Marke, Drucktitel, Verlagsrecht, Kundenliste = NIE (S. 2). Gekauft = MUSS (§ 246 Abs. 1).",
+ bsp:"Elektron-AG entwickelt Patente für 800.000 €: Aktivierungswahlrecht, Ausweis als 'selbst geschaffene gewerbliche Schutzrechte'.",
+ trigger:"Eigene Entwicklung, eigene Software, eigene Patente, eigene Marke."},
+{id:"hgb249",law:"HGB",ref:"§ 249 Abs. 1 S. 1 HGB",title:"Rückstellungen: ungewisse Verbindlichkeiten und drohende Verluste",cat:"rst",kap:[8],
+ kurz:"Passivierungspflicht für Rückstellungen für ungewisse Verbindlichkeiten und für drohende Verluste aus schwebenden Geschäften. Abs. 1 S. 2: Aufwandsrückstellungen (unterlassene Instandhaltung innerhalb 3 Monaten, Abraumbeseitigung im Folgejahr, Gewährleistung ohne rechtliche Verpflichtung). Abs. 2: Andere Rückstellungen sind verboten.",
+ merk:"Rückstellung = Schuld, die dem Grunde oder der Höhe nach ungewiss ist. Drohverlust = Imparitätsprinzip in Aktion. Steuerlich: Drohverlust-Rst verboten (§ 5 Abs. 4a EStG).",
+ bsp:"Getriebebau GmbH: 300 Getriebe à 2.000 € Verlust = 600.000 € Drohverlustrückstellung. Sportwagenhersteller: 250 Fahrzeuge à 1.000 € = 250.000 € Gewährleistungsrückstellung.",
+ trigger:"Prozess, Garantie, Gewährleistung, Verlust aus laufendem Vertrag, unterlassene Instandhaltung."},
+{id:"hgb250",law:"HGB",ref:"§ 250 HGB",title:"Rechnungsabgrenzungsposten (RAP)",cat:"ansatz",kap:[6],
+ kurz:"Ausgaben vor dem Stichtag, die Aufwand für eine bestimmte Zeit danach sind: aktiver RAP. Einnahmen vor dem Stichtag, die Ertrag für eine bestimmte Zeit danach sind: passiver RAP.",
+ merk:"Geld schon geflossen, Leistung noch nicht: abgrenzen. Erhaltene Vorauszahlung = passiver RAP.",
+ bsp:"900.000 € für einen 3-Jahres-Wartungsvertrag sofort kassiert: passiver RAP, 300.000 € Ertrag pro Jahr.",
+ trigger:"Mehrjährige Wartungs-/Serviceverträge, die sofort bezahlt werden."},
+// ---------- HGB: Bewertung ----------
+{id:"hgb252",law:"HGB",ref:"§ 252 Abs. 1 HGB",title:"Allgemeine Bewertungsgrundsätze (Nr. 1 bis 6)",cat:"gob",kap:[2,6],
+ kurz:"Nr. 1 Bilanzidentität, Nr. 2 Going Concern, Nr. 3 Einzelbewertung und Stichtagsprinzip, Nr. 4 Vorsicht (Realisations- und Imparitätsprinzip), Nr. 5 Periodenabgrenzung, Nr. 6 Bewertungsstetigkeit. Abs. 2: Abweichung nur in begründeten Ausnahmefällen.",
+ merk:"I-G-E-V-P-S: Identität, Going concern, Einzelbewertung, Vorsicht, Periodenabgrenzung, Stetigkeit. Nr. 4 ist der Star der Klausur.",
+ bsp:"Umsatz erst bei Lieferung realisieren (Nr. 4, Realisationsprinzip); drohende Verluste sofort erfassen (Nr. 4, Imparitätsprinzip).",
+ trigger:"Jede GoB-Zuordnungsfrage; Begründung von Niederstwert, Drohverlust, Umsatzrealisierung nach HGB."},
+{id:"hgb253_1",law:"HGB",ref:"§ 253 Abs. 1 HGB",title:"Zugangsbewertung: AHK und Erfüllungsbetrag",cat:"bewertung",kap:[2,5,8],
+ kurz:"Vermögensgegenstände höchstens mit Anschaffungs- oder Herstellungskosten abzüglich Abschreibungen (S. 1). Verbindlichkeiten mit Erfüllungsbetrag, Rückstellungen mit dem nach vernünftiger kaufmännischer Beurteilung notwendigen Erfüllungsbetrag (S. 2).",
+ merk:"AHK sind die Obergrenze (Anschaffungswertprinzip). Rückstellung = 'vernünftige kaufmännische Beurteilung' des Erfüllungsbetrags (inkl. künftiger Preissteigerungen).",
+ bsp:"Grundstück Flotter Otto: Marktwert 15 Mio., Bilanz trotzdem 8 Mio. AHK. Gewährleistungsrückstellung: Erfüllungsbetrag 250.000 €.",
+ trigger:"Darf über AHK aufgewertet werden? Wie hoch ist die Rückstellung zu bewerten?"},
+{id:"hgb253_2",law:"HGB",ref:"§ 253 Abs. 2 HGB",title:"Abzinsung von Rückstellungen",cat:"rst",kap:[8],
+ kurz:"Rückstellungen mit Restlaufzeit über einem Jahr sind mit dem durchschnittlichen Marktzins der letzten 7 Jahre abzuzinsen (Pensionsrückstellungen: 10 Jahre; vereinfachend Restlaufzeit 15 Jahre). Zinssätze gibt die Bundesbank bekannt.",
+ merk:"Über 1 Jahr: abzinsen. 7 Jahre Durchschnitt (Pensionen 10). Prozesskosten meist unter 1 Jahr: keine Abzinsung.",
+ bsp:"Rekultivierungsverpflichtung in 10 Jahren: Erfüllungsbetrag mit Preissteigerung hochrechnen, dann mit Bundesbankzins abzinsen.",
+ trigger:"Langfristige Rückstellung (Rekultivierung, Pension, Garantie über mehrere Jahre)."},
+{id:"hgb253_3",law:"HGB",ref:"§ 253 Abs. 3 HGB",title:"Planmäßige und außerplanmäßige Abschreibung im Anlagevermögen",cat:"bewertung",kap:[2,4,5],
+ kurz:"S. 1/2: Zeitlich begrenzt nutzbare Anlagegüter sind planmäßig über die Nutzungsdauer abzuschreiben. S. 3: Außerplanmäßige Abschreibung bei dauernder Wertminderung (Pflicht). S. 5: Außerplanmäßige Abschreibung im Anlagevermögen ist bei nur vorübergehender Wertminderung verboten (außer Finanzanlagen: Wahlrecht).",
+ merk:"Gemildertes Niederstwertprinzip im AV: Nur DAUERND = Pflicht, vorübergehend = Verbot (Finanzanlagen: Wahlrecht).",
+ bsp:"Maschine 50.000 €, ND 5 Jahre, Restwert 5.000 €: linear 9.000 €/Jahr. Wert sinkt dauerhaft auf 10.000 €: außerplanmäßig 5.000 € abschreiben, danach 2.500 €/Jahr.",
+ trigger:"Abschreibungsplan, Schaden, dauerhafte Wertminderung, 'Grundstück verliert an Wert'."},
+{id:"hgb253_4",law:"HGB",ref:"§ 253 Abs. 4 HGB",title:"Strenges Niederstwertprinzip im Umlaufvermögen",cat:"bewertung",kap:[6],
+ kurz:"Vermögensgegenstände des Umlaufvermögens sind auf den niedrigeren Börsen-/Marktpreis bzw. beizulegenden Wert abzuschreiben, unabhängig von der Dauer der Wertminderung.",
+ merk:"UV = streng: jede Wertminderung sofort. AV = gemildert: nur dauernde.",
+ bsp:"Wertpapiere des Umlaufvermögens fallen am Stichtag unter die AK: Abschreibung Pflicht.",
+ trigger:"Vorräte oder Wertpapiere des UV sind am Stichtag weniger wert."},
+{id:"hgb253_5",law:"HGB",ref:"§ 253 Abs. 5 HGB",title:"Wertaufholungsgebot (Zuschreibung)",cat:"bewertung",kap:[5],
+ kurz:"Fallen die Gründe für eine außerplanmäßige Abschreibung weg, ist zuzuschreiben, maximal bis zu den fortgeführten AHK. Ausnahme: Geschäfts- oder Firmenwert (Zuschreibungsverbot).",
+ merk:"Grund weg = Wert zurück (bis AHK-Deckel). Nur der Goodwill bleibt unten.",
+ bsp:"Grundstück von 8 auf 4 Mio. abgeschrieben, erholt sich auf 6 Mio.: Zuschreibung auf 6 Mio. Pflicht.",
+ trigger:"Erholung eines Wertes nach früherer außerplanmäßiger Abschreibung."},
+{id:"hgb254",law:"HGB",ref:"§ 254 HGB",title:"Bewertungseinheiten",cat:"bewertung",kap:[2],
+ kurz:"Vermögensgegenstände, Schulden oder Geschäfte dürfen zum Ausgleich gegenläufiger Wertänderungen (Hedging) zu einer Bewertungseinheit zusammengefasst werden.",
+ merk:"Ausnahme von der Einzelbewertung: Grundgeschäft + Sicherungsgeschäft = eine Einheit.",
+ bsp:"Fremdwährungsforderung plus Devisentermingeschäft werden gemeinsam bewertet.",
+ trigger:"Liste der Ausnahmen vom Grundsatz der Einzelbewertung."},
+{id:"hgb255_1",law:"HGB",ref:"§ 255 Abs. 1 HGB",title:"Anschaffungskosten",cat:"bewertung",kap:[2,5],
+ kurz:"Anschaffungspreis + Anschaffungsnebenkosten + nachträgliche Anschaffungskosten ./. Anschaffungspreisminderungen; nur Einzelkosten, keine Gemeinkosten, keine Finanzierungskosten.",
+ merk:"Formel: Preis + Nebenkosten + nachträglich ./. Minderungen. Alles, was der Entscheidungsfindung dient (Reisen, Beratung vorab), gehört NICHT dazu.",
+ bsp:"Grundstück 450.000 + Makler 13.500 + Notar 7.500 + Vermessung 15.000 + GrESt 15.750 = 501.750 €. Reise- und Beratungskosten: 0.",
+ trigger:"Ermitteln Sie die Anschaffungskosten (Grundstück, Maschine, Anlage)."},
+{id:"hgb255_2",law:"HGB",ref:"§ 255 Abs. 2 HGB",title:"Herstellungskosten: Pflicht, Wahlrecht, Verbot",cat:"bewertung",kap:[2,5,6],
+ kurz:"S. 2 Pflicht: Material- und Fertigungseinzelkosten, Sondereinzelkosten der Fertigung, angemessene Material- und Fertigungsgemeinkosten, fertigungsbedingter Werteverzehr des AV. S. 3 Wahlrecht: allgemeine Verwaltungskosten, soziale Einrichtungen, freiwillige soziale Leistungen, betriebliche Altersversorgung. S. 4 Verbot: Forschungs- und Vertriebskosten.",
+ merk:"Untergrenze = Einzelkosten + produktionsbezogene Gemeinkosten. Obergrenze = + Verwaltung/Soziales (+ Zinsen Abs. 3). Werbung und Forschung: NIE.",
+ bsp:"Bildband: Untergrenze 14,50 € (4+6+2+2,50), Obergrenze 17,50 € (+1,00 Sozial +1,50 Verwaltung +0,50 Zinsen). Werbeanzeige 0,50 € raus.",
+ trigger:"Ermitteln Sie Unter-/Obergrenze der Herstellungskosten nach HGB."},
+{id:"hgb255_2a",law:"HGB",ref:"§ 255 Abs. 2a HGB",title:"Entwicklungskosten vs. Forschungskosten",cat:"bewertung",kap:[2,4],
+ kurz:"Herstellungskosten selbst geschaffener immaterieller VG sind die Entwicklungskosten. Forschungskosten dürfen nicht aktiviert werden; wenn Forschung und Entwicklung nicht trennbar sind, ist die Aktivierung ausgeschlossen (S. 4).",
+ merk:"Forschung = suchen (Verbot). Entwicklung = anwenden (Wahlrecht). Nicht trennbar = alles Aufwand.",
+ bsp:"Eigene Software: Entwicklungskosten dürfen aktiviert werden, Grundlagenforschung nicht.",
+ trigger:"Selbst erstellte Software, Patente, F&E-Projekte nach HGB."},
+{id:"hgb255_3",law:"HGB",ref:"§ 255 Abs. 3 HGB",title:"Fremdkapitalzinsen in den Herstellungskosten",cat:"bewertung",kap:[2,5,6],
+ kurz:"Zinsen für Fremdkapital gehören nicht zu den HK; Wahlrecht, wenn das Fremdkapital zur Finanzierung der Herstellung verwendet wird und die Zinsen auf den Herstellungszeitraum entfallen.",
+ merk:"Zinsen: grundsätzlich nein, ausnahmsweise 'darf', wenn Kredit + Zeitraum passen. Zinsen für ein Auslieferungslager: nie (nicht herstellungsbezogen).",
+ bsp:"Bildband-Kredit speziell für die Herstellung: 0,50 € Wahlrecht. Brauerei: Zinsen für Modernisierung des Auslieferungslagers: Verbot.",
+ trigger:"Fremdkapitalzinsen in einer HK-Aufgabe."},
+{id:"hgb256",law:"HGB",ref:"§ 256 HGB",title:"Verbrauchsfolgeverfahren (Lifo/Fifo)",cat:"bewertung",kap:[2,6],
+ kurz:"Für gleichartige Vorräte darf unterstellt werden, dass die zuerst (Fifo) oder zuletzt (Lifo) angeschafften zuerst verbraucht wurden. S. 2 verweist auf § 240 Abs. 3 und 4 (Fest- und Gruppenbewertung).",
+ merk:"Nur Lifo und Fifo erlaubt (nicht Hifo/Lofo). Bei steigenden Preisen: Fifo = hoher Endbestand, Lifo = niedriger. IFRS: Lifo verboten (IAS 2.25).",
+ bsp:"Steigende Rohstoffpreise: Lifo bewertet den Endbestand mit den alten, niedrigen Preisen (stille Reserve).",
+ trigger:"Bewertungsvereinfachung für Vorräte; Vergleich HGB/IFRS bei Lifo."},
+// ---------- HGB: Kapitalgesellschaften ----------
+{id:"hgb264",law:"HGB",ref:"§ 264 HGB",title:"Anhang, Lagebericht und Generalnorm (True and Fair View)",cat:"allg",kap:[1,2,9],
+ kurz:"Abs. 1: Kapitalgesellschaften erweitern den JA um den Anhang und erstellen einen Lagebericht (kleine: kein Lagebericht). Abs. 2 S. 1: Der JA hat ein den tatsächlichen Verhältnissen entsprechendes Bild der Vermögens-, Finanz- und Ertragslage zu vermitteln (Bilanzwahrheit). S. 2: Zusätzliche Angaben im Anhang, wenn das Bild sonst nicht entsteht.",
+ merk:"264/2/1 = Bilanzwahrheit (Generalnorm). 264/2/2 = Wesentlichkeit/Korrekturfunktion des Anhangs.",
+ bsp:"Eine GmbH muss zusätzlich Anhang (und ab mittelgroß Lagebericht) aufstellen.",
+ trigger:"Grundsatz der Bilanzwahrheit; Grundsatz der Wesentlichkeit; Bestandteile des JA einer Kapitalgesellschaft."},
+{id:"hgb265",law:"HGB",ref:"§ 265 Abs. 1 HGB",title:"Darstellungsstetigkeit (formelle Bilanzkontinuität)",cat:"gob",kap:[2],
+ kurz:"Die Form der Darstellung, insbesondere die Gliederung von Bilanz und GuV, ist beizubehalten; Abweichungen nur in Ausnahmefällen mit Angabe im Anhang.",
+ merk:"265 = Gliederung bleibt. 252/1/6 = Bewertungsmethode bleibt. 252/1/1 = Werte Eröffnung = Schluss Vorjahr.",
+ bsp:"Wechsel vom GKV zum UKV nur mit Begründung im Anhang.",
+ trigger:"Grundsatz der Darstellungsstetigkeit in einer GoB-Aufgabe."},
+{id:"hgb266",law:"HGB",ref:"§ 266 HGB",title:"Gliederung der Bilanz",cat:"ausweis",kap:[2,3,8],
+ kurz:"Aktiva: A. Anlagevermögen (I. Immaterielle VG, II. Sachanlagen, III. Finanzanlagen), B. Umlaufvermögen (Vorräte, Forderungen, Wertpapiere, Liquide Mittel), C. RAP, D. Aktive latente Steuern. Passiva: A. Eigenkapital, B. Rückstellungen (Pensions-, Steuer-, sonstige), C. Verbindlichkeiten, D. RAP, E. Passive latente Steuern.",
+ merk:"Aktiva nach Liquidität (fest zu flüssig), Passiva nach Fälligkeit. Rückstellungen in 3 Töpfen: Pension, Steuer, Sonstige.",
+ bsp:"Selbst geschaffene Patente: A.I.1 'Selbst geschaffene gewerbliche Schutzrechte'. Gekaufte Lizenz: A.I.2 'entgeltlich erworbene Konzessionen...'.",
+ trigger:"Unter welchem Posten ist auszuweisen? Strukturbilanz aufstellen."},
+{id:"hgb267",law:"HGB",ref:"§ 267 / § 267a HGB",title:"Größenklassen der Kapitalgesellschaften",cat:"allg",kap:[2],
+ kurz:"Kleinst: Bilanzsumme ≤ 450 T€, Umsatz ≤ 900 T€, ≤ 10 AN. Klein: ≤ 7,5 Mio. / ≤ 15 Mio. / ≤ 50. Mittelgroß: ≤ 25 Mio. / ≤ 50 Mio. / ≤ 250. Groß: darüber. Zwei von drei Merkmalen an zwei aufeinanderfolgenden Stichtagen (Abs. 4); kapitalmarktorientiert = immer groß (Abs. 3 S. 2); im Gründungsjahr sofort.",
+ merk:"7,5 / 15 / 50 und 25 / 50 / 250. Regel '2 von 3 an 2 Stichtagen'. Börse = groß, sofort.",
+ bsp:"Jahr 02 erstmals zwei Merkmale mittelgroß: bleibt klein. Jahr 03 erneut: mittelgroß. Jahr 05 Börsennotierung: groß.",
+ trigger:"Klassifizieren Sie die Gesellschaft; Rechtsfolgen für Prüfung, Offenlegung, Anhang."},
+{id:"hgb268_8",law:"HGB",ref:"§ 268 Abs. 8 HGB",title:"Ausschüttungssperre",cat:"ausweis",kap:[4],
+ kurz:"Werden selbst geschaffene immaterielle VG aktiviert, dürfen Gewinne nur ausgeschüttet werden, wenn die frei verfügbaren Rücklagen den aktivierten Betrag (abzgl. passiver latenter Steuern) decken.",
+ merk:"Wahlrecht § 248 hat einen Preis: Ausschüttungssperre.",
+ bsp:"Aktivierte Entwicklungskosten 800.000 €: dieser Betrag ist für Dividenden gesperrt.",
+ trigger:"Folgen der Aktivierung von Entwicklungskosten nach HGB."},
+{id:"hgb275",law:"HGB",ref:"§ 275 HGB",title:"GuV-Gliederung: Gesamtkosten- und Umsatzkostenverfahren",cat:"ausweis",kap:[2,7,8],
+ kurz:"Abs. 2 GKV: Umsatzerlöse +/- Bestandsveränderungen + aktivierte Eigenleistungen + sonstige Erträge ./. Material, Personal, Abschreibungen, sonstige Aufwendungen (Aufwand nach Arten). Abs. 3 UKV: Umsatzerlöse ./. Herstellungskosten des Umsatzes = Bruttoergebnis ./. Vertrieb ./. Verwaltung (Aufwand nach Funktionen).",
+ merk:"GKV = Produktionserfolgsrechnung (Anpassung über Leistungsseite). UKV = Absatzerfolgsrechnung (Anpassung über Kostenseite, international üblich).",
+ bsp:"Rückstellungsbildung belastet im GKV Posten 8 'sonstige betriebliche Aufwendungen' (UKV: Posten 7).",
+ trigger:"Wesensmerkmale GKV/UKV; welches Aufwandskonto; Erfolgsspaltung."},
+{id:"hgb277",law:"HGB",ref:"§ 277 HGB",title:"Vorschriften zu einzelnen GuV-Posten",cat:"ausweis",kap:[2,7],
+ kurz:"Definition der Umsatzerlöse (Abs. 1), Bestandsveränderungen (Abs. 2), Angabe außerplanmäßiger Abschreibungen und Erträge/Aufwendungen von außergewöhnlicher Größenordnung oder Bedeutung (Abs. 3, 4).",
+ merk:"277 erklärt die Posten, 275 ordnet sie.",
+ bsp:"Außerplanmäßige Abschreibung auf eine Maschine ist gesondert anzugeben.",
+ trigger:"Erfolgsspaltung: Identifikation außergewöhnlicher Posten."},
+{id:"hgb284",law:"HGB",ref:"§§ 284, 285 HGB",title:"Anhang: Pflichtangaben",cat:"ausweis",kap:[2],
+ kurz:"§ 284 Abs. 2: Bilanzierungs- und Bewertungsmethoden, Abweichungen (Nr. 3), Anlagespiegel. § 285: Einzelangaben, u.a. Nr. 13 Abschreibungsdauer Goodwill, Nr. 22 F&E-Kosten, Nr. 23 Bewertungseinheiten, Nr. 25 Verrechnung Deckungsvermögen.",
+ merk:"Anhang hat 4 Funktionen: Erläuterung, Ergänzung, Entlastung, Korrektur.",
+ bsp:"Wer Bewertungsmethoden ändert, muss das im Anhang begründen (§ 284 Abs. 2 Nr. 3).",
+ trigger:"Was muss im Anhang stehen?"},
+{id:"hgb289",law:"HGB",ref:"§ 289 HGB",title:"Lagebericht",cat:"ausweis",kap:[2,9],
+ kurz:"Darstellung von Geschäftsverlauf und Lage, Prognose-, Chancen- und Risikobericht; Pflicht für mittelgroße und große Kapitalgesellschaften.",
+ merk:"Lagebericht ist NICHT Teil des Jahresabschlusses, steht aber daneben.",
+ bsp:"Kleine GmbH: kein Lagebericht nötig.",
+ trigger:"Bestandteile nach Größenklasse."},
+{id:"hgb290",law:"HGB",ref:"§§ 290 ff. HGB",title:"Konzernabschluss",cat:"allg",kap:[9],
+ kurz:"Mutterunternehmen mit beherrschendem Einfluss müssen einen Konzernabschluss aufstellen; kapitalmarktorientierte Mütter nach IFRS (§ 315e HGB), andere nach HGB mit Wahlrecht zu IFRS.",
+ merk:"Einzelabschluss = Ausschüttung und Steuer; Konzernabschluss = Information.",
+ bsp:"Eine börsennotierte AG mit Töchtern erstellt den Konzernabschluss nach IFRS.",
+ trigger:"Abgrenzung Einzel- und Konzernabschluss, Anwendungsbereich IFRS in Deutschland."},
+{id:"hgb316",law:"HGB",ref:"§ 316 Abs. 1 HGB",title:"Prüfungspflicht",cat:"allg",kap:[2],
+ kurz:"Jahresabschluss und Lagebericht mittelgroßer und großer Kapitalgesellschaften sind durch einen Abschlussprüfer zu prüfen; kleine sind prüfungsfrei.",
+ merk:"Klein = frei, ab mittelgroß = Prüfer.",
+ bsp:"Die mittelgroße GmbH aus der Größenklassen-Aufgabe wird ab Jahr 03 prüfungspflichtig.",
+ trigger:"Rechtsfolgen der Größenklasse."},
+{id:"hgb325",law:"HGB",ref:"§§ 325 ff. HGB",title:"Offenlegung",cat:"allg",kap:[2],
+ kurz:"Kapitalgesellschaften müssen den JA im Unternehmensregister offenlegen; Kleinst: Hinterlegung der Bilanz; klein: Bilanz und Anhang (ohne GuV); mittelgroß/groß: alles.",
+ merk:"Je größer, desto gläserner.",
+ bsp:"Kleine GmbH veröffentlicht keine GuV.",
+ trigger:"Was muss nach Größenklasse offengelegt werden?"},
+// ---------- Sonstige deutsche Normen ----------
+{id:"eghgb28",law:"S",ref:"Art. 28 Abs. 1 EGHGB",title:"Altzusagen bei Pensionen (vor 1.1.1987)",cat:"rst",kap:[2,8],
+ kurz:"Für Pensionszusagen, die vor dem 1.1.1987 erteilt wurden, besteht ein Passivierungswahlrecht statt der Passivierungspflicht.",
+ merk:"1987 ist die Grenze: davor 'darf', danach 'muss'.",
+ bsp:"Pensionszusage aus 1985: abstrakt passivierungsfähig, konkret Wahlrecht.",
+ trigger:"Bilanzierungsfähigkeit von Pensionsrückstellungen mit Altzusage."},
+{id:"estr54",law:"S",ref:"R 5.4 EStR",title:"Festwert: 10 %-Grenze",cat:"inventur",kap:[2,3],
+ kurz:"Übersteigt der Inventurwert den bisherigen Festwert um mehr als 10 %, ist der Festwert anzuheben; bei geringerer Abweichung darf er beibehalten werden; bei niedrigerem Wert gilt das Niederstwertprinzip.",
+ merk:"+10 % = Anpassungspflicht nach oben. Darunter: Festwert bleibt. Niedriger: runter (Vorsicht).",
+ bsp:"Festwert 25.000, Inventur 26.900 (+7,6 %): bleibt. 35.400 (+41,6 %): auf 35.400 anheben. 23.000: auf 23.000 abwerten.",
+ trigger:"Festwert nach Inventur neu bestimmen."},
+{id:"estr53",law:"S",ref:"R 5.3 EStR",title:"Zeitnahe Inventur (10 Tage)",cat:"inventur",kap:[3],
+ kurz:"Die Aufnahme darf bis zu 10 Tage vor oder nach dem Stichtag erfolgen, wenn die Bestandsveränderungen dazwischen ordnungsgemäß erfasst werden.",
+ merk:"Zeitnah = 10 Tage Fenster. Verlegt (§ 241 Abs. 3) = 3 Monate vor / 2 Monate nach.",
+ bsp:"Folg kann 07.01. bis 10.01.02 zählen, wenn alle Bewegungen zwischen 31.12. und Aufnahme erfasst werden.",
+ trigger:"Inventur kurz nach dem Stichtag."},
+{id:"estg5",law:"S",ref:"§ 5 Abs. 1 S. 1 EStG",title:"Maßgeblichkeitsprinzip",cat:"allg",kap:[1,8],
+ kurz:"Die Handelsbilanz ist Grundlage der Steuerbilanz; handelsrechtliche Passivierungsgebote gelten auch steuerlich, soweit das EStG nichts anderes bestimmt.",
+ merk:"Handelsbilanz führt, Steuerbilanz folgt (mit Ausnahmen in § 5 Abs. 4 ff. und § 6 EStG).",
+ bsp:"Zahlungsbemessungsfunktion: Die Bilanz ist Bemessungsgrundlage der Ertragsteuern.",
+ trigger:"Zahlungsbemessungsfunktion; Vergleich Handels-/Steuerbilanz."},
+{id:"estg5_4a",law:"S",ref:"§ 5 Abs. 4a EStG",title:"Steuerliches Verbot der Drohverlustrückstellung",cat:"rst",kap:[8],
+ kurz:"Rückstellungen für drohende Verluste aus schwebenden Geschäften dürfen in der Steuerbilanz nicht gebildet werden (Durchbrechung der Maßgeblichkeit). § 5 Abs. 4: Jubiläumsrückstellung erst ab 10 Dienstjahren.",
+ merk:"Handelsrechtlich Pflicht, steuerlich verboten: Drohverlust ist der Klassiker für latente Steuern.",
+ bsp:"Getriebebau: 600.000 € Rückstellung in der HB, 0 € in der StB.",
+ trigger:"Unterschiede HGB/Steuerrecht bei Rückstellungen."},
+{id:"estg6",law:"S",ref:"§ 6 Abs. 1 Nr. 1 EStG",title:"Teilwertabschreibung (Steuerrecht)",cat:"bewertung",kap:[5],
+ kurz:"Steuerlich darf bei dauernder Wertminderung auf den niedrigeren Teilwert abgeschrieben werden (Wahlrecht), handelsrechtlich ist es Pflicht; Nr. 3: Rückstellungen sind mit 5,5 % abzuzinsen.",
+ merk:"Dauernd: HGB Pflicht, EStG Wahlrecht. Vorübergehend: beide Verbot.",
+ bsp:"Außerplanmäßige Abschreibung einer Maschine in der HB, Teilwert-AfA in der StB optional.",
+ trigger:"Vergleich Handels- und Steuerbilanz bei Wertminderungen."},
+{id:"leasing",law:"S",ref:"Leasingerlasse (BMF) / § 39 AO",title:"Leasing: wirtschaftliches Eigentum (40/90-Regel)",cat:"ansatz",kap:[5],
+ kurz:"Vollamortisation: Grundmietzeit zwischen 40 % und 90 % der Nutzungsdauer: Leasinggeber bilanziert, es sei denn Kaufoption unter dem linearen Restbuchwert oder Mietverlängerung unter der Restwert-AfA, dann Leasingnehmer. Unter 40 % oder über 90 %: immer Leasingnehmer.",
+ merk:"40 bis 90 = Geber, außer die Option ist billiger als der Buchwert. Außerhalb = Nehmer.",
+ bsp:"Kopierer: 3/5 = 60 %. Restbuchwert 60.000. Kaufoption 65.000 > 60.000: Leasinggeber. 55.000 < 60.000: Leasingnehmer.",
+ trigger:"Wer bilanziert das Leasingobjekt?"},
+{id:"idw1016",law:"S",ref:"IDW RH HFA 1.016",title:"Komponentenweise Abschreibung nach HGB",cat:"bewertung",kap:[5],
+ kurz:"Nach HGB darf bei physisch separierbaren Komponenten mit deutlich unterschiedlicher Nutzungsdauer komponentenweise abgeschrieben werden (Wahlrecht); Grundregel bleibt die Abschreibung des Gesamtobjekts.",
+ merk:"HGB: Komponentenansatz DARF. IFRS (IAS 16.43): MUSS.",
+ bsp:"Flugzeug 11 Mio. über 8 Jahre = 1,375 Mio./Jahr nach HGB (Regelfall).",
+ trigger:"Komponentenansatz nach HGB angesprochen."},
+// ---------- IFRS ----------
+{id:"ias1",law:"IFRS",ref:"IAS 1 / Rahmenkonzept",title:"Darstellung des Abschlusses, Bestandteile",cat:"allg",kap:[1,9],
+ kurz:"IFRS-Abschluss: Bilanz, Gesamtergebnisrechnung, Eigenkapitalveränderungsrechnung, Kapitalflussrechnung, Anhang; Ziel ist entscheidungsnützliche Information (decision usefulness), nicht Gläubigerschutz.",
+ merk:"HGB = Vorsicht und Gläubigerschutz. IFRS = Information für Investoren (fair presentation).",
+ bsp:"Eine Kapitalflussrechnung ist nach IFRS Pflicht, nach HGB nur im Konzern bzw. für kapitalmarktorientierte Unternehmen.",
+ trigger:"Zielsetzung und Bestandteile HGB vs. IFRS."},
+{id:"ias2",law:"IFRS",ref:"IAS 2.9 / 2.12 / 2.25",title:"Vorräte: Herstellungskosten und Bewertung",cat:"bewertung",kap:[6],
+ kurz:"Vorräte sind mit dem niedrigeren Wert aus AHK und Nettoveräußerungswert zu bewerten (2.9). HK umfassen alle produktionsbezogenen Voll­kosten: Einzelkosten plus fixe und variable Produktionsgemeinkosten (2.12 ff.); Verwaltung/Vertrieb nur soweit produktionsbezogen. Verbrauchsfolge: Fifo oder Durchschnitt, kein Lifo (2.25).",
+ merk:"IFRS kennt keine HK-Untergrenze: produktionsbezogener Vollkostenansatz = ein Wert. Lifo verboten.",
+ bsp:"Bier 'Dusty Taste': HGB 318 bis 341 €, IFRS genau 341 €.",
+ trigger:"Herstellungskosten nach IFRS; HGB-Spanne vs. IFRS-Punktwert."},
+{id:"ias16_7",law:"IFRS",ref:"IAS 16.7",title:"Ansatzkriterien Sachanlagen",cat:"ansatz",kap:[5],
+ kurz:"Eine Sachanlage ist anzusetzen, wenn wahrscheinlich künftiger wirtschaftlicher Nutzen zufließt und die AHK verlässlich bewertbar sind; gilt auch für nachträgliche Kosten (Ersatzkomponenten).",
+ merk:"Zwei Fragen: Nutzen wahrscheinlich? Kosten messbar? Ja/Ja = ansetzen.",
+ bsp:"Neues Triebwerk für 3,2 Mio.: ansetzen; altes Triebwerk (0,8 Mio.) ausbuchen.",
+ trigger:"Nachträgliche Anschaffungskosten, Ersatz von Komponenten nach IFRS."},
+{id:"ias16_16",law:"IFRS",ref:"IAS 16.16 ff. (16.19)",title:"Anschaffungskosten nach IFRS",cat:"bewertung",kap:[5],
+ kurz:"AK = Kaufpreis (ohne USt, nach Skonti/Rabatten) + direkt zurechenbare Kosten (Transport, Aufstellung, Montage, Honorare) + geschätzte Kosten für Abbruch/Entsorgung/Rekultivierung (Barwert, IAS 16.16c i.V.m. IAS 37). 16.19: keine Verwaltungs-/Gemeinkosten, keine Eröffnungs-/Schulungskosten.",
+ merk:"Wie HGB, plus: künftige Entsorgungskosten (abgezinst) gehören rein! Gemeinkosten raus.",
+ bsp:"Gecko AG: 3.000.000 ./. 60.000 Skonto + 20.000 Transport + 30.000 Versicherung + 150.000 Montage-Einzelkosten + 29.204 Entsorgung (200.000 x 1,08^-25) = 3.169.204 €.",
+ trigger:"Anschaffungskosten nach IAS 16, Entsorgungsverpflichtung, Skonto."},
+{id:"ias16_30",law:"IFRS",ref:"IAS 16.29-31",title:"Folgebewertung: Anschaffungskostenmodell vs. Neubewertungsmodell",cat:"bewertung",kap:[4,5],
+ kurz:"Wahlrecht je Gruppe von Sachanlagen: Anschaffungskostenmodell (16.30: AHK ./. Abschreibungen ./. Wertminderungen) oder Neubewertungsmodell (16.31: Fair Value am Neubewertungstag ./. nachfolgende Abschreibungen; regelmäßig alle 3 bis 5 Jahre, für die ganze Gruppe).",
+ merk:"Cost model = HGB-ähnlich. Revaluation model = Fair Value, Aufwertung erfolgsneutral ins Eigenkapital.",
+ bsp:"Bürogebäude 250.000, Marktwert 300.000 am 31.12.01: Neubewertung auf 300.000.",
+ trigger:"Neubewertungsmethode, Fair Value, 'Marktwert steigt'."},
+{id:"ias16_39",law:"IFRS",ref:"IAS 16.39-41",title:"Neubewertungsrücklage",cat:"bewertung",kap:[4,5],
+ kurz:"16.39: Werterhöhung erfolgsneutral in die Neubewertungsrücklage (OCI), außer sie macht eine frühere erfolgswirksame Abwertung rückgängig. 16.40: Wertminderung erfolgswirksam, außer soweit eine Neubewertungsrücklage für denselben Vermögenswert besteht (dann erfolgsneutral dagegen). 16.41: Rücklage darf bei Nutzung anteilig oder bei Abgang in die Gewinnrücklagen umgebucht werden.",
+ merk:"Hoch = neutral (Rücklage). Runter = erst Rücklage aufbrauchen, Rest Aufwand. Beim Abschreiben: Differenz der AfA darf in Gewinnrücklagen.",
+ bsp:"Grundstück 8 auf 15 Mio.: Rücklage 7. Dann auf 4 Mio.: Rücklage 7 auflösen, 4 Mio. Aufwand. Lizenz: Rücklage 40.000 aufgelöst, 5.000 Aufwand.",
+ trigger:"Buchungssätze bei Neubewertung; Wertminderung nach vorheriger Aufwertung."},
+{id:"ias16_43",law:"IFRS",ref:"IAS 16.43-45",title:"Komponentenansatz (Pflicht)",cat:"bewertung",kap:[5],
+ kurz:"Jeder Teil einer Sachanlage mit bedeutsamen AK im Verhältnis zum Gesamtwert ist gesondert abzuschreiben (Pflicht); Teile mit gleicher Nutzungsdauer und Methode dürfen zusammengefasst werden (16.45). Ersatz: alte Komponente ausbuchen, neue aktivieren.",
+ merk:"IFRS: zerlegen ist Pflicht. Beispiel aus dem Standard: Flugwerk und Triebwerk.",
+ bsp:"Flugzeug: Triebwerk 4/6 = 0,667, Flugwerk 5/10 = 0,5, Ausrüstung 2/6 = 0,333: gesamt 1,5 Mio./Jahr (HGB: 1,375).",
+ trigger:"Komponentenansatz, Austausch wesentlicher Teile."},
+{id:"ias16_62",law:"IFRS",ref:"IAS 16.62-63 / 16.15",title:"Abschreibungsmethoden und Erstbewertung",cat:"bewertung",kap:[5],
+ kurz:"Erstbewertung zu AHK (16.15). Abschreibungsmethode muss den Nutzenverbrauch widerspiegeln: linear, degressiv oder leistungsabhängig (16.62); Werthaltigkeit nach IAS 36 (16.63).",
+ merk:"Methode frei, aber begründet; jährlich überprüfen.",
+ bsp:"Bürogebäude linear über 20 Jahre: 12.500 €/Jahr.",
+ trigger:"Welche Abschreibungsmethoden sind nach IFRS zulässig?"},
+{id:"ias36",law:"IFRS",ref:"IAS 36 (36.8, 36.18, 36.59 f., 36.114 ff.)",title:"Wertminderung von Vermögenswerten (Impairment)",cat:"bewertung",kap:[4,5],
+ kurz:"Bei Anzeichen (36.8 ff.) ist der erzielbare Betrag zu ermitteln = höherer Wert aus Nettoveräußerungswert (fair value less costs of disposal) und Nutzungswert (value in use) (36.18). Liegt er unter dem Buchwert: erfolgswirksame Wertminderung (36.59 f.). Wertaufholung bei Wegfall der Gründe bis zu fortgeführten AHK (36.114 ff.), außer Goodwill.",
+ merk:"Erzielbarer Betrag = max(Verkauf netto, Nutzung). Buchwert höher? Abschreiben. Später besser? Zuschreiben (nicht Goodwill).",
+ bsp:"Grundstück: Nettoveräußerungspreis 4 Mio., Nutzwert nicht höher: Wertminderung auf 4 Mio., später Zuschreibung auf 6 Mio.",
+ trigger:"Außerplanmäßige Abschreibung nach IFRS, 'Nutzwert', 'Nettoveräußerungspreis'."},
+{id:"ias37_14",law:"IFRS",ref:"IAS 37.14",title:"Ansatzkriterien für Rückstellungen",cat:"rst",kap:[8],
+ kurz:"Rückstellung nur, wenn (a) gegenwärtige rechtliche oder faktische Verpflichtung aus einem vergangenen Ereignis, (b) Abfluss von Ressourcen wahrscheinlich (more likely than not, über 50 %) und (c) Höhe verlässlich schätzbar. Keine Aufwandsrückstellungen (37.10, 37.63).",
+ merk:"3 Hürden: Verpflichtung, wahrscheinlich, schätzbar. Drohverluste (onerous contracts) nach 37.66 ebenfalls Pflicht.",
+ bsp:"Frost-AG/Pirat-AG: Ergebnis wie HGB, bei 50/50-Ausgang 'wahrscheinlich' umstritten; Erwartungswert bei Vergleich: 6.000 bzw. 106.000 €.",
+ trigger:"Rückstellung nach IFRS: ja oder nein?"},
+{id:"ias37_36",law:"IFRS",ref:"IAS 37.36-47",title:"Bewertung von Rückstellungen nach IFRS",cat:"rst",kap:[8],
+ kurz:"Bestmögliche Schätzung (37.36), Berücksichtigung von Risiken und Unsicherheiten (37.42), Abzinsung bei wesentlichem Zinseffekt mit Vorsteuer-Marktzins (37.45, 37.47); Erwartungswert bei großer Grundgesamtheit, wahrscheinlichster Wert bei Einzelverpflichtung.",
+ merk:"Best estimate + Abzinsung mit aktuellem Marktzins (HGB: 7-Jahres-Durchschnitt).",
+ bsp:"Garantie für 500 Fahrzeuge: Erwartungswert 250.000 €.",
+ trigger:"Höhe der Rückstellung nach IFRS; Unterschiede zur HGB-Abzinsung."},
+{id:"ias38_8",law:"IFRS",ref:"IAS 38.8-24",title:"Immaterielle Vermögenswerte: Definition und Ansatz",cat:"ansatz",kap:[4],
+ kurz:"Identifizierbar (separierbar oder aus Rechten), vom Unternehmen beherrscht, künftiger Nutzen (38.8-17). Ansatz, wenn Nutzenzufluss wahrscheinlich und Kosten verlässlich bewertbar (38.21); Erstbewertung zu AHK (38.24).",
+ merk:"Identifizierbar + Kontrolle + Nutzen = immaterieller Vermögenswert.",
+ bsp:"Gekaufte Fischereilizenz für 100.000 €: Ansatz zu AK.",
+ trigger:"Liegt ein immaterieller Vermögenswert nach IFRS vor?"},
+{id:"ias38_57",law:"IFRS",ref:"IAS 38.54-57 / 38.71",title:"Forschungs- und Entwicklungskosten nach IFRS",cat:"ansatz",kap:[4],
+ kurz:"Forschungskosten: Aufwand (38.54). Entwicklungskosten: Aktivierungspflicht, wenn alle sechs Kriterien erfüllt sind (38.57): technische Realisierbarkeit, Absicht, Fähigkeit zur Nutzung/Verkauf, künftiger Nutzen, Ressourcen, verlässliche Messung. Nachaktivierung früher als Aufwand erfasster Kosten verboten (38.71).",
+ merk:"6 Kriterien erfüllt = MUSS aktivieren (HGB: darf). Vorher verbuchter Aufwand bleibt Aufwand.",
+ bsp:"Genfix: 01 Zweifel am Erfolg: 150.000 Aufwand. 02 Kriterien erfüllt: 250.000 aktivieren. 03: 100.000 aktivieren, AfA 350.000/5 = 70.000.",
+ trigger:"Entwicklungsprojekt nach IFRS, 'Zweifel am Erfolg', 'Kriterien erfüllt'."},
+{id:"ias38_63",law:"IFRS",ref:"IAS 38.63",title:"Verbot für selbst geschaffene Marken, Kundenlisten etc.",cat:"ansatz",kap:[4],
+ kurz:"Selbst geschaffene Markennamen, Drucktitel, Verlagsrechte, Kundenlisten und ähnliche Posten dürfen nicht angesetzt werden (entspricht § 248 Abs. 2 S. 2 HGB).",
+ merk:"Gleiche Verbotsliste wie HGB.",
+ bsp:"Eigene Marke 'Dusty Taste' wird nie aktiviert.",
+ trigger:"Eigene Marke oder Kundenliste nach IFRS."},
+{id:"ias38_72",law:"IFRS",ref:"IAS 38.72-87",title:"Folgebewertung immaterieller Vermögenswerte",cat:"bewertung",kap:[4],
+ kurz:"Anschaffungskostenmodell (38.74) oder Neubewertungsmodell (38.75), letzteres nur bei aktivem Markt (38.78); Aufwertung erfolgsneutral in Neubewertungsrücklage (38.85), Abwertung erfolgswirksam bzw. gegen Rücklage (38.86).",
+ merk:"Neubewertung nur mit aktivem Markt: Patente haben meist keinen, Lizenzen/Quoten manchmal schon.",
+ bsp:"Genfix-Verfahren: kein aktiver Markt, Neubewertung ausgeschlossen. Fischereilizenz: Marktwert vorhanden, Neubewertung möglich.",
+ trigger:"Neubewertungsmethode bei immateriellen Werten."},
+{id:"ias38_97",law:"IFRS",ref:"IAS 38.97-98 / 38.107",title:"Abschreibung immaterieller Vermögenswerte",cat:"bewertung",kap:[4],
+ kurz:"Begrenzte Nutzungsdauer: planmäßig über die Nutzungsdauer ab Nutzungsbereitschaft (38.97), Methode nach Nutzenverbrauch (38.98). Unbegrenzte Nutzungsdauer: keine planmäßige Abschreibung, jährlicher Impairment-Test (38.107 f.).",
+ merk:"Abschreibung beginnt mit Nutzung, nicht mit Fertigstellung.",
+ bsp:"Genfix-Verfahren wird erst in 03 genutzt: AfA erst ab 03.",
+ trigger:"Ab wann und wie lange abschreiben?"},
+{id:"ifrs15_5",law:"IFRS",ref:"IFRS 15.9-45 (5-Schritte-Modell)",title:"Umsatzrealisierung: Fünf Schritte",cat:"bewertung",kap:[6],
+ kurz:"1. Vertrag identifizieren (15.9), 2. separate Leistungsverpflichtungen identifizieren (15.22-30), 3. Transaktionspreis bestimmen (15.47-59), 4. Preis auf Leistungsverpflichtungen verteilen (15.73-86), 5. Umsatz bei Erfüllung erfassen: zeitpunkt- oder zeitraumbezogen (15.31-45). Kontrollübergang statt Gefahrenübergang.",
+ merk:"Vertrag, Verpflichtungen, Preis, Verteilen, Erfassen. HGB: Realisationsprinzip bei Lieferung; IFRS: Kontrolle.",
+ bsp:"TechConsult: Hardware bei Lieferung; Lizenz + Customizing als eine Verpflichtung nach Fortschritt (15.28 f.); Wartung über 3 Jahre.",
+ trigger:"Mehrkomponentenvertrag, Erlösaufteilung, Zeitpunkt der Umsatzrealisierung nach IFRS."},
+{id:"ifrs15_35",law:"IFRS",ref:"IFRS 15.35-45",title:"Zeitraumbezogene Leistungserfüllung (percentage of completion)",cat:"bewertung",kap:[6],
+ kurz:"Umsatz wird über den Zeitraum erfasst, wenn der Kunde den Nutzen laufend erhält, einen Vermögenswert kontrolliert oder kein alternativer Nutzen besteht und Zahlungsanspruch gegeben ist (15.35). Fortschritt input- (Kosten) oder outputbasiert (15.39 ff.).",
+ merk:"Fertigstellungsgrad = angefallene Kosten / Gesamtkosten. Umsatz = Gesamterlös x Grad. Anzahlungen sind egal für den Umsatz.",
+ bsp:"Beratung: 3 Mio. Kosten / 9 Mio. = 1/3; Umsatz 12 Mio. x 1/3 = 4 Mio. Brücke: Bilanzwert = HK 1.125.000 + Teilgewinn 375.000 = 1.500.000 €.",
+ trigger:"Langfristiger Fertigungsauftrag, Leistungsfortschritt, Teilgewinnrealisierung (HGB: completed contract)."},
+{id:"ias23",law:"IFRS",ref:"IAS 23",title:"Fremdkapitalkosten (Borrowing Costs)",cat:"bewertung",kap:[5,6],
+ kurz:"Fremdkapitalkosten, die direkt der Herstellung eines qualifizierten Vermögenswerts zuzurechnen sind, sind zu aktivieren (Pflicht); andere Zinsen sind Aufwand.",
+ merk:"IFRS: Zinsen für qualifizierte Vermögenswerte MUSS. HGB § 255 Abs. 3: DARF.",
+ bsp:"Messgerät: 400 € FK-Zinsen für qualifizierten Vermögenswert nach IFRS Pflichtbestandteil (24.200 €), nach HGB Wahlrecht (23.500 bis 24.400 €).",
+ trigger:"Fremdkapitalzinsen in HK nach IFRS."},
+{id:"ifrs16",law:"IFRS",ref:"IFRS 16",title:"Leasing nach IFRS",cat:"ansatz",kap:[5],
+ kurz:"Leasingnehmer bilanziert grundsätzlich jedes Leasingverhältnis als Nutzungsrecht (right-of-use asset) und Leasingverbindlichkeit; Ausnahmen für kurzfristige (≤ 12 Monate) und geringwertige Leasinggegenstände.",
+ merk:"IFRS: fast alles on balance beim Nehmer. HGB/Steuer: 40/90-Test entscheidet.",
+ bsp:"Die Nippon AG würde nach IFRS 16 die Kopierer in beiden Fällen als Nutzungsrecht aktivieren.",
+ trigger:"Leasing im HGB/IFRS-Vergleich."},
+];
+
+// Übungsaufgaben Kapitel 1-3 (Originalaufgaben aus dem Kurs, Lösungen nach Prof. Bauer)
+const KAPITEL = {
+ 1:"Ziele und Aufgaben des Jahresabschlusses",2:"Rechtsgrundlagen, GoB, Ansatz und Bewertung",3:"Inventur, Inventar, Bilanz",
+ 4:"Immaterielle Vermögensgegenstände",5:"Sachanlagen",6:"Vorräte und Erlöse",7:"Jahresabschlussanalyse",8:"Rückstellungen",9:"Jahres- und Konzernabschluss"
+};
+const AUFGABEN = [];
+AUFGABEN.push(
+{id:"A01",kap:1,law:"HGB",type:"open",title:"Bestandteile und Funktionen des Jahresabschlusses",
+ sachverhalt:"Der Jahresabschluss erfüllt drei zentrale Funktionen: Dokumentationsfunktion, Informationsfunktion und Zahlungsbemessungsfunktion.",
+ frage:"Inwieweit erfüllen die einzelnen Bestandteile des Jahresabschlusses (Bilanz, GuV) diese drei Funktionen? Zeigen Sie die Zusammenhänge auf.",
+ loesung:"Jede Funktion wird von Bilanz und GuV unterschiedlich bedient: Die Bilanz dokumentiert und informiert über Vermögen und Kapital, die GuV über Erfolg und Erfolgsquellen; beide dienen als Bemessungsgrundlage für Steuern, Dividenden und Tantiemen.",
+ herleitung:[
+  {t:"Dokumentationsfunktion",d:"Bilanz: Darstellung von Vermögen (Anlage- und Umlaufvermögen) und Kapital (Eigen- und Fremdkapital) sowie der im Geschäftsjahr getätigten Geschäfte. GuV: Darstellung der im abgelaufenen Geschäftsjahr getätigten Geschäfte (Aufwendungen und Erträge)."},
+  {t:"Informationsfunktion",d:"Bilanz: Information über Vermögens- und Finanzlage, über Vermögen, Liquidität und Schulden, über Mittelherkunft (Passiva) und Mittelverwendung (Aktiva). GuV: Information über die Ertragslage und die Erfolgsquellen (Betriebsergebnis, Finanzergebnis, außerordentliches Ergebnis)."},
+  {t:"Zahlungsbemessungsfunktion",d:"Bilanz: Maßgeblichkeit der Handelsbilanz für die Steuerbilanz, damit Bemessungsgrundlage für Ertragsteuern. GuV: Ermittlung der Bemessungsgrundlage für Ertragsteuern, der Dividendenansprüche der Anteilseigner, der erfolgsabhängigen Vergütung (Tantieme) der Geschäftsleitung und der Basis für erfolgsabhängige Mitarbeiterbeteiligung."}],
+ refs:["hgb242","hgb264","estg5"],
+ merk:"D-I-Z: Dokumentieren (was war), Informieren (wie steht es), Zahlen bemessen (wer bekommt wie viel). Die Bilanz zeigt den Bestand, die GuV den Fluss."},
+
+{id:"A02",kap:2,law:"HGB",type:"match",title:"Grundsätze ordnungsmäßiger Buchführung zuordnen",
+ sachverhalt:"Zu jeder der folgenden Aussagen gehört genau ein Grundsatz ordnungsmäßiger Buchführung und Bilanzierung mit seiner Fundstelle im HGB.",
+ frage:"Ordnen Sie jeder Aussage den passenden Grundsatz zu.",
+ options:["Vollständigkeit (§ 246 Abs. 1)","Darstellungsstetigkeit (§ 265 Abs. 1)","Bilanzidentität (§ 252 Abs. 1 Nr. 1)","Klarheit und Übersichtlichkeit (§ 243 Abs. 2)","Bewertungsstetigkeit (§ 252 Abs. 1 Nr. 6)","Bilanzwahrheit (§ 264 Abs. 2 S. 1)","Vorsicht (§ 252 Abs. 1 Nr. 4)","Unternehmensfortführung (§ 252 Abs. 1 Nr. 2)","Periodenabgrenzung (§ 252 Abs. 1 Nr. 5)","Wesentlichkeit (§ 264 Abs. 2 S. 2)","Verrechnungsverbot (§ 246 Abs. 2 S. 1)","Einzelbewertung (§ 252 Abs. 1 Nr. 3)"],
+ rows:[
+  {t:"Sämtliche Vermögensgegenstände, Schulden, Aufwendungen und Erträge sind in den Jahresabschluss aufzunehmen.",ans:0},
+  {t:"Die Gliederung der Bilanz und der GuV ist von Jahr zu Jahr beizubehalten (formelle Bilanzkontinuität).",ans:1},
+  {t:"Die Wertansätze der Eröffnungsbilanz müssen mit denen der Schlussbilanz des Vorjahres übereinstimmen.",ans:2},
+  {t:"Der Jahresabschluss muss so aufgebaut sein, dass ein sachverständiger Dritter ihn ohne Weiteres versteht.",ans:3},
+  {t:"Die auf den vorhergehenden Jahresabschluss angewandten Bewertungsmethoden sind beizubehalten (materielle Bilanzkontinuität).",ans:4},
+  {t:"Der Jahresabschluss hat ein den tatsächlichen Verhältnissen entsprechendes Bild der Vermögens-, Finanz- und Ertragslage zu vermitteln.",ans:5},
+  {t:"Alle vorhersehbaren Risiken und Verluste bis zum Stichtag sind zu berücksichtigen, Gewinne nur, wenn sie realisiert sind.",ans:6},
+  {t:"Bei der Bewertung wird davon ausgegangen, dass das Unternehmen seine Tätigkeit fortführt (Going Concern).",ans:7},
+  {t:"Aufwendungen und Erträge sind unabhängig vom Zahlungszeitpunkt in dem Geschäftsjahr zu erfassen, zu dem sie wirtschaftlich gehören.",ans:8},
+  {t:"Zusätzliche Angaben sind im Anhang zu machen, wenn der Jahresabschluss sonst kein zutreffendes Bild vermittelt; unwesentliche Details dürfen weggelassen werden.",ans:9},
+  {t:"Aktiva dürfen nicht mit Passiva, Aufwendungen nicht mit Erträgen saldiert werden.",ans:10},
+  {t:"Vermögensgegenstände und Schulden sind zum Abschlussstichtag einzeln zu bewerten.",ans:11}],
+ loesung:"Zwölf Grundsätze, zwölf Fundstellen. Ausnahmen vom Grundsatz der Einzelbewertung: Durchschnittsbewertung, Gruppenbewertung, Verbrauchsfolgeverfahren, Festbewertung, Sammelbewertung von Rückstellungen, pauschalierte Abschreibung auf Forderungen, Bewertungseinheiten (§ 254). Sie dienen der Vereinfachung der Bewertungsarbeit.",
+ herleitung:[
+  {t:"Grundsätze zum Ansatz",d:"Vollständigkeit (§ 246 Abs. 1) und Verrechnungsverbot (§ 246 Abs. 2 S. 1) regeln, WAS und WIE GETRENNT in die Bilanz kommt."},
+  {t:"Grundsätze zur Bewertung (§ 252 Abs. 1)",d:"Nr. 1 Bilanzidentität, Nr. 2 Fortführung, Nr. 3 Einzelbewertung/Stichtag, Nr. 4 Vorsicht, Nr. 5 Periodenabgrenzung, Nr. 6 Bewertungsstetigkeit."},
+  {t:"Grundsätze zur Darstellung",d:"Klarheit (§ 243 Abs. 2), Darstellungsstetigkeit (§ 265 Abs. 1), Bilanzwahrheit und Wesentlichkeit (§ 264 Abs. 2)."},
+  {t:"Merkregel für die drei Stetigkeiten",d:"Formell = Gliederung (§ 265). Materiell = Bewertungsmethode (§ 252 Nr. 6). Identität = Zahlen Eröffnung gleich Schluss Vorjahr (§ 252 Nr. 1)."}],
+ refs:["hgb246_1","hgb246_2","hgb252","hgb243","hgb265","hgb264","hgb254"],
+ merk:"§ 252 Abs. 1 in Reihenfolge: I-G-E-V-P-S (Identität, Going concern, Einzelbewertung, Vorsicht, Periodenabgrenzung, Stetigkeit)."},
+
+{id:"A03",kap:2,law:"HGB",type:"match",title:"Größenklassen einer Kapitalgesellschaft",
+ sachverhalt:"Eine im Jahr 01 gegründete GmbH weist folgende Werte auf. Im Jahr 05 werden ihre Anteile am geregelten Markt notiert.",
+ table:{head:["Jahr","Bilanzsumme (Mio. €)","Umsatzerlöse (Mio. €)","Ø Mitarbeiter"],rows:[["01","3,1","16,0","40"],["02","8,5","18,0","45"],["03","5,0","15,8","100"],["04","26,0","26,0","280"],["05","8,9","51,0","200"]]},
+ frage:"Klassifizieren Sie die Gesellschaft für jedes Jahr (Rechtsfolgen-Klassifizierung nach § 267 HGB).",
+ options:["Kleinstkapitalgesellschaft","klein","mittelgroß","groß"],
+ rows:[
+  {t:"Jahr 01 (Gründungsjahr)",ans:1,exp:"Merkmale: BS klein, Umsatz mittelgroß, MA klein. Im Gründungsjahr treten die Rechtsfolgen sofort ein (§ 267 Abs. 4 S. 2): klein."},
+  {t:"Jahr 02",ans:1,exp:"Zwei Merkmale mittelgroß (BS 8,5 und Umsatz 18), aber erst an EINEM Stichtag: bleibt klein."},
+  {t:"Jahr 03",ans:2,exp:"Zwei Merkmale mittelgroß (Umsatz 15,8 und MA 100), an zwei aufeinanderfolgenden Stichtagen überschritten: mittelgroß."},
+  {t:"Jahr 04",ans:2,exp:"Zwei Merkmale groß (BS 26, MA 280), aber nur ein Stichtag: bleibt mittelgroß."},
+  {t:"Jahr 05",ans:3,exp:"Notierungsaufnahme am geregelten Markt: kapitalmarktorientiert gilt stets als groß (§ 267 Abs. 3 S. 2)."}],
+ loesung:"01 klein, 02 klein, 03 mittelgroß, 04 mittelgroß, 05 groß.",
+ herleitung:[
+  {t:"Schwellenwerte",d:"Klein: BS ≤ 7,5 Mio., Umsatz ≤ 15 Mio., ≤ 50 AN. Mittelgroß: ≤ 25 Mio., ≤ 50 Mio., ≤ 250 AN. Groß: mindestens zwei Merkmale darüber."},
+  {t:"Zwei-von-drei-Regel",d:"Eine Klasse gilt, wenn mindestens zwei der drei Merkmale erfüllt sind."},
+  {t:"Zwei-Stichtage-Regel (§ 267 Abs. 4)",d:"Die Rechtsfolgen treten erst ein, wenn die Merkmale an zwei aufeinanderfolgenden Abschlussstichtagen über- oder unterschritten werden. Ausnahme: Gründung/Umwandlung (sofort)."},
+  {t:"Kapitalmarktorientierung",d:"Kapitalmarktorientierte Gesellschaften gelten unabhängig von den Zahlen als groß."},
+  {t:"Rechtsfolgen",d:"Klein: kein Lagebericht, keine Prüfung (§ 316), Offenlegung ohne GuV. Mittelgroß/groß: Prüfungspflicht, Lagebericht, volle Offenlegung."}],
+ refs:["hgb267","hgb316","hgb325","hgb264"],
+ merk:"7,5 / 15 / 50 und 25 / 50 / 250. Sprung nur bei '2 von 3 an 2 Stichtagen'. Börse = sofort groß."},
+
+{id:"A04",kap:2,law:"HGB",type:"match",title:"Abstrakte und konkrete Bilanzierungsfähigkeit",
+ sachverhalt:"Prüfen Sie die abstrakte (Vermögensgegenstand bzw. Schuld?) und die konkrete (gibt es eine Sondervorschrift?) Bilanzierungsfähigkeit.",
+ frage:"Welche Aussage trifft auf den jeweiligen Sachverhalt zu?",
+ options:["Abstrakt fähig, konkret Wahlrecht","Abstrakt fähig, keine Sonderregel (Pflicht)","Abstrakt fähig, Ausweis im Umlaufvermögen","Nicht abstrakt aktivierungsfähig (Aufwand)"],
+ rows:[
+  {t:"a) Pensionsrückstellungen, Zusage vor dem 01.01.1987",ans:0,exp:"Außenverpflichtung gegenüber Mitarbeitern, hinreichend konkretisiert: abstrakt passivierungsfähig. Art. 28 Abs. 1 S. 1 EGHGB: Passivierungswahlrecht für Altzusagen."},
+  {t:"b) Personalcomputer",ans:1,exp:"Materieller Vermögensgegenstand: abstrakt aktivierungsfähig. Keine Sonderregel, also Aktivierungspflicht (§ 246 Abs. 1)."},
+  {t:"c) Selbst erstellte Software, nur im eigenen Unternehmen einsetzbar",ans:0,exp:"Immaterieller VG des Anlagevermögens: abstrakt fähig. § 248 Abs. 2 S. 1: Aktivierungswahlrecht für die Entwicklungskosten; Forschungskosten Verbot (§ 255 Abs. 2a)."},
+  {t:"d) Entgeltlich erworbene Homepage",ans:1,exp:"Vielzahl von Dateien im Nutzungs- und Funktionszusammenhang: immaterieller VG, abstrakt fähig. Entgeltlich erworben: keine Sonderregel, Pflicht."},
+  {t:"e) Selbst erstellte, zum Verkauf bestimmte Projektmanagementsoftware",ans:2,exp:"Immaterieller VG, abstrakt fähig. Zum Verkauf bestimmt: Umlaufvermögen, deshalb greift § 248 Abs. 2 nicht; Ansatz als unfertige/fertige Erzeugnisse."},
+  {t:"f) Kosten für Einführungswerbung und Umschulungen bei Errichtung eines neuen Geschäftsbetriebs",ans:3,exp:"Keine selbständige Verwertbarkeit: kein Vermögensgegenstand. Erfassung als Aufwand."}],
+ loesung:"a) Wahlrecht (Art. 28 EGHGB), b) Pflicht, c) Wahlrecht § 248 Abs. 2 S. 1, d) Pflicht, e) Pflicht im Umlaufvermögen, f) Aufwand.",
+ herleitung:[
+  {t:"Schritt 1: Abstrakte Bilanzierungsfähigkeit",d:"Liegt ein Vermögensgegenstand vor? Kriterien: wirtschaftlicher Wert, selbständige Bewertbarkeit, selbständige Verwertbarkeit (einzeln veräußerbar). Bei Schulden: Außenverpflichtung, wirtschaftliche Belastung, Quantifizierbarkeit."},
+  {t:"Schritt 2: Konkrete Bilanzierungsfähigkeit",d:"Gibt es ein Aktivierungs-/Passivierungsgebot, -wahlrecht oder -verbot? Ohne Sonderregel gilt das Vollständigkeitsgebot (§ 246 Abs. 1): Pflicht."},
+  {t:"Typische Sonderregeln",d:"§ 248 Abs. 2 S. 1 (Wahlrecht selbst geschaffene immaterielle VG des AV), § 248 Abs. 2 S. 2 (Verbot Marken etc.), § 255 Abs. 2a (Forschung Verbot), Art. 28 EGHGB (Pensions-Altzusagen Wahlrecht)."}],
+ refs:["hgb246_1","hgb248","hgb255_2a","eghgb28","hgb247"],
+ merk:"Erst abstrakt (Ist es ein VG?), dann konkret (Sagt das Gesetz etwas Besonderes?). Ohne Sonderregel: Pflicht."},
+
+{id:"A05",kap:2,law:"HGB",type:"num",title:"Anschaffungskosten eines Grundstücks",
+ sachverhalt:"Für die Errichtung eines neuen Verwaltungsgebäudes erwirbt das Softwareunternehmen X ein Grundstück im Wert von 450.000 €. Darüber hinaus sind entstanden:\n• Reisekosten 5.000 € und Beratungskosten 8.000 € für die Auswahl des Grundstücks\n• Maklergebühren 3 % des Anschaffungspreises\n• Notar- und Grundbuchkosten 7.500 €\n• Vermessungskosten 15.000 €, die der Erwerber übernimmt\n• Grunderwerbsteuer 3,5 % des Anschaffungspreises",
+ frage:"Ermitteln Sie die zu aktivierenden Anschaffungskosten des Grundstücks.",
+ fields:[{key:"makler",label:"Maklergebühren",value:13500,unit:"€"},{key:"grest",label:"Grunderwerbsteuer",value:15750,unit:"€"},{key:"ak",label:"Anschaffungskosten gesamt",value:501750,unit:"€"}],
+ loesung:"Anschaffungskosten 501.750 €.",
+ table_solution:{head:["Position","€"],rows:[["Anschaffungspreis","450.000,00"],["Reisekosten (Entscheidungsfindung)","0,00"],["Beratungskosten (Entscheidungsfindung)","0,00"],["Maklergebühren (3 %)","13.500,00"],["Notar- und Grundbuchkosten","7.500,00"],["Vermessungskosten","15.000,00"],["Grunderwerbsteuer (3,5 %)","15.750,00"]],total:["Anschaffungskosten","501.750,00"]},
+ herleitung:[
+  {t:"Formel § 255 Abs. 1 HGB",d:"Anschaffungspreis + Anschaffungsnebenkosten + nachträgliche AK ./. Anschaffungspreisminderungen."},
+  {t:"Nebenkosten nur, wenn dem Gegenstand einzeln zurechenbar",d:"Makler, Notar/Grundbuch, Vermessung und Grunderwerbsteuer entstehen durch den Erwerb dieses Grundstücks: aktivieren."},
+  {t:"Kosten der Entscheidungsvorbereitung sind Aufwand",d:"Reise- und Beratungskosten zur Auswahl fallen vor der Kaufentscheidung an und sind keinem Gegenstand zurechenbar: 0 €."},
+  {t:"Rechnung",d:"450.000 + 13.500 + 7.500 + 15.000 + 15.750 = 501.750 €. Grundstücke werden nicht planmäßig abgeschrieben."}],
+ refs:["hgb255_1","hgb253_3"],
+ merk:"Alles VOR der Entscheidung = Aufwand. Alles, um den Gegenstand zu bekommen und betriebsbereit zu machen = AK. Finanzierungskosten nie."},
+
+{id:"A06",kap:2,law:"HGB",type:"num",title:"Herstellungskosten nach HGB (Bildband)",
+ sachverhalt:"Die Verlagsgruppe Beleke stellt den Bildband 'Essen im 3. Jahrtausend' her. Pro Stück fallen an:\n• Materialeinzelkosten 4,00 €\n• Fertigungslöhne 6,00 €\n• Abschreibungen auf Produktionsmaschinen 2,00 €\n• Sozialkosten für Produktionsmitarbeiter 1,00 €\n• Sonstige Material- und Fertigungsgemeinkosten 2,50 €\n• Allgemeine Verwaltungskosten (Post, Registratur, Rechnungswesen) 1,50 €\n• Werbeanzeige in der Tageszeitung 0,50 €\n• Fremdkapitalzinsen (Kredit speziell für die Herstellung, Herstellungszeitraum) 0,50 €",
+ frage:"Ermitteln Sie Unter- und Obergrenze der Herstellungskosten pro Stück nach HGB und begründen Sie die Behandlung jedes Postens.",
+ fields:[{key:"ug",label:"Untergrenze (Pflichtbestandteile)",value:14.5,unit:"€",tol:0.01},{key:"og",label:"Obergrenze (inkl. Wahlrechte)",value:17.5,unit:"€",tol:0.01}],
+ loesung:"Untergrenze 14,50 €, Obergrenze 17,50 €. Die Werbeanzeige (Vertriebskosten) ist in jedem Fall ausgeschlossen.",
+ table_solution:{head:["Posten","€","Behandlung"],rows:[["Materialeinzelkosten","4,00","Pflicht § 255 Abs. 2 S. 2"],["Fertigungslöhne","6,00","Pflicht (Fertigungseinzelkosten)"],["Abschreibungen Produktionsmaschinen","2,00","Pflicht (fertigungsbedingter Werteverzehr)"],["Sozialkosten Produktion","(1,00)","Wahlrecht § 255 Abs. 2 S. 3"],["Material-/Fertigungsgemeinkosten","2,50","Pflicht § 255 Abs. 2 S. 2"],["Allgemeine Verwaltungskosten","(1,50)","Wahlrecht § 255 Abs. 2 S. 3"],["Werbeanzeige","0,00","Verbot § 255 Abs. 2 S. 4 (Vertrieb)"],["Fremdkapitalzinsen","(0,50)","Wahlrecht § 255 Abs. 3"]],total:["Untergrenze 14,50 / Obergrenze 17,50",""]},
+ herleitung:[
+  {t:"Pflichtbestandteile (S. 2)",d:"Materialeinzelkosten, Fertigungseinzelkosten, Sondereinzelkosten der Fertigung, angemessene Material- und Fertigungsgemeinkosten, fertigungsbedingte Abschreibungen: 4 + 6 + 2 + 2,50 = 14,50 €."},
+  {t:"Wahlrechte (S. 3 und Abs. 3)",d:"Allgemeine Verwaltungskosten 1,50, soziale Aufwendungen 1,00 und herstellungsbezogene Fremdkapitalzinsen 0,50 dürfen einbezogen werden: 14,50 + 3,00 = 17,50 €."},
+  {t:"Verbot (S. 4)",d:"Vertriebskosten (Werbung) und Forschungskosten dürfen nie in die HK."}],
+ refs:["hgb255_2","hgb255_3"],
+ merk:"Einzelkosten + produktionsbezogene Gemeinkosten = Untergrenze. Verwaltung, Soziales, Zinsen = Kür. Werbung und Forschung = Tabu."},
+
+{id:"A07",kap:2,law:"HGB",type:"num",title:"Lineare Abschreibung mit außerplanmäßiger Abschreibung",
+ sachverhalt:"Die Auto AG hat am 01.01.01 eine Maschine für 50.000 € zzgl. 19 % USt angeschafft. Nutzungsdauer 5 Jahre, voraussichtlicher Schrotterlös 5.000 €.\n\nb) Nach zwei Jahren tritt ein irreparabler Schaden ein. Die Maschine bleibt nutzbar, ihr Wert sinkt am 31.12.03 jedoch auf 10.000 €. Der Schrotterlös bleibt 5.000 €.",
+ frage:"a) Entwickeln Sie den linearen Abschreibungsplan. b) Passen Sie den Plan an die Datenänderung an.",
+ fields:[{key:"afa",label:"a) Jährliche lineare Abschreibung",value:9000,unit:"€"},{key:"rbw03",label:"a) Restbuchwert 31.12.03",value:23000,unit:"€"},{key:"apl",label:"b) Außerplanmäßige Abschreibung 03",value:13000,unit:"€"},{key:"afa04",label:"b) Planmäßige Abschreibung ab 04",value:2500,unit:"€"}],
+ loesung:"a) 9.000 €/Jahr, Restbuchwerte 41.000 / 32.000 / 23.000 / 14.000 / 5.000. b) In 03: planmäßig 9.000 € und außerplanmäßig 13.000 € auf 10.000 €; danach 2.500 €/Jahr auf 5.000 € (verbleibendes Volumen 5.000 €).",
+ table_solution:{head:["Jahr","a) AfA","a) RBW","b) apl. AfA","b) AfA","b) RBW"],rows:[["01","9.000","41.000","","9.000","41.000"],["02","9.000","32.000","","9.000","32.000"],["03","9.000","23.000","13.000","9.000","10.000"],["04","9.000","14.000","","2.500","7.500"],["05","9.000","5.000","","2.500","5.000"]]},
+ herleitung:[
+  {t:"Abschreibungsvolumen",d:"Umsatzsteuer ist Vorsteuer und gehört nicht zu den AK. Volumen = AK 50.000 ./. Restwert 5.000 = 45.000 €."},
+  {t:"Linearer Satz",d:"45.000 / 5 Jahre = 9.000 € pro Jahr (§ 253 Abs. 3 S. 1, 2)."},
+  {t:"Dauernde Wertminderung in 03",d:"Nach planmäßiger AfA 9.000 € läge der Buchwert bei 23.000 €. Der Wert beträgt dauerhaft nur 10.000 €: außerplanmäßige Abschreibung 23.000 − 10.000 = 13.000 € (§ 253 Abs. 3 S. 3, Pflicht). Gesamtabschreibung 03: 22.000 €."},
+  {t:"Neuer Plan ab 04",d:"(10.000 ./. 5.000) / 2 Restjahre = 2.500 € pro Jahr (§ 253 Abs. 3 S. 3: Pflicht bei dauernder Wertminderung)."}],
+ refs:["hgb253_3","hgb253_5","estg6"],
+ merk:"Restwert immer abziehen, bevor du teilst. Nach außerplanmäßiger Abschreibung: neuen Restbuchwert durch Restnutzungsdauer."},
+
+{id:"A08",kap:2,law:"HGB",type:"num",title:"Geometrisch-degressive Abschreibung",
+ sachverhalt:"Gleiche Maschine wie in der vorherigen Aufgabe: AK 50.000 €, Nutzungsdauer 5 Jahre, Schrotterlös 5.000 €. Am 31.12.03 sinkt der Wert dauerhaft auf 10.000 €.",
+ frage:"Ermitteln Sie den Abschreibungssatz a = 1 − (RW/AK)^(1/ND), den Abschreibungsplan sowie die Anpassung nach der außerplanmäßigen Abschreibung.",
+ fields:[{key:"satz",label:"Abschreibungssatz a (in %)",value:36.9,unit:"%",tol:0.1},{key:"afa01",label:"Abschreibung 01",value:18452.13,unit:"€",tol:1},{key:"rbw03",label:"Restbuchwert 31.12.03 (Plan a)",value:12559.43,unit:"€",tol:1},{key:"apl",label:"Außerplanmäßige Abschreibung 03",value:2559.43,unit:"€",tol:1},{key:"satz2",label:"Neuer Satz ab 04 (in %)",value:29.29,unit:"%",tol:0.1}],
+ loesung:"a = 1 − (5.000/50.000)^(1/5) = 1 − 0,6310 = 36,90 %. Buchwerte: 31.547,87 / 19.905,36 / 12.559,43 / 7.924,46 / 5.000,00. b) Außerplanmäßig 2.559,43 € auf 10.000 €, neuer Satz 1 − (5.000/10.000)^(1/2) = 29,29 %.",
+ table_solution:{head:["Jahr","a) AfA","a) RBW","b) apl. AfA","b) AfA","b) RBW"],rows:[["01","18.452,13","31.547,87","","18.452,13","31.547,87"],["02","11.642,51","19.905,36","","11.642,51","19.905,36"],["03","7.345,93","12.559,43","2.559,43","7.345,93","10.000,00"],["04","4.634,97","7.924,46","","2.928,93","7.071,07"],["05","2.924,46","5.000,00","","2.071,07","5.000,00"]]},
+ herleitung:[
+  {t:"Satz berechnen",d:"a = 1 − (Restwert / AK)^(1/ND) = 1 − (0,1)^(0,2) = 1 − 0,6310 = 0,3690."},
+  {t:"Jährliche AfA vom Restbuchwert",d:"01: 50.000 x 0,369 = 18.452,13. 02: 31.547,87 x 0,369 = 11.642,51. 03: 19.905,36 x 0,369 = 7.345,93."},
+  {t:"Außerplanmäßige Abschreibung 03",d:"Planmäßiger Restbuchwert 12.559,43 ./. Zielwert 10.000 = 2.559,43 € zusätzlich."},
+  {t:"Neuer Satz",d:"a = 1 − (5.000 / 10.000)^(1/2) = 1 − 0,7071 = 0,2929. 04: 10.000 x 0,2929 = 2.928,93; 05: 7.071,07 x 0,2929 = 2.071,07; Rest 5.000."}],
+ refs:["hgb253_3"],
+ merk:"Degressiv: fester Prozentsatz vom Restbuchwert. Der Satz ist so gewählt, dass nach ND genau der Restwert übrig bleibt."},
+
+{id:"A09",kap:2,law:"HGB",type:"match",title:"Festbewertung: zulässig oder nicht?",
+ sachverhalt:"Beurteilen Sie, ob eine Festbewertung nach § 240 Abs. 3 HGB bzw. § 256 S. 2 HGB zulässig ist.",
+ frage:"Wählen Sie für jeden Fall.",
+ options:["Festbewertung zulässig","Festbewertung nicht zulässig"],
+ rows:[
+  {t:"a) Die PFUI AG hält Aktien der Duftmensa AG, Kurswert 52.000 €.",ans:1,exp:"Aktien sind weder Sachanlagen noch Roh-, Hilfs- und Betriebsstoffe: nicht festbewertungsfähig."},
+  {t:"b) Copyshop Bad to Read OHG: 52 fast neuwertige Kopiergeräte, Umsatz ausschließlich mit Kopien, Räume gemietet.",ans:1,exp:"Zwar abnutzbares, regelmäßig ersetztes Sachanlagevermögen, aber die Kopierer machen einen großen Teil der Bilanzsumme aus: keine Nachrangigkeit, deshalb nicht zulässig."},
+  {t:"c) Rundkohle AG: viele unbebaute Grundstücke auf Bergwerkgelände mit geringem Marktwert.",ans:1,exp:"Grundstücke sind nicht abnutzbar und unterliegen keinem regelmäßigen Ersatz: nicht zulässig."},
+  {t:"d) Bed & Breakfast AG verkauft nebenbei Mahagoni-Holzplatten unverändert weiter.",ans:1,exp:"Ohne Weiterverarbeitung verkaufte Ware ist Handelsware, keine Roh-, Hilfs- oder Betriebsstoffe: nicht zulässig."},
+  {t:"e) Tankstelle DEO AG: Benzinbestand 2,5 Mio. Liter.",ans:1,exp:"Als Händler: Handelsware. Als Produzent: Fertigerzeugnis. Beides nicht festbewertungsfähig; zudem schwanken Benzinpreise stark (Voraussetzung geringer Wertschwankungen fehlt)."}],
+ loesung:"In keinem der fünf Fälle ist eine Festbewertung zulässig.",
+ herleitung:[
+  {t:"Zulässige Objekte",d:"Nur Sachanlagevermögen sowie Roh-, Hilfs- und Betriebsstoffe (§ 240 Abs. 3 S. 1). Keine Handelswaren, keine Fertigerzeugnisse, keine Finanzanlagen oder Wertpapiere."},
+  {t:"Voraussetzungen",d:"Regelmäßiger Ersatz, Gesamtwert von nachrangiger Bedeutung, geringe Veränderungen in Größe, Wert und Zusammensetzung. Körperliche Bestandsaufnahme in der Regel alle drei Jahre."},
+  {t:"Prüfschema",d:"1. Richtige Vermögensart? 2. Wird regelmäßig ersetzt (abnutzbar)? 3. Nachrangig? 4. Stabil? Fällt eine Hürde, ist Festbewertung ausgeschlossen."}],
+ refs:["hgb240_3","hgb256","estr54"],
+ merk:"Festwert ist für Kleinkram, der ständig nachgekauft wird: Bestecke, Werkzeuge, Gerüstteile, Schrauben. Nicht für Aktien, Grundstücke, Handelsware."},
+
+{id:"A10",kap:2,law:"HGB",type:"open",title:"Gesamtkosten- und Umsatzkostenverfahren",
+ sachverhalt:"Kapitalgesellschaften dürfen die GuV nach dem Gesamtkostenverfahren oder dem Umsatzkostenverfahren gliedern (§ 275 Abs. 2 und 3 HGB).",
+ frage:"Nennen Sie die Wesensmerkmale beider Verfahren.",
+ loesung:"GKV: Gesamtleistung gegen nach Kostenarten gegliederten Periodenaufwand, Anpassung über Bestandsveränderungen und aktivierte Eigenleistungen (Produktionserfolgsrechnung). UKV: Umsatz gegen die zu seiner Erzielung angefallenen Aufwendungen nach Funktionsbereichen, Bestandsveränderungen erscheinen nicht (Absatzerfolgsrechnung).",
+ herleitung:[
+  {t:"Rechtsgrundlage",d:"§§ 275 bis 278 HGB für Kapitalgesellschaften und Genossenschaften; Wahlrecht zwischen GKV (§ 275 Abs. 2) und UKV (§ 275 Abs. 3)."},
+  {t:"Gesamtkostenverfahren",d:"Der Gesamtleistung der Periode (Umsatz +/- Bestandsveränderungen + aktivierte Eigenleistungen) wird der gesamte Periodenaufwand nach Kostenarten (Material, Personal, Abschreibungen, sonstige) gegenübergestellt. Die Differenz zwischen Produktion und Absatz wird über die Leistungsseite angepasst. Auch Produktionserfolgsrechnung genannt."},
+  {t:"Umsatzkostenverfahren",d:"Den Umsatzerlösen werden nur die Aufwendungen gegenübergestellt, die zur Erzielung dieser Umsätze geführt haben, gegliedert nach Funktionsbereichen (Herstellung, Vertrieb, Verwaltung). Bestandsveränderungen und aktivierte Eigenleistungen gehen nicht in die GuV ein; die Anpassung erfolgt über die Kostenseite. Auch Absatzerfolgsrechnung genannt; international gebräuchlich."},
+  {t:"Ergebnis",d:"Das Jahresergebnis ist in beiden Verfahren identisch, nur der Ausweis unterscheidet sich."}],
+ refs:["hgb275","hgb277"],
+ merk:"GKV = Was habe ich produziert? (Kostenarten). UKV = Was habe ich verkauft? (Funktionsbereiche). Gleiches Ergebnis, anderer Weg."},
+
+{id:"A11",kap:3,law:"HGB",type:"mc",title:"Inventursysteme: Der Weihnachtshändler Folg",
+ sachverhalt:"Einzelkaufmann E.R. Folg vertreibt Weihnachtsgeschenke, Stichtag 31.12.01. Er möchte vom 24.12.01 bis 06.01.02 Urlaub machen und die Inventur am liebsten in den Juli verlegen. Zugänge werden im Wareneingangsbuch korrekt erfasst. Verkäufe werden nur als Tagesgesamtumsatz erfasst (keine Scannerkassen). Die Diebstahlquote liegt bei 2 bis 4 % des Umsatzes.",
+ frage:"Welche Lösung des zeitlichen Inventurproblems kommt in Frage?",
+ options:[
+  {t:"Permanente Inventur mit Aufnahme im Juli (§ 241 Abs. 2 HGB)",ok:false,why:"Setzt eine ordnungsmäßige Lagerbuchführung mit mengenmäßiger Erfassung aller Bewegungen voraus. Verkäufe werden nicht mengenmäßig erfasst: scheidet aus."},
+  {t:"Vorverlegte Inventur Ende September (§ 241 Abs. 3 HGB)",ok:false,why:"Erfordert wertmäßige Fortschreibung auf den Stichtag; in der Vorweihnachtszeit werden nur Gesamtumsätze erfasst. Zudem unzulässig bei wesentlichen unkontrollierbaren Abgängen (Ladendiebstähle)."},
+  {t:"Zeitnahe Inventur vom 07.01. bis 10.01.02 (R 5.3 Abs. 1 EStR)",ok:true,why:"Aufnahme bis 10 Tage nach dem Stichtag ist zulässig, wenn alle Bestandsbewegungen zwischen Bilanz- und Aufnahmestichtag erfasst werden. Das ist die einzige praktikable Lösung."},
+  {t:"Verzicht auf die Inventur, weil Einzelkaufmann",ok:false,why:"§ 241a HGB befreit nur bei Umsatz ≤ 800.000 € und Gewinn ≤ 80.000 € an zwei Stichtagen; davon ist hier nichts gesagt. Ohne Befreiung gilt § 240 HGB."}],
+ loesung:"Nur die zeitnahe Inventur (07.01. bis 10.01.02) ist möglich. Alternativ könnte Folg den Abschlussstichtag verlegen, wofür berechtigte Gründe nötig sind.",
+ herleitung:[
+  {t:"Alternativen zur Stichtagsinventur",d:"Zeitnahe Inventur (10 Tage), vor- oder nachverlegte Inventur (3 Monate vor / 2 Monate nach), permanente Inventur. Frühester Termin bei Vorverlegung: 30.09.01; bei zeitnaher Inventur: 21.12.01."},
+  {t:"Permanente Inventur scheitert",d:"Keine mengenmäßige Erfassung der Verkäufe, also keine Lagerbuchführung."},
+  {t:"Verlegte Inventur scheitert",d:"Keine wertmäßige Fortschreibung der Einzelpositionen möglich; wesentliche unkontrollierbare Abgänge durch Diebstahl."},
+  {t:"Zeitnahe Inventur passt",d:"Aufnahme 07.01. bis 10.01.02, sofern die Bewegungen vom 31.12. bis zur Aufnahme erfasst werden (im Urlaub gibt es ohnehin keine)."},
+  {t:"Letzte Option",d:"Verlegung des Abschlussstichtags nur mit berechtigten Gründen."}],
+ refs:["hgb241","estr53","hgb240_1","hgb241a"],
+ merk:"Permanent braucht Lagerbuch. Verlegt braucht Fortschreibung und verträgt keinen Schwund. Zeitnah braucht nur 10 Tage und saubere Erfassung dazwischen."},
+
+{id:"A12",kap:3,law:"HGB",type:"num",title:"Festwertverfahren: Bestecke der Hotelkette",
+ sachverhalt:"Die Hotelkette 5 Sterne bewertet ihre Bestecke nach dem Festwertverfahren. Im Jahresabschluss 01 wurden sie mit 25.000 € bilanziert. Am 31.12.02 wird nach 3 Jahren wieder eine Inventur durchgeführt.",
+ frage:"Welcher Wert ist zum 31.12.02 anzusetzen, wenn die Inventur a) 23.000 €, b) 26.900 €, c) 35.400 € ergibt?",
+ fields:[{key:"a",label:"a) Inventurwert 23.000 €",value:23000,unit:"€"},{key:"b",label:"b) Inventurwert 26.900 €",value:25000,unit:"€"},{key:"c",label:"c) Inventurwert 35.400 €",value:35400,unit:"€"}],
+ loesung:"a) 23.000 € (Niederstwertprinzip), b) 25.000 € (Abweichung +7,6 % unter 10 %, Festwert bleibt), c) 35.400 € (Abweichung +41,6 % über 10 %, Anhebung Pflicht).",
+ herleitung:[
+  {t:"a) Wert gesunken",d:"Dauerhafte Wertminderung im Anlagevermögen: außerplanmäßige Abschreibung auf den niedrigeren Wert (§ 253 Abs. 3 S. 3). Gilt auch bei Festbewertung. Ansatz 23.000 €."},
+  {t:"b) Mehrbestand 7,6 %",d:"(26.900 − 25.000) / 25.000 = 7,6 %. Unter 10 % (R 5.4 Abs. 3 EStR): bisheriger Festwert 25.000 € darf beibehalten werden."},
+  {t:"c) Mehrbestand 41,6 %",d:"(35.400 − 25.000) / 25.000 = 41,6 %. Über 10 %: Festwert muss auf 35.400 € angehoben werden."}],
+ refs:["hgb240_3","estr54","hgb253_3"],
+ merk:"Runter: immer (Vorsicht). Rauf: nur ab +10 % Pflicht."},
+
+{id:"A13",kap:3,law:"HGB",type:"num",title:"Gruppenbewertung: gewogener Durchschnitt",
+ sachverhalt:"Eine AG hat am 1. Januar 500 kg eines Rohstoffs (Schüttgut) im Wert von 2.000 € auf Lager (gleichartige Vorräte, § 240 Abs. 4 HGB). Zukäufe: 5. April 1.000 kg à 3,50 €, 20. September 2.500 kg à 5,00 €, 10. Dezember 1.200 kg à 4,10 €. Endbestand laut Inventur 2.000 kg, Verbrauch also 3.200 kg (Februar 100 kg, Mai 300 kg, Oktober 2.800 kg).",
+ frage:"Wie hoch sind Endbestand (Bilanzausweis) und Verbrauch (Aufwand) beim gewogenen Durchschnittsverfahren?",
+ fields:[{key:"avg",label:"Durchschnittspreis je kg",value:4.41,unit:"€",tol:0.01},{key:"eb",label:"Wert Endbestand (2.000 kg)",value:8820,unit:"€",tol:20},{key:"vb",label:"Verbrauch der Periode (3.200 kg)",value:14100,unit:"€",tol:30}],
+ loesung:"Durchschnittspreis 22.920 € / 5.200 kg = 4,41 €/kg. Endbestand 2.000 kg x 4,41 = 8.820 €. Verbrauch 3.200 kg x 4,41 = 14.100 € (Rundungsdifferenz 2 €).",
+ table_solution:{head:["Bewegung","kg","€/kg","€"],rows:[["Anfangsbestand 1. Januar","500","4,00","2.000"],["Zukauf 5. April","1.000","3,50","3.500"],["Zukauf 20. September","2.500","5,00","12.500"],["Zukauf 10. Dezember","1.200","4,10","4.920"]],total:["Summe","5.200","4,41","22.920"]},
+ herleitung:[
+  {t:"Wertsumme bilden",d:"2.000 + 3.500 + 12.500 + 4.920 = 22.920 €."},
+  {t:"Mengensumme bilden",d:"500 + 1.000 + 2.500 + 1.200 = 5.200 kg."},
+  {t:"Gewogener Durchschnitt",d:"22.920 / 5.200 = 4,4077 ≈ 4,41 €/kg. Beim periodischen Durchschnitt sind die Verbrauchszeitpunkte irrelevant."},
+  {t:"Endbestand und Verbrauch",d:"Endbestand 2.000 x 4,41 = 8.820 €. Verbrauch 3.200 x 4,41 = 14.112, laut Musterlösung 14.100 € (Rundung); Kontrolle: 22.920 − 8.820 = 14.100 €."}],
+ refs:["hgb240_4","hgb252","ias2"],
+ merk:"Durchschnitt = Summe Euro / Summe kg. Endbestand plus Verbrauch muss wieder die Gesamtsumme ergeben."},
+
+{id:"A14",kap:3,law:"HGB",type:"num",title:"Vom Inventar zum Eigenkapital",
+ sachverhalt:"Ein Einzelhändler hat zum 31.12. folgende Bestände: Ladeneinrichtung 23.000 €, Warenvorräte 35.000 €, Bankguthaben 21.000 €, Kassenbestand 2.300 €, Bankschulden 40.000 €, Verbindlichkeiten aus Lieferungen 10.000 €.",
+ frage:"Stellen Sie das Inventar auf und ermitteln Sie Vermögen, Schulden und Reinvermögen (Eigenkapital).",
+ fields:[{key:"av",label:"A. Vermögen gesamt",value:81300,unit:"€"},{key:"uv",label:"davon Umlaufvermögen",value:58300,unit:"€"},{key:"s",label:"B. Schulden gesamt",value:50000,unit:"€"},{key:"ek",label:"C. Reinvermögen (Eigenkapital)",value:31300,unit:"€"}],
+ loesung:"Vermögen 81.300 € (AV 23.000 + UV 58.300) ./. Schulden 50.000 € = Eigenkapital 31.300 €.",
+ table_solution:{head:["Inventar","€"],rows:[["A. Vermögen","" ],["I. Anlagevermögen: Ladeneinrichtung","23.000"],["II. Umlaufvermögen: Waren 35.000, Bank 21.000, Kasse 2.300","58.300"],["Summe Vermögen","81.300"],["B. Schulden: Bankschulden 40.000, Verbindlichkeiten 10.000","50.000"]],total:["C. Reinvermögen (Eigenkapital)","31.300"]},
+ herleitung:[
+  {t:"Inventar gliedern",d:"A. Vermögen (Anlagevermögen, Umlaufvermögen), B. Schulden (langfristig, kurzfristig), C. Reinvermögen = A ./. B (§ 240 Abs. 1 HGB)."},
+  {t:"Vermögen addieren",d:"23.000 + 35.000 + 21.000 + 2.300 = 81.300 €."},
+  {t:"Schulden addieren",d:"40.000 + 10.000 = 50.000 €."},
+  {t:"Reinvermögen",d:"81.300 − 50.000 = 31.300 €. In der Bilanz: Aktiva 81.300 = Eigenkapital 31.300 + Fremdkapital 50.000."}],
+ refs:["hgb240_1","hgb266","hgb247"],
+ merk:"Inventar: Liste untereinander, Vermögen − Schulden = Reinvermögen. Bilanz: Konto, Vermögen = Eigenkapital + Fremdkapital."}
+);
+
+// Übungsaufgaben Kapitel 4-8
+AUFGABEN.push(
+{id:"A15",kap:4,law:"HGB",type:"num",title:"Bilanzierung von Patenten nach HGB",
+ sachverhalt:"Die Forschungsabteilung der Elektron-AG hat im Jahr 01 mehrere Patente für elektronische Bauteile entwickelt (Entwicklungskosten 800.000 €). Es liegt ein Kaufangebot über 1.000.000 € vor. Im Januar 01 wurden Erfindervergütungen an Arbeitnehmer für eine neue Scheinwerfergeneration (bereits in Serie) in Höhe von 160.000 € gezahlt. Die AG will den Gesamtbetrag unter 'entgeltlich erworbene Konzessionen, gewerbliche Schutzrechte...' ausweisen und über 4 Jahre abschreiben.",
+ frage:"Wie hoch ist der zulässige Bilanzansatz, welcher Posten ist richtig, welche Abschreibungen sind vorzunehmen?",
+ fields:[{key:"a",label:"a) Höchstmöglicher Ansatz Patente Bauteile",value:800000,unit:"€"},{key:"b",label:"b) Ansatz Scheinwerfer-Entwicklung",value:160000,unit:"€"},{key:"afa",label:"b) Planmäßige Abschreibung 01",value:40000,unit:"€"},{key:"rbw",label:"b) Restbuchwert 31.12.01",value:120000,unit:"€"}],
+ loesung:"a) Wahlrecht: Aktivierung der Entwicklungskosten 800.000 € (nicht 1.000.000 €), Ausweis als 'Selbst geschaffene gewerbliche Schutzrechte und ähnliche Rechte und Werte'. Mangels Angaben zur Nutzungsdauer kann die planmäßige Abschreibung ausnahmsweise unterbleiben. b) Kein entgeltlicher Erwerb (Diensterfindung), also ebenfalls selbst geschaffen: Wahlrecht 160.000 €, Abschreibung über 4 Jahre = 40.000 €, Restbuchwert 120.000 €.",
+ herleitung:[
+  {t:"Originär vs. derivativ",d:"Entgeltlich erworbene (derivative) immaterielle VG: Aktivierungspflicht (§ 246 Abs. 1). Selbst geschaffene (originäre): Wahlrecht (§ 248 Abs. 2 S. 1); Verbot für Marken, Drucktitel, Verlagsrechte, Kundenlisten (S. 2, entspricht IAS 38.63)."},
+  {t:"a) Bewertung",d:"HK der Entwicklung (§ 255 Abs. 2a S. 1) = 800.000 €. Das Kaufangebot (1 Mio.) ist irrelevant: Anschaffungswertprinzip, keine Aufwertung über HK."},
+  {t:"a) Ausweis und Abschreibung",d:"Posten 'Selbst geschaffene gewerbliche Schutzrechte'. Nach § 253 Abs. 3 S. 1 planmäßig, i.d.R. 3 bis 5 Jahre. Ohne Angabe zur ND kann die Abschreibung ausnahmsweise unterbleiben (Lösung Prof. Bauer)."},
+  {t:"b) Diensterfindung ist kein Erwerb",d:"Die Erfindung geht durch einseitige Erklärung des Arbeitgebers über (§§ 6, 9, 10 ArbnErfG), die Vergütung hängt von Verwertungsverhandlungen ab: kein entgeltlicher Erwerb von einem Dritten. Also originär, Wahlrecht."},
+  {t:"b) Zahlen",d:"160.000 € aktiviert, ND 4 Jahre angemessen: 40.000 €/Jahr, RBW 31.12.01 = 120.000 €."}],
+ refs:["hgb248","hgb246_1","hgb255_2a","hgb253_3","hgb266","hgb268_8"],
+ merk:"Gekauft = muss, selbst gemacht = darf, Marke = nie. Diensterfindung zählt als selbst gemacht."},
+
+{id:"A16",kap:4,law:"IFRS",type:"num",title:"Entwicklungskosten nach IFRS (Genfix AG)",
+ sachverhalt:"Die Genfix AG entwickelt seit 01 ein Verfahren zur Blutgerinnungsanalyse. Es ist gerade patentiert; Lizenzeinnahmen werden ab 03 für 5 Jahre erwartet. Ausgaben: 01: 150.000 €, 02: 250.000 €, 03: 100.000 €. Fair Value: 01: 20.000, 02: 300.000, 03: 700.000 €. Wegen technischer Schwierigkeiten bestanden anfangs Zweifel am Erfolg, die Ende 02 beseitigt wurden. Es gibt keinen aktiven Markt.",
+ frage:"Wie ist das Projekt 01 bis 03 im IFRS-Abschluss zu verbuchen?",
+ fields:[{key:"a01",label:"01: aktivierter Betrag",value:0,unit:"€"},{key:"a02",label:"02: aktivierter Betrag",value:250000,unit:"€"},{key:"a03",label:"03: zusätzlich aktiviert",value:100000,unit:"€"},{key:"afa",label:"03: planmäßige Abschreibung",value:70000,unit:"€"},{key:"rbw",label:"Restbuchwert 31.12.03",value:280000,unit:"€"}],
+ loesung:"01: 150.000 € Aufwand (Kriterien IAS 38.57 nicht erfüllt). 02: 250.000 € aktivieren, keine Abschreibung (noch nicht genutzt), keine Nachaktivierung der 150.000 (IAS 38.71). 03: 100.000 € aktivieren, Abschreibung 350.000/5 = 70.000 €, Restbuchwert 280.000 €. Neubewertung ausgeschlossen (kein aktiver Markt).",
+ herleitung:[
+  {t:"01: Zweifel am Erfolg",d:"IAS 38.57 verlangt u.a. technische Realisierbarkeit und wahrscheinlichen Nutzen. Nicht erfüllt: Buchung 'Forschungs-/Entwicklungsaufwand an Kasse 150.000'."},
+  {t:"02: Kriterien erfüllt",d:"Ab 02 Aktivierungspflicht: 'Immaterieller Vermögenswert an Kasse 250.000'. Früher als Aufwand erfasste 150.000 dürfen nicht nachaktiviert werden (IAS 38.71). Keine AfA, weil noch nicht genutzt (IAS 38.97)."},
+  {t:"03: Fertigstellung und Nutzung",d:"'Immaterieller Vermögenswert an Kasse 100.000'. Gesamtwert 350.000, linear über 5 Jahre: 'Abschreibung an Immaterieller Vermögenswert 70.000'. RBW 280.000 €."},
+  {t:"Fair Value irrelevant",d:"Neubewertungsmodell (IAS 38.75) setzt einen aktiven Markt voraus; der fehlt. Also Anschaffungskostenmodell."}],
+ refs:["ias38_57","ias38_97","ias38_72","hgb248"],
+ merk:"IFRS: 6 Kriterien erfüllt = Pflicht ab diesem Zeitpunkt, nie rückwirkend. AfA erst mit Nutzung."},
+
+{id:"A17",kap:4,law:"IFRS",type:"num",title:"Erworbene Lizenz nach IFRS mit Neubewertung (Käpt'n Inglo AG)",
+ sachverhalt:"Die Käpt'n Inglo AG erwirbt Ende 01 für 100.000 € eine Zwei-Jahres-Lizenz für die Nordseefischerei. Am 31.12.01 springt der Marktwert auf 140.000 €. Im Laufe von 02 brechen die Bestände ein, Marktwert 31.12.02: 25.000 €. Ende 03 läuft die Lizenz aus. Neubewertungsmethode, planmäßige Abschreibung auf den beizulegenden Zeitwert, keine ratierliche Umbuchung der Rücklage.",
+ frage:"Verbuchen Sie die Jahre 01, 02 und 03.",
+ fields:[{key:"nbr",label:"01: Zuführung Neubewertungsrücklage",value:40000,unit:"€"},{key:"afa02",label:"02: Planmäßige Abschreibung",value:70000,unit:"€"},{key:"aufw",label:"02: Erfolgswirksamer Aufwand aus Abwertung",value:5000,unit:"€"},{key:"afa03",label:"03: Planmäßige Abschreibung",value:25000,unit:"€"}],
+ loesung:"01: Lizenz an Bank 100.000; Lizenz an Neubewertungsrücklage 40.000. 02: Abschreibung an Lizenz 70.000 (140.000/2); Neubewertungsrücklage 40.000 und sonstiger betrieblicher Aufwand 5.000 an Lizenz 45.000 (70.000 auf 25.000). 03: Abschreibung an Lizenz 25.000.",
+ herleitung:[
+  {t:"Zugang Ende 01",d:"Erstbewertung zu AK (IAS 38.24): Immaterieller Vermögenswert an Bank 100.000."},
+  {t:"Neubewertung 31.12.01",d:"Fair Value 140.000 > Buchwert 100.000: Aufwertung 40.000 erfolgsneutral: Immaterieller Vermögenswert an Neubewertungsrücklage 40.000 (IAS 38.85)."},
+  {t:"Planmäßige AfA 02",d:"Neubewerteter Betrag 140.000 über Restlaufzeit 2 Jahre: 70.000. Buchwert 70.000."},
+  {t:"Abwertung 31.12.02",d:"Fair Value 25.000: Minderung 45.000. Zuerst die Rücklage (40.000) erfolgsneutral auflösen, der Rest (5.000) ist Aufwand (IAS 38.86)."},
+  {t:"03",d:"Buchwert 25.000 über das letzte Jahr: Abschreibung 25.000, Lizenz läuft aus."}],
+ refs:["ias38_72","ias16_39","ias38_8","ias38_97"],
+ merk:"Rauf = Rücklage. Runter = erst Rücklage leeren, dann Aufwand."},
+
+{id:"A18",kap:5,law:"IFRS",type:"num",title:"Anschaffungskosten nach IAS 16 (Gecko AG)",
+ sachverhalt:"Die Gecko AG kauft am 02.02.01 eine Produktionsanlage für 3.570.000 € (inkl. 19 % USt). 2 % Skonto auf den Nettowert bei Zahlung binnen 14 Tagen; Zahlung am 10.02.01. Spediteur 23.800 € (inkl. USt). Frachtversicherung 1 % des Nettowarenwerts. Aufstellung durch eigene Mitarbeiter: Lohn- und Materialkosten 150.000 €, nicht direkt zurechenbare Fertigungs- und Vertriebsgemeinkosten 30.000 €. Entsorgungsverpflichtung nach 25 Jahren: voraussichtlich 200.000 €, Diskontierungszins 8 %.",
+ frage:"Berechnen Sie die Anschaffungskosten der Anlage.",
+ fields:[{key:"netto",label:"Nettopreis nach Skonto",value:2940000,unit:"€"},{key:"ent",label:"Barwert Entsorgungskosten",value:29204,unit:"€",tol:30},{key:"ak",label:"Anschaffungskosten gesamt",value:3169204,unit:"€",tol:30}],
+ loesung:"3.000.000 − 60.000 + 20.000 + 30.000 + 150.000 + 29.204 = 3.169.204 €. Gemeinkosten (30.000) bleiben außen vor (IAS 16.19).",
+ table_solution:{head:["Position","€"],rows:[["Anschaffungspreis (ohne USt)","3.000.000"],["Skonto 2 %","− 60.000"],["Lieferkosten (ohne USt)","20.000"],["Frachtversicherung 1 %","30.000"],["Aufstellung: Lohn/Material (Einzelkosten)","150.000"],["Fertigungs-/Vertriebsgemeinkosten","0"],["Entsorgungskosten 200.000 x 1,08^-25","29.204"]],total:["Anschaffungskosten","3.169.204"]},
+ herleitung:[
+  {t:"Umsatzsteuer herausrechnen",d:"3.570.000 / 1,19 = 3.000.000 €; Spediteur 23.800 / 1,19 = 20.000 €. Vorsteuer ist durchlaufender Posten."},
+  {t:"Skonto ist Anschaffungspreisminderung",d:"2 % von 3.000.000 = 60.000 € (IAS 16.16a: Kaufpreis nach Abzug von Rabatten und Skonti)."},
+  {t:"Direkt zurechenbare Kosten",d:"Transport 20.000, Versicherung 30.000, Aufstellung Einzelkosten 150.000 (IAS 16.16b, 16.17). Gemeinkosten und Vertriebskosten sind ausgeschlossen (IAS 16.19)."},
+  {t:"Entsorgungsverpflichtung (IAS 16.16c)",d:"Barwert = 200.000 / 1,08^25 = 200.000 x 0,14602 = 29.204 €. Gegenbuchung: Rückstellung nach IAS 37."},
+  {t:"Summe",d:"2.940.000 + 20.000 + 30.000 + 150.000 + 29.204 = 3.169.204 €."}],
+ refs:["ias16_16","hgb255_1","ias37_36"],
+ merk:"IFRS-Besonderheit: Rückbau- und Entsorgungskosten gehören abgezinst in die AK (nach HGB nicht, dort nur Rückstellung)."},
+
+{id:"A19",kap:5,law:"both",type:"num",title:"Herstellungskosten HGB vs. IFRS (Messgerät)",
+ sachverhalt:"Die Elektronik GmbH stellt ein Messgerät für den eigenen Bedarf her: bezogene Elektroteile 10.000 €, Abschreibungen Spezialwerkzeuge 1.500 €, anteilige allgemeine Büroaufwendungen (nicht produktionsbezogen) 200 €, anteilige Sozialaufwendungen (produktionsbezogen) 300 €, Personalaufwand Zusammenbau 12.000 €, Fremdkapitalzinsen für die Herstellung (qualifizierter Vermögenswert) 400 €.",
+ frage:"Ermitteln Sie Unter- und Obergrenze der Herstellungskosten nach HGB und den Wert nach IFRS.",
+ fields:[{key:"hmin",label:"HGB Untergrenze",value:23500,unit:"€"},{key:"hmax",label:"HGB Obergrenze",value:24400,unit:"€"},{key:"ifrs",label:"IFRS (Unter- = Obergrenze)",value:24200,unit:"€"}],
+ loesung:"HGB: 23.500 bis 24.400 €. IFRS: 24.200 € (Büroaufwendungen nicht produktionsbezogen: raus; Sozialaufwand und Zinsen für qualifizierten Vermögenswert: Pflicht).",
+ table_solution:{head:["Posten","€","HGB min","HGB max","IFRS"],rows:[["Materialeinzelkosten","10.000","10.000","10.000","10.000"],["Fertigungslöhne","12.000","12.000","12.000","12.000"],["AfA Spezialwerkzeuge","1.500","1.500","1.500","1.500"],["Allg. Verwaltung (nicht produktionsbez.)","200","−","200","−"],["Sozialkosten (produktionsbez.)","300","−","300","300"],["FK-Zinsen (qualifizierter VW)","400","−","400","400"]],total:["Herstellungskosten","","23.500","24.400","24.200"]},
+ herleitung:[
+  {t:"HGB Pflicht",d:"Einzelkosten 10.000 + 12.000 und fertigungsbedingte AfA 1.500 = 23.500 €."},
+  {t:"HGB Wahlrechte",d:"Verwaltung 200 (§ 255 Abs. 2 S. 3), Sozialkosten 300 (S. 3), Zinsen 400 (Abs. 3): Obergrenze 24.400 €."},
+  {t:"IFRS: produktionsbezogene Vollkosten",d:"Alle produktionsbezogenen Kosten Pflicht (IAS 2.12/IAS 16.22): Sozialkosten 300 rein. Nicht produktionsbezogene Verwaltung: Verbot. Fremdkapitalkosten für qualifizierte Vermögenswerte: Pflicht nach IAS 23. Ergebnis 24.200 €."}],
+ refs:["hgb255_2","hgb255_3","ias2","ias23"],
+ merk:"HGB hat eine Spanne, IFRS einen Punkt. Produktionsbezogen entscheidet bei IFRS, nicht die Kostenart."},
+
+{id:"A20",kap:5,law:"IFRS",type:"num",title:"Neubewertungsmodell Bürogebäude (IAS 16)",
+ sachverhalt:"Die Auto AG erwirbt am 01.01.01 ein Bürogebäude für 250.000 €, Nutzungsdauer 20 Jahre, linear. Am 31.12.01 beträgt der Marktwert 300.000 €. In 02 gibt es keine Marktwertänderung.",
+ frage:"Wie ist der Sachverhalt in 01 und 02 beim Neubewertungsmodell zu behandeln?",
+ fields:[{key:"afa01",label:"Abschreibung 01",value:12500,unit:"€"},{key:"nbr",label:"Neubewertungsrücklage 31.12.01",value:62500,unit:"€"},{key:"afa02",label:"Abschreibung 02",value:15789,unit:"€",tol:2},{key:"bw02",label:"Buchwert 31.12.02",value:284211,unit:"€",tol:2},{key:"umb",label:"Mögliche Umbuchung Rücklage in Gewinnrücklagen 02",value:3289,unit:"€",tol:2}],
+ loesung:"01: AfA 12.500, Buchwert 237.500, Neubewertung auf 300.000: Rücklage 62.500 (IAS 16.39). 02: AfA 300.000/19 = 15.789, Buchwert 284.211. Nach IAS 16.41 dürfen 62.500/19 = 3.289 € der Rücklage in die Gewinnrücklagen umgebucht werden (= 15.789 − 12.500).",
+ table_solution:{head:["Jahr","AK","planm. AfA (erfolgswirksam)","Neubewertungs-RL (erfolgsneutral)","Bilanzwert"],rows:[["01.01.01","250.000","","",""],["31.12.01","","− 12.500","+ 62.500","300.000"],["31.12.02","","− 15.789","","284.211"]]},
+ herleitung:[
+  {t:"Erstbewertung",d:"IAS 16.15: AK 250.000 €."},
+  {t:"Planmäßige AfA 01",d:"250.000 / 20 = 12.500 €, fortgeführte AK 237.500 €."},
+  {t:"Neubewertung",d:"Fair Value 300.000 − 237.500 = 62.500 € erfolgsneutral in die Neubewertungsrücklage (IAS 16.39)."},
+  {t:"AfA 02 vom Neubewertungsbetrag",d:"300.000 / 19 Restjahre = 15.789 €; Buchwert 284.211 €."},
+  {t:"Umbuchung (IAS 16.41)",d:"Realisierter Teil der Rücklage: 62.500 / 19 = 3.289 € (gleich AfA-Differenz 15.789 − 12.500) darf in die Gewinnrücklagen; Rücklage dann 59.211 €."}],
+ refs:["ias16_30","ias16_39","ias16_62"],
+ merk:"Erst abschreiben, dann neu bewerten. Nächstes Jahr: neuer Wert durch Restnutzungsdauer."},
+
+{id:"A21",kap:5,law:"both",type:"num",title:"Wertminderung und Wertaufholung Grundstück (Flotter Otto AG)",
+ sachverhalt:"Die Flotter Otto AG kauft am 01.01.01 ein unbebautes Grundstück für 8 Mio. €. Marktpreis 31.12.01: 15 Mio. €. Nach einem Tankerunglück beträgt der Nettoveräußerungspreis am 31.12.02 nur 4 Mio. € (Nutzwert nicht höher). Am 31.12.03 erholt sich der Wert auf 6 Mio. €.",
+ frage:"Bilanzwerte nach HGB, IFRS-Anschaffungskostenmodell und IFRS-Neubewertungsmodell (in Mio. €).",
+ fields:[{key:"h01",label:"HGB 31.12.01",value:8,unit:"Mio."},{key:"h02",label:"HGB 31.12.02",value:4,unit:"Mio."},{key:"h03",label:"HGB 31.12.03",value:6,unit:"Mio."},{key:"n01",label:"IFRS Neubewertungsmodell 31.12.01",value:15,unit:"Mio."},{key:"nrl",label:"Neubewertungsrücklage 31.12.01",value:7,unit:"Mio."},{key:"n02aufw",label:"Neubewertungsmodell: erfolgswirksamer Aufwand 02",value:4,unit:"Mio."}],
+ loesung:"HGB und IFRS-Anschaffungskostenmodell: 8 / 4 / 6 Mio. (Aufwertung über AK verboten; dauernde Wertminderung Pflicht; Wertaufholung Pflicht). Neubewertungsmodell: 15 Mio. (Rücklage 7) / 4 Mio. (Rücklage 7 erfolgsneutral aufgelöst, 4 Mio. Aufwand) / 6 Mio. (2 Mio. erfolgswirksame Zuschreibung).",
+ table_solution:{head:["Jahr","HGB / IFRS cost model","Neubewertungsmodell","Erfolgswirkung NB-Modell"],rows:[["31.12.01","8","15","+7 Rücklage (neutral)"],["31.12.02","4","4","−7 Rücklage, −4 Aufwand"],["31.12.03","6","6","+2 Ertrag"]]},
+ herleitung:[
+  {t:"HGB 01",d:"Anschaffungswertprinzip (§ 253 Abs. 1): Marktwert 15 Mio. ist irrelevant, Ansatz 8 Mio. Keine planmäßige AfA (Grundstück nicht abnutzbar)."},
+  {t:"HGB 02",d:"Wertminderung durch Umweltkatastrophe gilt als dauernd (über 5 Jahre): außerplanmäßige Abschreibung auf 4 Mio. Pflicht (§ 253 Abs. 3 S. 3)."},
+  {t:"HGB 03",d:"Gründe entfallen teilweise: Wertaufholungsgebot (§ 253 Abs. 5) auf 6 Mio."},
+  {t:"IFRS Anschaffungskostenmodell",d:"Identisch: 8 / 4 / 6 Mio.; Wertminderung nach IAS 36 auf den erzielbaren Betrag (höherer Wert aus Nettoveräußerungspreis 4 und Nutzwert), Zuschreibung bei Wegfall (IAS 36.114 ff.)."},
+  {t:"IFRS Neubewertungsmodell",d:"01: Fair Value 15 Mio., Rücklage 7 Mio. erfolgsneutral (IAS 16.39). 02: Minderung 11 Mio.: zuerst Rücklage 7 Mio. neutral auflösen, Rest 4 Mio. Aufwand (IAS 16.40). 03: Zuschreibung 2 Mio. erfolgswirksam, weil sie eine frühere erfolgswirksame Abwertung rückgängig macht."}],
+ refs:["hgb253_1","hgb253_3","hgb253_5","ias36","ias16_39","ias16_30"],
+ merk:"HGB kennt keine Aufwertung über AK. IFRS-Neubewertung: hoch neutral, runter erst Rücklage dann Aufwand, Rückgängigmachen einer Aufwandsbuchung ist wieder Ertrag."},
+
+{id:"A22",kap:5,law:"both",type:"num",title:"Komponentenansatz Flugzeug (IAS 16.43)",
+ sachverhalt:"Die ostfriesische Fluggesellschaft mbH kauft in 05 ein Turboprop-Flugzeug für netto 11 Mio. €: Triebwerk 4 Mio. (ND 6 Jahre), Flugwerk 5 Mio. (ND 10 Jahre), Betriebsausrüstung 2 Mio. (ND 6 Jahre). Flugzeuge dieses Typs werden üblicherweise über 8 Jahre abgeschrieben. Bei einem anderen Flugzeug (seit 01 in Betrieb) werden die Triebwerke (Buchwert 800.000 €) für 3,2 Mio. € ersetzt.",
+ frage:"Jährliche Abschreibung nach HGB (ohne Komponentenabschreibung) und nach IFRS (in Mio. €); Behandlung des Triebwerktauschs.",
+ fields:[{key:"hgb",label:"HGB: jährliche Abschreibung",value:1.375,unit:"Mio.",tol:0.005},{key:"tw",label:"IFRS: Triebwerk p.a.",value:0.667,unit:"Mio.",tol:0.005},{key:"fw",label:"IFRS: Flugwerk p.a.",value:0.5,unit:"Mio.",tol:0.005},{key:"ba",label:"IFRS: Betriebsausrüstung p.a.",value:0.333,unit:"Mio.",tol:0.005},{key:"ges",label:"IFRS: gesamt p.a.",value:1.5,unit:"Mio.",tol:0.005},{key:"abg",label:"Triebwerktausch: Abgang altes Triebwerk",value:0.8,unit:"Mio.",tol:0.005}],
+ loesung:"HGB: 11 / 8 = 1,375 Mio. p.a. (Gesamtobjekt; Komponentenansatz nur als Wahlrecht nach IDW RH HFA 1.016). IFRS: Triebwerk 0,667 + Flugwerk 0,5 + Ausrüstung 0,333 = 1,5 Mio. p.a.; Triebwerk und Ausrüstung dürfen zusammengefasst werden (IAS 16.45). Neues Triebwerk 3,2 Mio. aktivieren und gesondert abschreiben, altes mit 0,8 Mio. ausbuchen.",
+ table_solution:{head:["Komponente","AK (Mio.)","ND","AfA p.a. (Mio.)"],rows:[["Triebwerk","4,0","6","0,667"],["Flugwerk","5,0","10","0,500"],["Betriebsausrüstung","2,0","6","0,333"]],total:["IFRS gesamt (HGB: 11,0 / 8 = 1,375)","11,0","","1,500"]},
+ herleitung:[
+  {t:"HGB",d:"Sachanlage zu AK (§ 253 Abs. 1), planmäßig über 8 Jahre (§ 253 Abs. 3 S. 1): 1,375 Mio. Bezugsgröße sind die gesamten AK; Komponenten dürfen nur ausnahmsweise (IDW RH HFA 1.016) getrennt abgeschrieben werden."},
+  {t:"IFRS Pflicht zur Komponentenabschreibung",d:"IAS 16.43: Jeder Teil mit bedeutsamen AK und abweichender ND ist getrennt abzuschreiben; der Standard nennt Flugwerk/Triebwerk ausdrücklich. Ziel: periodengerechter Aufwand."},
+  {t:"IFRS Rechnung",d:"4/6 = 0,667; 5/10 = 0,5; 2/6 = 0,333; Summe 1,5 Mio. Triebwerk und Ausrüstung (gleiche ND) dürfen zusammengefasst werden (IAS 16.45)."},
+  {t:"Ersatz Triebwerk",d:"Nachträgliche AK: Ansatz nach IAS 16.7 (Nutzen wahrscheinlich, Kosten messbar). Neues Triebwerk 3,2 Mio. aktivieren, gesondert abschreiben; altes Triebwerk mit Restbuchwert 0,8 Mio. ausbuchen (Aufwand)."},
+  {t:"Probleme des Komponentenansatzes",d:"Objektive Aufteilung des Kaufpreises nach Fair Values (Ermessensspielraum), 'Atomisierung' der Anlagenbuchhaltung bei geringem Informationsgewinn."}],
+ refs:["ias16_43","ias16_7","idw1016","hgb253_3"],
+ merk:"HGB: ein Flugzeug, eine AfA. IFRS: Flugwerk, Triebwerk, Ausrüstung getrennt. Ersatz = alt raus, neu rein."},
+
+{id:"A23",kap:5,law:"HGB",type:"match",title:"Leasing: Wer bilanziert die Kopierer?",
+ sachverhalt:"Die Nippon AG least Ende 01 insgesamt 50 Kopierer von der Total Leasing GmbH. Unkündbare Grundmietzeit 3 Jahre, Nutzungsdauer 5 Jahre, Anschaffungskosten 150.000 €, lineare Abschreibung. Kaufoption nach der Grundmietzeit für alle Kopierer zu a) 65.000 € bzw. b) 55.000 €.",
+ frage:"Ordnen Sie zu.",
+ options:["Leasinggeber (Total Leasing GmbH)","Leasingnehmer (Nippon AG)","60 %","40 %","30.000 €","60.000 €"],
+ rows:[
+  {t:"Grundmietzeit in % der Nutzungsdauer",ans:2,exp:"3 Jahre / 5 Jahre = 60 %, liegt zwischen 40 % und 90 %: Kaufoption entscheidet."},
+  {t:"Jährliche lineare Abschreibung",ans:4,exp:"150.000 / 5 = 30.000 € pro Jahr."},
+  {t:"Restbuchwert zum Ende der Grundmietzeit (31.12.04)",ans:5,exp:"150.000 − 3 x 30.000 = 60.000 €."},
+  {t:"a) Kaufoption 65.000 €: Bilanzierung bei",ans:0,exp:"65.000 > 60.000 Restbuchwert: Option nicht günstig, wirtschaftliches Eigentum bleibt beim Leasinggeber."},
+  {t:"b) Kaufoption 55.000 €: Bilanzierung bei",ans:1,exp:"55.000 < 60.000: Die Ausübung ist wirtschaftlich zwingend, der Leasingnehmer ist wirtschaftlicher Eigentümer."}],
+ loesung:"Quote 60 % (im 40/90-Korridor). RBW Ende 04 = 60.000 €. a) 65.000 > 60.000: Leasinggeber. b) 55.000 < 60.000: Leasingnehmer.",
+ herleitung:[
+  {t:"Grundregel § 246 Abs. 1 S. 2 HGB",d:"Zurechnung beim wirtschaftlichen Eigentümer; Konkretisierung durch die steuerlichen Leasingerlasse (Vollamortisation)."},
+  {t:"40/90-Test",d:"Grundmietzeit unter 40 % oder über 90 % der ND: Leasingnehmer. Dazwischen (hier 60 %): Leasinggeber, es sei denn, Kaufoption oder Verlängerungsoption ist günstiger als der lineare Restbuchwert."},
+  {t:"Restbuchwert",d:"150.000 − 3 x 30.000 = 60.000 € zum 31.12.04."},
+  {t:"Vergleich",d:"a) 65.000 > 60.000: Geber. b) 55.000 < 60.000: Nehmer."}],
+ refs:["leasing","hgb246_1","ifrs16"],
+ merk:"40 bis 90: Geber, außer die Option ist ein Schnäppchen (unter Restbuchwert). Sonst Nehmer."},
+
+{id:"A24",kap:6,law:"both",type:"num",title:"Herstellungskosten Bier 'Dusty Taste' (HGB / IAS 2)",
+ sachverhalt:"Die Brauerei Falschsander AG hat pro Hektoliter: Hopfen 120, Malz 80, Abschreibung Braukessel 25, anteilige allgemeine Büroaufwendungen (produktionsbezogen) 15, Fertigungslöhne 78, Werbespot in Sport 1 anteilig 17, anteilige Abschreibung Fertigungshalle 12, Wasser 3, anteilige Sozialaufwendungen Kantine (produktionsbezogen) 8, anteilige Fremdkapitalzinsen für die Modernisierung des Auslieferungslagers 4.",
+ frage:"Unter- und Obergrenze der HK pro Hektoliter nach HGB sowie der Wert nach IFRS.",
+ fields:[{key:"hmin",label:"HGB Untergrenze",value:318,unit:"€"},{key:"hmax",label:"HGB Obergrenze",value:341,unit:"€"},{key:"ifrs",label:"IFRS",value:341,unit:"€"}],
+ loesung:"HGB 318 bis 341 €, IFRS 341 €. Werbespot (Vertrieb) und Zinsen für das Auslieferungslager (nicht herstellungsbezogen) sind überall ausgeschlossen.",
+ table_solution:{head:["Posten","€","HGB min","HGB max","IFRS"],rows:[["Hopfen","120","120","120","120"],["Malz","80","80","80","80"],["AfA Braukessel","25","25","25","25"],["Büroaufwand (produktionsbez.)","15","−","15","15"],["Fertigungslöhne","78","78","78","78"],["Werbespot","17","−","−","−"],["AfA Fertigungshalle","12","12","12","12"],["Wasser","3","3","3","3"],["Sozialaufwand (produktionsbez.)","8","−","8","8"],["FK-Zinsen Auslieferungslager","4","−","−","−"]],total:["Herstellungskosten","","318","341","341"]},
+ herleitung:[
+  {t:"HGB Pflicht",d:"Einzelkosten (Hopfen, Malz, Wasser, Löhne) und fertigungsbezogene Gemeinkosten (AfA Kessel und Halle): 120+80+3+78+25+12 = 318 €."},
+  {t:"HGB Wahlrecht",d:"Allgemeine Verwaltung 15 und Sozialaufwand 8 (§ 255 Abs. 2 S. 3): 341 €."},
+  {t:"Verbote",d:"Werbespot = Vertriebskosten (§ 255 Abs. 2 S. 4). Zinsen für das Auslieferungslager betreffen nicht die Herstellung (§ 255 Abs. 3 greift nicht)."},
+  {t:"IFRS",d:"Produktionsbezogener Vollkostenansatz (IAS 2.12 ff.): alle produktionsbezogenen Gemeinkosten sind Pflicht, deshalb 341 € ohne Spanne."}],
+ refs:["hgb255_2","hgb255_3","ias2"],
+ merk:"'produktionsbezogen' im Aufgabentext ist das Signal: HGB Wahlrecht, IFRS Pflicht."},
+
+{id:"A25",kap:6,law:"IFRS",type:"num",title:"Umsatzerlöse bei zeitraumbezogener Leistungserfüllung (Z AG)",
+ sachverhalt:"Beratungsprojekt der Z AG: Laufzeit 01.01.01 bis 31.12.02, Gesamterlös 12 Mio. €, Gesamtkosten 9 Mio. €, Kostenanfall in 01: 1/3 der Gesamtkosten (= Leistungsfortschritt). Anzahlung des Kunden am 31.12.01: 2 Mio. €.",
+ frage:"Ermitteln Sie Kosten, Fertigstellungsgrad und Umsatzerlöse zum 31.12.01 nach IFRS 15.",
+ fields:[{key:"k",label:"Angefallene Kosten 31.12.01",value:3,unit:"Mio."},{key:"g",label:"Fertigstellungsgrad (in %)",value:33.3,unit:"%",tol:0.4},{key:"u",label:"Umsatzerlöse 01",value:4,unit:"Mio."}],
+ loesung:"Kosten 9 Mio. x 1/3 = 3 Mio. €. Grad = 3/9 = 1/3. Umsatz = 12 Mio. x 1/3 = 4 Mio. €. Die Anzahlung hat keinen Einfluss auf den Umsatz (sie ist eine Vertragsverbindlichkeit).",
+ herleitung:[
+  {t:"Zeitraumbezogen? (IFRS 15.35)",d:"Beratungsleistung: Der Kunde erhält den Nutzen laufend, also Umsatzrealisierung über den Zeitraum."},
+  {t:"Fortschritt inputbasiert (cost-to-cost)",d:"Angefallene Kosten / Gesamtkosten = 3 / 9 = 33,3 %."},
+  {t:"Umsatz",d:"Gesamterlös x Fortschritt = 12 x 1/3 = 4 Mio. €. Teilgewinn 01: 4 − 3 = 1 Mio. €."},
+  {t:"Anzahlung",d:"2 Mio. € sind Liquidität, kein Umsatz: Vertragsverbindlichkeit bzw. Verrechnung mit der Forderung. HGB-Vergleich: nach dem Realisationsprinzip erst bei Abnahme (completed contract)."}],
+ refs:["ifrs15_35","ifrs15_5","hgb252"],
+ merk:"Umsatz = Preis x Fortschritt. Zahlungen sind egal."},
+
+{id:"A26",kap:6,law:"IFRS",type:"num",title:"Bilanzwert eines Fertigungsauftrags (Brücke)",
+ sachverhalt:"Die Z AG baut für den Bund eine Autobahnbrücke: Erstellungszeitraum 01.10.01 bis 31.05.02, Festpreis 4 Mio. €, Gesamtkosten 3 Mio. € (linear nach Leistungsfortschritt). Leistungsfortschritt 31.12.01: 37,5 %. Anzahlung des Bundes 31.12.01: 1,2 Mio. €.",
+ frage:"Ermitteln Sie den Bilanzwert des Fertigungsauftrags zum 31.12.01 nach zeitraumbezogener Leistungserfüllung.",
+ fields:[{key:"hk",label:"Herstellungskosten 31.12.01",value:1125000,unit:"€"},{key:"tg",label:"Anteiliger Gewinn 31.12.01",value:375000,unit:"€"},{key:"bw",label:"Bilanzwert Fertigungsauftrag",value:1500000,unit:"€"}],
+ loesung:"HK 3 Mio. x 37,5 % = 1.125.000 €. Teilgewinn (4 − 3 Mio.) x 37,5 % = 375.000 €. Bilanzwert 1.500.000 € (= Umsatz 4 Mio. x 37,5 %).",
+ herleitung:[
+  {t:"Kosten nach Fortschritt",d:"3.000.000 x 0,375 = 1.125.000 €."},
+  {t:"Teilgewinn",d:"Gesamtgewinn 1.000.000 x 0,375 = 375.000 €."},
+  {t:"Bilanzwert",d:"1.125.000 + 375.000 = 1.500.000 € (entspricht dem realisierten Umsatz). Die Anzahlung von 1,2 Mio. wird als Vertragsverbindlichkeit bzw. gegen die Vertragsforderung gezeigt, ändert aber den Wert der Leistung nicht."},
+  {t:"HGB-Kontrast",d:"Nach HGB: Ansatz zu HK 1.125.000 € ohne Teilgewinn (Realisationsprinzip, § 252 Abs. 1 Nr. 4)."}],
+ refs:["ifrs15_35","hgb252","ias2"],
+ merk:"IFRS zeigt den Auftrag mit anteiligem Gewinn, HGB nur zu Kosten."},
+
+{id:"A27",kap:6,law:"both",type:"match",title:"Mehrkomponentenvertrag TechConsult AG (HGB / IFRS 15)",
+ sachverhalt:"Die TechConsult AG verkauft einem Bauunternehmen ein Gesamtpaket für 1,9 Mio. € (sofort bezahlt): Serverhardware 300.000 €, Softwarelizenz 500.000 €, Anpassungsprogrammierung (Customizing) 200.000 €, Wartung (3-Jahres-Vertrag) 900.000 €.",
+ frage:"Wann werden die Erlöse jeweils realisiert?",
+ options:["Erlösrealisierung mit Lieferung","Erlösrealisierung mit Abschluss der Anpassung","Lizenz + Customizing als eine Leistung nach Projektfortschritt","Passiver RAP / Vertragsverbindlichkeit, Verteilung auf 3 Jahre"],
+ rows:[
+  {t:"HGB: Serverhardware",ans:0,exp:"Realisationsprinzip: Lieferung und Gefahrenübergang."},
+  {t:"HGB: Softwarelizenz",ans:0,exp:"Lizenz ist mit Übergabe geliefert."},
+  {t:"HGB: Customizing",ans:1,exp:"Werkleistung: Realisierung mit Abschluss/Abnahme der Anpassung."},
+  {t:"HGB: Wartung 900.000 €",ans:3,exp:"Vorausbezahlte Leistung für 3 Jahre: passiver RAP (§ 250 Abs. 2), 300.000 € Ertrag pro Jahr."},
+  {t:"IFRS: Serverhardware",ans:0,exp:"Eigenständige Leistungsverpflichtung, Kontrollübergang bei Lieferung."},
+  {t:"IFRS: Softwarelizenz",ans:2,exp:"Lizenz ist ohne Customizing nicht eigenständig nutzbar: eine kombinierte Leistungsverpflichtung (IFRS 15.28 f.), 700.000 € nach Fortschritt; ohne messbaren Fortschritt erst mit Abschluss des Customizings."},
+  {t:"IFRS: Customizing",ans:2,exp:"Siehe Lizenz: Teil derselben Leistungsverpflichtung."},
+  {t:"IFRS: Wartung 900.000 €",ans:3,exp:"Zeitraumbezogene Leistung: Vertragsverbindlichkeit, Auflösung linear über 3 Jahre."}],
+ loesung:"HGB: Hardware und Lizenz mit Lieferung, Customizing mit Abschluss, Wartung als passiver RAP. IFRS: Hardware mit Lieferung; Lizenz + Customizing (700.000 €) als eine Leistungsverpflichtung nach Projektfortschritt, hilfsweise mit Abschluss des Customizings; Wartung über 3 Jahre.",
+ herleitung:[
+  {t:"Schritt 2 des 5-Schritte-Modells",d:"Separate Leistungsverpflichtung nur, wenn die Leistung eigenständig abgrenzbar ist (IFRS 15.27). Lizenz und Customizing sind stark voneinander abhängig: zusammenfassen (15.29)."},
+  {t:"Schritt 5: Erfüllung",d:"Hardware: zeitpunktbezogen. Lizenz/Customizing: zeitraumbezogen nach Fortschritt, bei fehlender Messbarkeit erst bei Fertigstellung. Wartung: zeitraumbezogen, linear."},
+  {t:"HGB",d:"Realisationsprinzip (§ 252 Abs. 1 Nr. 4): jede Komponente bei Lieferung bzw. Abnahme; Wartungsvorauszahlung als passiver RAP (§ 250 Abs. 2)."}],
+ refs:["ifrs15_5","ifrs15_35","hgb250","hgb252"],
+ merk:"IFRS fragt: Kann der Kunde die Leistung allein nutzen? Nein = zusammenfassen. HGB fragt: Geliefert?"},
+
+{id:"A28",kap:7,law:"HGB",type:"num",title:"Strukturbilanz und finanzwirtschaftliche Kennzahlen (Tropic GmbH)",
+ sachverhalt:"Aufbereitete Bilanz der Tropic GmbH (Berichtsjahr, in €): Anlagevermögen 4.890.000, Vorräte 460.000, Forderungen 484.000, liquide Mittel 80.000 (Bilanzsumme 5.914.000). Eigenkapital 3.300.000, langfristiges Fremdkapital 1.700.000, kurzfristiges Fremdkapital 914.000.\nVorjahr: AV 4.050.000, Vorräte 280.000, Forderungen 362.000, liquide Mittel 35.000; EK 2.800.000, lfr. FK 1.300.000, kfr. FK 627.000 (Bilanzsumme 4.727.000).",
+ frage:"Ermitteln Sie für das Berichtsjahr die Kennzahlen (in %, eine Nachkommastelle).",
+ fields:[{key:"ai",label:"Anlageintensität",value:82.7,unit:"%",tol:0.15},{key:"ekq",label:"Eigenkapitalquote (Grad finanzieller Unabhängigkeit)",value:55.8,unit:"%",tol:0.15},{key:"d1",label:"Deckungsgrad I (EK / AV)",value:67.5,unit:"%",tol:0.15},{key:"d2",label:"Deckungsgrad II ((EK + lfr. FK) / AV)",value:102.2,unit:"%",tol:0.15},{key:"l1",label:"Liquidität 1. Grades",value:8.8,unit:"%",tol:0.15},{key:"l2",label:"Liquidität 2. Grades",value:61.7,unit:"%",tol:0.15},{key:"l3",label:"Liquidität 3. Grades",value:112,unit:"%",tol:0.15}],
+ loesung:"Anlageintensität 82,7 % (VJ 85,7), EK-Quote 55,8 % (VJ 59,2), Verschuldungsgrad 44,2 %, Deckungsgrad I 67,5 % (VJ 69,1), Deckungsgrad II 102,2 % (VJ 101,2), Liquidität 1. Grades 8,8 % (VJ 5,6), 2. Grades 61,7 % (VJ 63,3), 3. Grades 112,0 % (VJ 108,0). Beurteilung: Goldene Bilanzregel (DG II > 100 %) erfüllt, EK-Quote gesunken, Liquidität 2. Grades schwach (Forderungen und Kasse decken nur 62 % der kurzfristigen Schulden).",
+ table_solution:{head:["Kennzahl","Formel","Vorjahr","Berichtsjahr"],rows:[["Anlageintensität","AV / Bilanzsumme","85,7 %","82,7 %"],["Umlaufquote","UV / Bilanzsumme","14,3 %","17,3 %"],["EK-Quote","EK / Bilanzsumme","59,2 %","55,8 %"],["Verschuldungsgrad","FK / Bilanzsumme","40,8 %","44,2 %"],["Deckungsgrad I","EK / AV","69,1 %","67,5 %"],["Deckungsgrad II","(EK + lfr. FK) / AV","101,2 %","102,2 %"],["Liquidität 1","liquide Mittel / kfr. FK","5,6 %","8,8 %"],["Liquidität 2","(liquide Mittel + Forderungen) / kfr. FK","63,3 %","61,7 %"],["Liquidität 3","UV / kfr. FK","108,0 %","112,0 %"]]},
+ herleitung:[
+  {t:"Konstitution",d:"AV 4.890 / 5.914 = 82,7 %. UV 1.024 / 5.914 = 17,3 %."},
+  {t:"Finanzierung",d:"EK 3.300 / 5.914 = 55,8 %. FK 2.614 / 5.914 = 44,2 %."},
+  {t:"Investierung (Deckungsgrade)",d:"I: 3.300 / 4.890 = 67,5 %. II: 5.000 / 4.890 = 102,2 %: langfristiges Kapital deckt das Anlagevermögen (goldene Bilanzregel)."},
+  {t:"Liquidität",d:"1: 80 / 914 = 8,8 %. 2: (80 + 484) / 914 = 61,7 %. 3: 1.024 / 914 = 112,0 %."},
+  {t:"Beurteilung",d:"Wachstum vor allem fremdfinanziert (EK-Quote −3,4 Punkte), Liquidität 1. und 3. Grades verbessert, 2. Grades leicht verschlechtert; insgesamt solide, aber steigende Verschuldung beobachten."}],
+ refs:["hgb266","hgb264"],
+ merk:"Deckungsgrad schaut von unten (wer finanziert das AV?), Liquidität von oben (reicht das UV für die kurzfristigen Schulden?)."},
+
+{id:"A29",kap:7,law:"HGB",type:"num",title:"Erfolgsspaltung (Auto AG)",
+ sachverhalt:"Die Auto AG weist zum 31.12.01 einen Jahresüberschuss von 1.200.000 € aus. Darin enthalten: a) Erträge aus Veräußerung des Verwaltungsgebäudes 150.000 €, b) Dividendenerträge aus einem Aktienpaket 290.000 €, c) planmäßige Abschreibungen auf Betriebsgebäude 180.000 €, d) außerplanmäßige Abschreibungen auf eine defekte Maschine 40.000 €, e) Abschreibungen auf Wertpapiere des Umlaufvermögens 15.000 €, f) Erträge der Brandversicherung für einen verbrannten LKW 105.000 €.",
+ frage:"Ermitteln Sie das ordentliche, nachhaltige Betriebsergebnis.",
+ fields:[{key:"obe",label:"Ordentliches Betriebsergebnis",value:710000,unit:"€"}],
+ loesung:"1.200.000 − 150.000 − 290.000 + 40.000 + 15.000 − 105.000 = 710.000 €. Die planmäßigen Abschreibungen (c) bleiben, sie sind ordentlich und betrieblich.",
+ table_solution:{head:["Komponente","€"],rows:[["Jahresüberschuss","1.200.000"],["− Erträge Veräußerung Verwaltungsgebäude (aperiodisch)","− 150.000"],["− Dividendenerträge (betriebsfremd/Finanzergebnis)","− 290.000"],["+ Außerplanmäßige Abschreibung Maschine (aperiodisch)","+ 40.000"],["+ Abschreibung Wertpapiere UV (betriebsfremd)","+ 15.000"],["− Versicherungsertrag LKW (aperiodisch)","− 105.000"]],total:["Ordentliches, nachhaltiges Betriebsergebnis","710.000"]},
+ herleitung:[
+  {t:"Ziel der Erfolgsspaltung",d:"Den Jahresüberschuss in ordentliches Betriebsergebnis, Finanzergebnis (betriebsfremd) und aperiodisches/außerordentliches Ergebnis zerlegen, um die nachhaltige Ertragskraft zu sehen."},
+  {t:"Betriebsfremde Komponenten eliminieren",d:"Dividenden (Ertrag −290.000) und Wertpapierabschreibungen (Aufwand +15.000) gehören zum Finanzergebnis."},
+  {t:"Unregelmäßige Komponenten eliminieren",d:"Veräußerungsgewinn Gebäude (−150.000), außerplanmäßige Abschreibung (+40.000), Versicherungsentschädigung (−105.000)."},
+  {t:"Ordentlich bleibt",d:"Planmäßige Abschreibungen 180.000 sind regelmäßiger Betriebsaufwand: keine Korrektur."}],
+ refs:["hgb275","hgb277"],
+ merk:"Erträge rausrechnen = abziehen, Aufwendungen rausrechnen = addieren. Nur das Regelmäßige und Betriebliche bleibt."},
+
+{id:"A30",kap:7,law:"HGB",type:"num",title:"Cash Flow (vereinfachte Ermittlung)",
+ sachverhalt:"Jahresüberschuss der Auto AG 900.000 €. Enthalten sind: Abschreibungen auf Sachanlagen 120.000 €, Zuführungen zu langfristigen Rückstellungen 40.000 €, Umsatzerlöse 2.180.000 €, Löhne und Gehälter 500.000 €, Aufwendungen für bezogene Leistungen 700.000 €, Auflösung langfristiger Rückstellungen 15.000 €, Zuschreibungen auf Sachanlagen 60.000 €.",
+ frage:"Ermitteln Sie den Cash Flow.",
+ fields:[{key:"cf",label:"Cash Flow",value:985000,unit:"€"}],
+ loesung:"900.000 + 120.000 − 60.000 + 40.000 − 15.000 = 985.000 €.",
+ table_solution:{head:["Komponente","€"],rows:[["Jahresüberschuss","900.000"],["+ Abschreibungen auf Sachanlagen","+ 120.000"],["− Zuschreibungen auf Sachanlagen","− 60.000"],["+ Zuführung langfristige Rückstellungen","+ 40.000"],["− Auflösung langfristige Rückstellungen","− 15.000"]],total:["Cash Flow","985.000"]},
+ herleitung:[
+  {t:"Indirekte Methode",d:"JÜ + zahlungsunwirksame Aufwendungen − zahlungsunwirksame Erträge."},
+  {t:"Zahlungsunwirksame Aufwendungen",d:"Abschreibungen (+120.000), Zuführung zu langfristigen Rückstellungen (+40.000)."},
+  {t:"Zahlungsunwirksame Erträge",d:"Zuschreibungen (−60.000), Auflösung langfristiger Rückstellungen (−15.000)."},
+  {t:"Zahlungswirksame Posten",d:"Umsatz, Löhne, bezogene Leistungen sind bereits im JÜ zahlungswirksam enthalten: keine Korrektur."}],
+ refs:["hgb275","ias1"],
+ merk:"Cash Flow = Gewinn + alles, was Aufwand war, aber kein Geld gekostet hat − alles, was Ertrag war, aber kein Geld brachte."},
+
+{id:"A31",kap:7,law:"HGB",type:"num",title:"Erfolgswirtschaftliche Kennzahlen (Auto AG)",
+ sachverhalt:"Bilanz 31.12.01: Bilanzsumme 175.000 €, Eigenkapital 70.000 €. GuV: Umsatzerlöse 262.500, Bestandserhöhung 17.500, sonstige betriebliche Erträge 38.000, Materialaufwand 140.000, Personalaufwand 126.000, Abschreibungen auf Sachanlagen 42.000, sonstige betriebliche Aufwendungen 4.750, Zinsaufwendungen 1.750, Jahresüberschuss 3.500.",
+ frage:"Ermitteln Sie Personalintensität, Materialintensität, Abschreibungsquote (Basis Gesamtleistung) sowie Eigenkapital-, Gesamtkapital- und Umsatzrentabilität.",
+ fields:[{key:"pi",label:"Personalintensität",value:45,unit:"%",tol:0.2},{key:"mi",label:"Materialintensität",value:50,unit:"%",tol:0.2},{key:"aq",label:"Abschreibungsquote",value:15,unit:"%",tol:0.2},{key:"ekr",label:"Eigenkapitalrentabilität",value:5,unit:"%",tol:0.2},{key:"gkr",label:"Gesamtkapitalrentabilität",value:3,unit:"%",tol:0.2},{key:"ur",label:"Umsatzrentabilität",value:2,unit:"%",tol:0.2}],
+ loesung:"Gesamtleistung = 262.500 + 17.500 = 280.000. Personalintensität 45 %, Materialintensität 50 %, Abschreibungsquote 15 %. EK-Rentabilität 3.500/70.000 = 5 %. GK-Rentabilität (3.500 + 1.750)/175.000 = 3 %. Umsatzrentabilität 5.250/262.500 = 2 %.",
+ herleitung:[
+  {t:"Gesamtleistung",d:"Umsatz + Bestandsveränderung (+ aktivierte Eigenleistungen) = 280.000 €."},
+  {t:"Aufwandsstruktur",d:"126.000/280.000 = 45 %; 140.000/280.000 = 50 %; 42.000/280.000 = 15 %."},
+  {t:"Eigenkapitalrentabilität",d:"JÜ / EK = 3.500 / 70.000 = 5 %."},
+  {t:"Gesamtkapitalrentabilität",d:"(JÜ + FK-Zinsen) / Gesamtkapital = 5.250 / 175.000 = 3 %. Zinsen zurückaddieren, weil sie die Vergütung des Fremdkapitals sind."},
+  {t:"Umsatzrentabilität",d:"Betriebsergebnis (hier JÜ + Zinsen = 5.250) / Umsatz 262.500 = 2 %."}],
+ refs:["hgb275"],
+ merk:"Intensitäten auf Gesamtleistung, Rentabilitäten auf Kapital bzw. Umsatz. Bei GKR die Zinsen zurück."},
+
+{id:"A32",kap:8,law:"HGB",type:"num",title:"Drohverlustrückstellung (Getriebebau GmbH / Bagger AG)",
+ sachverhalt:"Im Januar 01 schließt die Getriebebau GmbH einen Rahmenvertrag mit der Bagger AG über monatlich 25 Getriebe bis 31.12.02 zu 20.000 € je Getriebe. Ab 11.02.01 steigen die Herstellungskosten auf 22.000 € je Getriebe.",
+ frage:"Wie ist der Sachverhalt zum 31.12.01 in den HGB-Bilanzen beider Unternehmen zu berücksichtigen?",
+ fields:[{key:"n",label:"Noch zu liefernde Getriebe",value:300,unit:"Stk."},{key:"rst",label:"Rückstellung Getriebebau GmbH",value:600000,unit:"€"},{key:"bagger",label:"Ansatz bei der Bagger AG",value:0,unit:"€"}],
+ loesung:"Getriebebau GmbH: 12 Monate x 25 = 300 Getriebe x 2.000 € Verlust = 600.000 € Drohverlustrückstellung (§ 249 Abs. 1 S. 1 HGB). Bagger AG: schwebendes Geschäft ohne drohenden Verlust, nicht realisierter Gewinn wird nicht bilanziert: kein Ansatz.",
+ herleitung:[
+  {t:"Schwebendes Geschäft",d:"Beide Seiten haben noch nicht erfüllt: grundsätzlich keine Bilanzierung (Ausgeglichenheitsvermutung)."},
+  {t:"Verlust droht beim Lieferanten",d:"Erlös 20.000 < HK 22.000: Verpflichtungsüberschuss 2.000 € je Getriebe. Passivierungspflicht nach § 249 Abs. 1 S. 1 (Ausprägung des Imparitätsprinzips, § 252 Abs. 1 Nr. 4)."},
+  {t:"Betrag",d:"Restlaufzeit 01.01. bis 31.12.02 = 12 Monate x 25 = 300 Stück x 2.000 = 600.000 €. Laufzeit bis ein Jahr: keine Abzinsung."},
+  {t:"Käufer",d:"Die Bagger AG hat einen Vorteil (günstiger Einkauf), aber unrealisierte Gewinne dürfen nicht ausgewiesen werden (Realisationsprinzip)."},
+  {t:"Steuerbilanz",d:"Drohverlustrückstellungen sind steuerlich verboten (§ 5 Abs. 4a EStG)."}],
+ refs:["hgb249","hgb252","estg5_4a","ias37_14"],
+ merk:"Imparität: Verluste sofort, Gewinne erst bei Realisation. Der Verlierer stellt zurück, der Gewinner wartet."},
+
+{id:"A33",kap:8,law:"HGB",type:"num",title:"Gewährleistungsrückstellung (Sportwagenhersteller)",
+ sachverhalt:"Ein Hersteller gewährt eine vertraglich zugesicherte einjährige Garantie ab Auslieferung. In 01 wurden 500 Fahrzeuge gleichmäßig über das Jahr ausgeliefert. Erfahrungsgemäß entsteht ein Garantieaufwand von 1.000 € je Fahrzeug.",
+ frage:"Ist eine Rückstellung zu bilden und in welcher Höhe?",
+ fields:[{key:"rst",label:"Rückstellung 31.12.01",value:250000,unit:"€"}],
+ loesung:"Rückstellung für ungewisse Verbindlichkeiten mit rechtlicher Verpflichtung (§ 249 Abs. 1 S. 1 HGB), Bewertung zum Erfüllungsbetrag nach vernünftiger kaufmännischer Beurteilung (§ 253 Abs. 1 S. 2): 250 Fahrzeuge x 1.000 € = 250.000 €, weil die durchschnittliche Restgarantiezeit 0,5 Jahre beträgt. Keine Abzinsung (Laufzeit ≤ 1 Jahr).",
+ herleitung:[
+  {t:"Art der Rückstellung",d:"Vertraglich zugesicherte Garantie = rechtliche Verpflichtung, Höhe und Inanspruchnahme ungewiss: § 249 Abs. 1 S. 1 (nicht die Kulanz-Variante nach S. 2 Nr. 2)."},
+  {t:"Bewertung",d:"Erfüllungsbetrag nach vernünftiger kaufmännischer Beurteilung (§ 253 Abs. 1 S. 2), Erfahrungswerte sind zulässig."},
+  {t:"Zeitanteil",d:"Gleichmäßige Auslieferung: Im Durchschnitt ist am 31.12.01 die Hälfte der Garantiezeit verstrichen. Offene Verpflichtung 500 x 1.000 x 0,5 = 250.000 €."},
+  {t:"Abzinsung",d:"Restlaufzeit höchstens ein Jahr: keine Abzinsung (§ 253 Abs. 2 S. 1 greift erst über 1 Jahr)."}],
+ refs:["hgb249","hgb253_1","hgb253_2","ias37_36"],
+ merk:"Gleichmäßig übers Jahr verteilt = halbe Restgarantie. Erwartungswert x Rest."},
+
+{id:"A34",kap:8,law:"both",type:"match",title:"Prozessrückstellungen Frost-AG gegen Pirat-AG (HGB / IFRS)",
+ sachverhalt:"Die Frost-AG verklagt die Pirat-AG auf 200.000 € Schadensersatz wegen Verletzung des Gebrauchsmusterschutzes. Die gesamten Anwalts-, Gutachter- und Gerichtskosten betragen etwa 12.000 € (trägt der Verlierer).",
+ frage:"Welche Rückstellung bilden Frost-AG (Klägerin) und Pirat-AG (Beklagte) nach HGB und IFRS?",
+ options:["nichts","6.000 €","12.000 €","106.000 €","212.000 €"],
+ rows:[
+  {t:"a) Beide erwarten, dass der Klage stattgegeben wird: Frost-AG",ans:0,exp:"Frost gewinnt: kein Abfluss zu erwarten (bei strenger Vorsicht wären 12.000 € Prozesskostenrisiko vertretbar)."},
+  {t:"a) Beide erwarten Stattgabe: Pirat-AG",ans:4,exp:"200.000 Schadensersatz + 12.000 Prozesskosten = 212.000 €."},
+  {t:"b) Jede Partei ist überzeugt zu gewinnen: Frost-AG",ans:0,exp:"Nach eigener Einschätzung kein Abfluss (bei strenger Vorsicht 12.000 € denkbar)."},
+  {t:"b) Jede Partei ist überzeugt zu gewinnen: Pirat-AG",ans:0,exp:"Nach eigener Einschätzung kein Abfluss (bei strenger Vorsicht 212.000 € denkbar, Musterlösung: nichts)."},
+  {t:"c) Jede Partei ist überzeugt zu verlieren: Frost-AG",ans:2,exp:"Frost verliert: trägt die Prozesskosten 12.000 €."},
+  {t:"c) Jede Partei ist überzeugt zu verlieren: Pirat-AG",ans:4,exp:"Pirat verliert: 212.000 €."},
+  {t:"d) Ausgang völlig ungewiss: Frost-AG",ans:2,exp:"Vorsichtsprinzip: Risiko 12.000 € zurückstellen."},
+  {t:"d) Ausgang völlig ungewiss: Pirat-AG",ans:4,exp:"Vorsichtsprinzip: 212.000 € zurückstellen."},
+  {t:"e) Vergleich über 50 % erwartet: Frost-AG",ans:1,exp:"Hälfte der Kosten: 6.000 €."},
+  {t:"e) Vergleich über 50 % erwartet: Pirat-AG",ans:3,exp:"Hälfte von Schaden und Kosten: 106.000 €."}],
+ loesung:"HGB (§ 249 Abs. 1 S. 1, Vorsichtsprinzip) und IFRS (IAS 37.14) führen zum selben Ergebnis: a) nichts / 212.000, b) nichts / nichts, c) 12.000 / 212.000, d) 12.000 / 212.000, e) 6.000 / 106.000. Aufwandskonto: sonstige betriebliche Aufwendungen (GKV Posten 8, UKV Posten 7). Keine Abzinsung, weil Prozesskosten typischerweise binnen eines Jahres anfallen.",
+ herleitung:[
+  {t:"Passivierungspflicht",d:"Rückstellung für ungewisse Verbindlichkeiten (§ 249 Abs. 1 S. 1 HGB); IAS 37.14: gegenwärtige Verpflichtung, wahrscheinlicher Abfluss, verlässliche Schätzung."},
+  {t:"Wer trägt was",d:"Pirat-AG als Beklagte: Schadensersatz 200.000 + Prozesskosten 12.000 = 212.000. Frost-AG als Klägerin: nur Prozesskostenrisiko 12.000."},
+  {t:"Wahrscheinlichkeit",d:"Erwartet eine Partei zu gewinnen: nichts (bei strenger Auslegung von § 252 Abs. 1 Nr. 4 ist eine Rückstellung dennoch vertretbar). Ungewiss: vorsichtshalber voll. Vergleich 50 %: hälftig."},
+  {t:"Buchung",d:"Sonstige betriebliche Aufwendungen an sonstige Rückstellungen."}],
+ refs:["hgb249","hgb252","hgb253_2","ias37_14","hgb275","hgb266"],
+ merk:"Beklagter: Schaden + Kosten. Kläger: nur Kosten. Je unsicherer, desto vorsichtiger."},
+
+{id:"A35",kap:8,law:"HGB",type:"num",title:"Saldierung Deckungsvermögen mit Pensionsrückstellung",
+ sachverhalt:"Handelsbilanz vor Saldierung: Aktiva: Anlagevermögen 110.000, Deckungsvermögen 80.000, Bank 10.000 (Summe 200.000). Passiva: Eigenkapital 50.000, Pensionsrückstellung 120.000, Verbindlichkeiten 30.000 (Summe 200.000).",
+ frage:"EK-Quote vor Saldierung, Bilanz nach Saldierung (§ 246 Abs. 2 S. 2 HGB), EK-Quote nach Saldierung.",
+ fields:[{key:"ekv",label:"EK-Quote vor Saldierung",value:25,unit:"%",tol:0.1},{key:"prst",label:"Pensionsrückstellung nach Saldierung",value:40000,unit:"€"},{key:"bs",label:"Bilanzsumme nach Saldierung",value:120000,unit:"€"},{key:"ekn",label:"EK-Quote nach Saldierung",value:41.7,unit:"%",tol:0.15}],
+ loesung:"Vorher: 50.000 / 200.000 = 25 %. Saldierung: Pensionsrückstellung 120.000 − Deckungsvermögen 80.000 = 40.000 €. Bilanz nachher: AV 110.000 + Bank 10.000 = 120.000; EK 50.000, Pensionsrückstellung 40.000, Verbindlichkeiten 30.000. EK-Quote 50.000 / 120.000 = 41,7 %.",
+ table_solution:{head:["Posten","vor Saldierung","nach Saldierung"],rows:[["Anlagevermögen","110.000","110.000"],["Deckungsvermögen","80.000","−"],["Bank","10.000","10.000"],["Bilanzsumme","200.000","120.000"],["Eigenkapital","50.000","50.000"],["Pensionsrückstellung","120.000","40.000"],["Verbindlichkeiten","30.000","30.000"]],total:["EK-Quote","25,0 %","41,7 %"]},
+ herleitung:[
+  {t:"Grundsatz",d:"Verrechnungsverbot (§ 246 Abs. 2 S. 1)."},
+  {t:"Ausnahme",d:"Deckungsvermögen, das dem Zugriff aller übrigen Gläubiger entzogen ist und ausschließlich der Erfüllung von Altersversorgungsverpflichtungen dient, ist mit den Schulden zu verrechnen (S. 2, Pflicht); Deckungsvermögen zum beizulegenden Zeitwert (§ 253 Abs. 1 S. 4)."},
+  {t:"Wirkung",d:"Bilanzverkürzung um 80.000; EK unverändert, deshalb steigt die EK-Quote von 25 % auf 41,7 %. Anhangangabe nach § 285 Nr. 25."}],
+ refs:["hgb246_2","hgb284","hgb253_1"],
+ merk:"Saldieren verboten, außer Planvermögen gegen Pensionen: Bilanz wird kürzer, Quote wird besser."},
+
+{id:"A36",kap:9,law:"HGB",type:"match",title:"Rechtsfolgen der Größenklassen: Prüfung, Offenlegung, Umfang",
+ sachverhalt:"Die Größenklasse einer Kapitalgesellschaft bestimmt, was aufgestellt, geprüft und offengelegt werden muss.",
+ frage:"Welche Aussage ist richtig?",
+ options:["Ja / Pflicht","Nein / keine Pflicht","Nur Hinterlegung der Bilanz","Bilanz und Anhang, ohne GuV"],
+ rows:[
+  {t:"Kleine GmbH: Prüfungspflicht nach § 316 Abs. 1 HGB?",ans:1,exp:"Kleine Kapitalgesellschaften sind prüfungsfrei; ab mittelgroß Pflicht."},
+  {t:"Mittelgroße GmbH: Lagebericht nach § 289 HGB?",ans:0,exp:"Mittelgroße und große müssen einen Lagebericht aufstellen; kleine nicht (§ 264 Abs. 1 S. 4)."},
+  {t:"Kleinstkapitalgesellschaft: Offenlegung?",ans:2,exp:"§ 326 Abs. 2: Hinterlegung der Bilanz genügt; kein Anhang nötig, wenn Angaben unter der Bilanz."},
+  {t:"Kleine GmbH: Offenlegungsumfang?",ans:3,exp:"§ 326 Abs. 1: Bilanz und Anhang (ohne GuV-Angaben)."},
+  {t:"Kapitalmarktorientierte AG: gilt stets als groß?",ans:0,exp:"§ 267 Abs. 3 S. 2: unabhängig von den Schwellenwerten groß; Konzernabschluss nach IFRS (§ 315e)."},
+  {t:"Einzelkaufmann (keine Kapitalgesellschaft): Anhang Pflicht?",ans:1,exp:"Anhang nur für Kapitalgesellschaften (§ 264 Abs. 1); Einzelkaufmann: Bilanz und GuV (§ 242)."}],
+ loesung:"Klein: keine Prüfung, kein Lagebericht, Offenlegung ohne GuV. Mittelgroß/groß: Prüfung, Lagebericht, volle Offenlegung. Kleinst: Hinterlegung der Bilanz. Kapitalmarktorientiert: immer groß.",
+ herleitung:[
+  {t:"Umfang des Jahresabschlusses",d:"Alle Kaufleute: Bilanz + GuV (§ 242). Kapitalgesellschaften: + Anhang (§ 264 Abs. 1). Mittelgroß/groß: + Lagebericht (§ 289). Kapitalmarktorientiert: + Kapitalflussrechnung, Eigenkapitalspiegel (§ 264 Abs. 1 S. 2)."},
+  {t:"Prüfung (§ 316)",d:"Mittelgroße und große Kapitalgesellschaften."},
+  {t:"Offenlegung (§§ 325 ff.)",d:"Kleinst: Hinterlegung Bilanz. Klein: Bilanz + Anhang. Mittelgroß: Erleichterungen (§ 327). Groß: vollständig."}],
+ refs:["hgb267","hgb316","hgb325","hgb264","hgb289","hgb290"],
+ merk:"Je größer, desto mehr: aufstellen, prüfen lassen, veröffentlichen."}
+);
+
+/* Bilanz-Trainer: Logik */
+(function(){
+const LS_KEY="bilanztrainer_v1";
+const CAT_LABEL={ansatz:"Ansatz",bewertung:"Bewertung",ausweis:"Ausweis / Gliederung",gob:"GoB / Grundsätze",rst:"Rückstellungen",inventur:"Inventur / Vereinfachung",analyse:"Analyse",allg:"Allgemein / Pflichten"};
+const CAT_COLOR={ansatz:"Gelb",bewertung:"Grün",ausweis:"Blau",gob:"Orange",rst:"Rosa",inventur:"Türkis",analyse:"Lila",allg:"Grau"};
+const LAW_LABEL={HGB:"HGB",IFRS:"IFRS",S:"Sonstige"};
+let state=load();
+function load(){try{return Object.assign({progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"},JSON.parse(localStorage.getItem(LS_KEY)||"{}"));}catch(e){return {progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"};}}
+function save(){localStorage.setItem(LS_KEY,JSON.stringify(state));}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const paraById=id=>PARA.find(p=>p.id===id);
+const fmt=(v,unit)=>{let s=(Math.abs(v)>=1000||Number.isInteger(v))?v.toLocaleString("de-DE",{maximumFractionDigits:2}):v.toLocaleString("de-DE",{minimumFractionDigits:1,maximumFractionDigits:3});return s+(unit?" "+unit:"");};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),1800);}
+function parseNum(str){
+  str=String(str).trim().replace(/\s|€|%|Mio\.?|Stk\.?/g,"").replace(/−/g,"-");
+  if(!str) return [];
+  const out=new Set();
+  const hasC=str.includes(","),hasD=str.includes(".");
+  if(hasC&&hasD){out.add(parseFloat(str.replace(/\./g,"").replace(",",".")));}
+  else if(hasC){out.add(parseFloat(str.replace(",",".")));}
+  else if(hasD){out.add(parseFloat(str.replace(/\./g,"")));out.add(parseFloat(str));}
+  else out.add(parseFloat(str));
+  return [...out].filter(n=>!isNaN(n));
+}
+function numOk(field,input){const cands=parseNum(input);if(!cands.length)return false;const tol=field.tol!=null?field.tol:Math.max(0.5,Math.abs(field.value)*0.002);return cands.some(c=>Math.abs(c-field.value)<=tol+1e-9);}
+function statusOf(id){return (state.progress[id]||{}).status||"";}
+function setStatus(id,st){state.progress[id]=Object.assign(state.progress[id]||{},{status:st,at:Date.now(),tries:((state.progress[id]||{}).tries||0)+1});save();}
+function lawTag(l){return l==="both"?'<span class="tag both">HGB + IFRS</span>':l==="IFRS"?'<span class="tag ifrs">IFRS</span>':'<span class="tag hgb">HGB</span>';}
+function refChips(ids){return '<div class="chips">'+ids.map(id=>{const p=paraById(id);if(!p)return "";return `<span class="chip ref law-${p.law}" data-para="${p.id}" title="${esc(p.title)}">§ ${esc(p.ref.replace(/^§+\s*/,""))}</span>`;}).join("")+'</div>';}
+
+/* ---------- Navigation ---------- */
+function go(tab){state.tab=tab;save();document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));render();}
+function render(){const m=$("#main");m.innerHTML="";if(state.tab==="start")renderStart(m);else if(state.tab==="ueben")renderUeben(m);else if(state.tab==="kompass")renderKompass(m);else if(state.tab==="fortschritt")renderFortschritt(m);window.scrollTo(0,0);}
+
+/* ---------- Start ---------- */
+function stats(){const total=AUFGABEN.length;let ok=0,part=0,bad=0;AUFGABEN.forEach(a=>{const s=statusOf(a.id);if(s==="ok")ok++;else if(s==="part")part++;else if(s==="bad")bad++;});const marked=Object.values(state.marked).filter(Boolean).length;return {total,ok,part,bad,done:ok+part+bad,marked,ptotal:PARA.length};}
+function renderStart(m){
+  const s=stats();
+  m.innerHTML=`<h1>Hallo Eric 👋</h1><p class="lead">Klausurtraining Bilanzierung: ${AUFGABEN.length} Originalaufgaben aus dem Kurs mit Lösungsweg, dazu der Paragraphen-Kompass mit ${PARA.length} Normen zum Markieren im Gesetzestext.</p>
+  <div class="grid cols-3">
+   <div class="card"><div class="muted small">Aufgaben richtig gelöst</div><div class="kpi">${s.ok}<small>von ${s.total}</small></div><div class="bar"><span style="width:${s.total?100*s.ok/s.total:0}%"></span></div></div>
+   <div class="card"><div class="muted small">Aufgaben bearbeitet</div><div class="kpi">${s.done}<small>von ${s.total}</small></div><div class="bar"><span style="width:${s.total?100*s.done/s.total:0}%"></span></div></div>
+   <div class="card"><div class="muted small">Paragraphen im Gesetz markiert</div><div class="kpi">${s.marked}<small>von ${s.ptotal}</small></div><div class="bar"><span style="width:${100*s.marked/s.ptotal}%"></span></div></div>
+  </div>
+  <div class="row" style="margin:16px 0">
+   <button class="btn primary" id="btnWeiter">Weiter üben</button>
+   <button class="btn" id="btnKlausur">Zufällige Klausur (6 Aufgaben)</button>
+   <button class="btn" id="btnDuell">§-Duell starten</button>
+   <button class="btn" id="btnBlitz">§-Blitzkarten</button>
+  </div>
+  <h2>Kapitel</h2><div class="grid cols-3" id="kapGrid"></div>
+  <h2>So nutzt du die App</h2>
+  <div class="grid cols-2">
+   <div class="card"><h3>1. Üben</h3><p class="small">Rechne jede Aufgabe erst selbst auf Papier, dann trage dein Ergebnis ein. Nach dem Prüfen siehst du Lösung, Herleitung Schritt für Schritt, die passenden Paragraphen und eine Merkhilfe.</p></div>
+   <div class="card"><h3>2. Paragraphen-Kompass</h3><p class="small">Jede Norm in einem Satz, mit Eselsbrücke, Beispiel und Klausur-Trigger. Hake ab, was du im HGB/IFRS-Text markiert hast. Die Farbe zeigt die Textmarker-Farbe nach Thema. Mit den Blitzkarten und dem §-Duell prüfst du, ob die Fundstellen sitzen.</p></div>
+  </div>`;
+  const g=$("#kapGrid");
+  Object.keys(KAPITEL).forEach(k=>{const list=AUFGABEN.filter(a=>a.kap==k);if(!list.length)return;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card clickable";d.innerHTML=`<div class="muted small">Kapitel ${k}</div><div style="font-weight:800">${esc(KAPITEL[k])}</div><div class="small muted">${list.length} Aufgaben, ${ok} gelöst</div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div>`;d.onclick=()=>{state.filter={kap:+k,law:"all",status:"all"};state.currentTask=null;go("ueben");};g.appendChild(d);});
+  $("#btnWeiter").onclick=()=>{const next=AUFGABEN.find(a=>statusOf(a.id)!=="ok")||AUFGABEN[0];state.filter={kap:0,law:"all",status:"all"};state.currentTask=next.id;go("ueben");};
+  $("#btnKlausur").onclick=()=>{const pool=[...AUFGABEN].sort(()=>Math.random()-.5).slice(0,6).map(a=>a.id);state.exam=pool;state.currentTask=pool[0];go("ueben");};
+  $("#btnDuell").onclick=()=>{state.mode="duell";go("kompass");};
+  $("#btnBlitz").onclick=()=>{state.mode="blitz";go("kompass");};
+}
+
+/* ---------- Üben ---------- */
+function filteredTasks(){if(state.exam&&state.exam.length)return state.exam.map(id=>AUFGABEN.find(a=>a.id===id));const f=state.filter;return AUFGABEN.filter(a=>(!f.kap||a.kap===f.kap)&&(f.law==="all"||a.law===f.law||(f.law!=="all"&&a.law==="both"))&&(f.status==="all"||(f.status==="open"&&statusOf(a.id)!=="ok")||(f.status==="ok"&&statusOf(a.id)==="ok")));}
+function renderUeben(m){
+  if(state.currentTask){const t=AUFGABEN.find(a=>a.id===state.currentTask);if(t){renderTask(m,t);return;}}
+  const f=state.filter;
+  m.innerHTML=`<h1>Übungsaufgaben</h1><p class="lead">Alle Aufgaben stammen aus den Vorlesungsunterlagen; die Lösungen folgen den Musterlösungen des Kurses.</p>
+  <div class="filterbar">
+    <select id="fKap"><option value="0">Alle Kapitel</option>${Object.keys(KAPITEL).map(k=>`<option value="${k}" ${f.kap==k?"selected":""}>Kap. ${k}: ${esc(KAPITEL[k])}</option>`).join("")}</select>
+    <select id="fLaw"><option value="all" ${f.law==="all"?"selected":""}>HGB und IFRS</option><option value="HGB" ${f.law==="HGB"?"selected":""}>nur HGB</option><option value="IFRS" ${f.law==="IFRS"?"selected":""}>nur IFRS</option></select>
+    <select id="fStatus"><option value="all" ${f.status==="all"?"selected":""}>Alle</option><option value="open" ${f.status==="open"?"selected":""}>Noch nicht gelöst</option><option value="ok" ${f.status==="ok"?"selected":""}>Gelöst</option></select>
+  </div><div class="tasklist" id="tl"></div>`;
+  ["fKap","fLaw","fStatus"].forEach(id=>$("#"+id).onchange=()=>{state.filter={kap:+$("#fKap").value,law:$("#fLaw").value,status:$("#fStatus").value};state.exam=null;save();render();});
+  const tl=$("#tl");const list=filteredTasks();
+  if(!list.length)tl.innerHTML='<div class="card muted">Keine Aufgaben für diesen Filter.</div>';
+  list.forEach((a,i)=>{const st=statusOf(a.id);const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${a.id.replace("A","")}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap} · ${esc(KAPITEL[a.kap])} · ${typeLabel(a.type)}</div></div>${lawTag(a.law)}<span class="status-dot ${st}" title="${st||"offen"}"></span>`;d.onclick=()=>{state.currentTask=a.id;save();render();};tl.appendChild(d);});
+}
+function typeLabel(t){return {num:"Rechnen",mc:"Auswahl",match:"Zuordnen",open:"Freitext"}[t]||t;}
+function tableHtml(tb){if(!tb)return "";return `<table class="data"><thead><tr>${tb.head.map((h,i)=>`<th class="${i?"num":""}">${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${i?"num":""}">${esc(c)}</td>`).join("")}</tr>`).join("")}${tb.total?`<tr class="total">${tb.total.map((c,i)=>`<td class="${i?"num":""}">${esc(c)}</td>`).join("")}</tr>`:""}</tbody></table>`;}
+function renderTask(m,t){
+  const list=filteredTasks();const idx=list.findIndex(a=>a.id===t.id);
+  const prev=idx>0?list[idx-1]:null,next=idx<list.length-1?list[idx+1]:null;
+  let inter="";
+  if(t.type==="num")inter=`<div class="numgrid">${t.fields.map(f=>`<label for="in_${f.key}">${esc(f.label)}</label><div class="inwrap"><input id="in_${f.key}" data-key="${f.key}" inputmode="decimal" placeholder="…"><span class="unit">${esc(f.unit||"")}</span><span class="expect" id="ex_${f.key}"></span></div>`).join("")}</div><div class="small muted">Eingabe im deutschen Format (z. B. 9.000 oder 4,41); kleine Rundungsabweichungen werden akzeptiert.</div>`;
+  else if(t.type==="mc")inter=`<div class="answers">${t.options.map((o,i)=>`<label class="opt" data-i="${i}"><input type="${t.multi?"checkbox":"radio"}" name="mc" value="${i}"><span>${esc(o.t)}</span></label>`).join("")}</div>`;
+  else if(t.type==="match")inter=`<div class="matchgrid">${t.rows.map((r,i)=>`<div class="matchrow" data-i="${i}"><div>${esc(r.t)}</div><select data-i="${i}"><option value="">bitte wählen…</option>${t.options.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join("")}</select></div>`).join("")}</div>`;
+  else inter=`<textarea class="own" id="own" placeholder="Schreibe deine Lösung in Stichpunkten auf, bevor du die Musterlösung aufdeckst…"></textarea>`;
+  const st=statusOf(t.id);
+  m.innerHTML=`<div class="row between no-print"><button class="btn small ghost" id="back">← Zur Liste</button><span class="muted small">${state.exam?"Klausurmodus · ":""}Aufgabe ${idx+1} von ${list.length}</span></div>
+  <div class="card" style="margin-top:10px">
+   <div class="task-head"><div><div class="muted small">Kapitel ${t.kap} · ${esc(KAPITEL[t.kap])} · ${typeLabel(t.type)}</div><h1 style="margin:2px 0">${esc(t.title)}</h1></div><div class="row">${lawTag(t.law)}${st?`<span class="tag ${st==="ok"?"ok":st==="part"?"warn":"bad"}">${st==="ok"?"gelöst":st==="part"?"teilweise":"nochmal"}</span>`:""}</div></div>
+   <div class="sachverhalt">${esc(t.sachverhalt)}</div>${tableHtml(t.table)}
+   <div class="frage">${esc(t.frage)}</div>
+   ${inter}
+   <div class="row no-print" style="margin-top:12px"><button class="btn primary" id="check">${t.type==="open"?"Musterlösung aufdecken":"Prüfen"}</button><button class="btn ghost" id="reveal">Lösung zeigen</button></div>
+   <div id="result"></div>
+   <div class="solution hidden" id="sol">
+     <h2 style="margin-top:0">Lösung</h2><p>${esc(t.loesung)}</p>${tableHtml(t.table_solution)}
+     <h3>Herleitung Schritt für Schritt</h3><ol class="steps">${t.herleitung.map(s=>`<li><b>${esc(s.t)}</b>${esc(s.d)}</li>`).join("")}</ol>
+     <h3>Referenzen (anklicken öffnet den Kompass)</h3>${refChips(t.refs)}
+     ${t.merk?`<div class="callout merk"><span class="lbl">Merkhilfe</span>${esc(t.merk)}</div>`:""}
+     ${t.type==="open"?`<div class="selfcheck"><span class="muted small" style="align-self:center">Selbsteinschätzung:</span><button class="btn small" data-self="ok">Gewusst</button><button class="btn small" data-self="part">Teilweise</button><button class="btn small" data-self="bad">Nicht gewusst</button></div>`:""}
+   </div>
+  </div>
+  <div class="navbtns no-print"><button class="btn" id="prev" ${prev?"":"disabled"}>← Vorherige</button><button class="btn" id="next" ${next?"":"disabled"}>Nächste →</button></div>`;
+  $("#back").onclick=()=>{state.currentTask=null;state.exam=null;save();render();};
+  $("#prev").onclick=()=>{if(prev){state.currentTask=prev.id;save();render();}};
+  $("#next").onclick=()=>{if(next){state.currentTask=next.id;save();render();}};
+  document.querySelectorAll(".chip.ref").forEach(c=>c.onclick=()=>openPara(c.dataset.para));
+  const showSol=()=>{$("#sol").classList.remove("hidden");};
+  $("#reveal").onclick=()=>{showSol();revealAnswers(t);if(!statusOf(t.id))setStatus(t.id,"bad");};
+  document.querySelectorAll("[data-self]").forEach(b=>b.onclick=()=>{setStatus(t.id,b.dataset.self);toast("Gespeichert");render();});
+  $("#check").onclick=()=>{
+    if(t.type==="open"){showSol();return;}
+    let ok=0,n=0;
+    if(t.type==="num"){t.fields.forEach(f=>{n++;const inp=$(`#in_${f.key}`);const good=numOk(f,inp.value);inp.classList.toggle("ok",good);inp.classList.toggle("bad",!good);if(good)ok++;});}
+    else if(t.type==="mc"){const chosen=[...document.querySelectorAll('input[name="mc"]:checked')].map(i=>+i.value);t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);el.classList.remove("correct","wrong","missed");if(o.ok&&chosen.includes(i))el.classList.add("correct");else if(!o.ok&&chosen.includes(i))el.classList.add("wrong");else if(o.ok)el.classList.add("missed");});n=1;const allOk=t.options.every((o,i)=>o.ok===chosen.includes(i));ok=allOk?1:0;mcExplain(t);}
+    else if(t.type==="match"){t.rows.forEach((r,i)=>{n++;const sel=document.querySelector(`select[data-i="${i}"]`);const row=document.querySelector(`.matchrow[data-i="${i}"]`);const good=sel.value!==""&&+sel.value===r.ans;row.classList.toggle("ok",good);row.classList.toggle("bad",!good);if(good)ok++;let exp=row.querySelector(".exp");if(!exp){exp=document.createElement("div");exp.className="exp";row.appendChild(exp);}exp.textContent=(good?"Richtig: ":"Richtig wäre: "+t.options[r.ans]+". ")+(r.exp||"");});}
+    const st=ok===n?"ok":ok>0?"part":"bad";setStatus(t.id,st);
+    $("#result").innerHTML=`<div class="result ${st}">${st==="ok"?"Alles richtig! 🎉":st==="part"?`${ok} von ${n} richtig. Schau dir die Herleitung an.`:"Noch nicht. Die Herleitung unten zeigt den Weg."}</div>`;
+    showSol();if(st!=="ok")revealAnswers(t,true);
+  };
+  if(st&&t.type!=="open"){/* nothing: let user retry */}
+}
+function mcExplain(t){t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);if(!el.querySelector(".why")&&o.why){const d=document.createElement("div");d.className="small muted why";d.style.width="100%";d.textContent=o.why;el.appendChild(d);}});}
+function revealAnswers(t,onlyWrong){
+  if(t.type==="num")t.fields.forEach(f=>{const inp=$(`#in_${f.key}`);if(!onlyWrong||!inp.classList.contains("ok"))$(`#ex_${f.key}`).textContent="→ "+fmt(f.value,f.unit);});
+  else if(t.type==="mc"){t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);if(o.ok&&!el.classList.contains("correct"))el.classList.add("missed");});mcExplain(t);}
+  else if(t.type==="match")t.rows.forEach((r,i)=>{const row=document.querySelector(`.matchrow[data-i="${i}"]`);if(onlyWrong&&row.classList.contains("ok"))return;let exp=row.querySelector(".exp");if(!exp){exp=document.createElement("div");exp.className="exp";row.appendChild(exp);}exp.textContent="Lösung: "+t.options[r.ans]+". "+(r.exp||"");});
+}
+
+/* ---------- Kompass ---------- */
+function openPara(id){state.tab="kompass";state.mode="liste";state.kfilter={law:"all",cat:"all",q:"",unmarked:false};state.openPara=id;save();document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab==="kompass"));render();setTimeout(()=>{const el=document.getElementById("p_"+id);if(el){el.querySelector("details").open=true;el.scrollIntoView({behavior:"smooth",block:"center"});}},50);}
+function catStyle(cat){return `background:var(--c-${cat})`;}
+function renderKompass(m){
+  const modes=[["liste","Liste"],["blitz","Blitzkarten"],["duell","§-Duell"],["karte","HGB-Landkarte"],["plan","Markier-Plan"]];
+  m.innerHTML=`<h1>Paragraphen-Kompass</h1><p class="lead">${PARA.length} Normen aus HGB, IFRS und Nebengesetzen: jede in einem Satz erklärt, mit Eselsbrücke, Beispiel und dem Signalwort in der Klausur, bei dem du sie zitierst.</p>
+  <div class="chips no-print">${modes.map(([k,l])=>`<span class="chip ${state.mode===k?"sel":""} ref" data-mode="${k}">${l}</span>`).join("")}</div><div id="kbody"></div>`;
+  document.querySelectorAll("[data-mode]").forEach(c=>c.onclick=()=>{state.mode=c.dataset.mode;save();render();});
+  const b=$("#kbody");
+  if(state.mode==="liste")renderListe(b);else if(state.mode==="blitz")renderBlitz(b);else if(state.mode==="duell")renderDuell(b);else if(state.mode==="karte")renderKarte(b);else renderPlan(b);
+}
+function legend(){return `<div class="legend">${Object.keys(CAT_LABEL).map(c=>`<span><i class="sw-${c}"></i>${CAT_LABEL[c]} (${CAT_COLOR[c]})</span>`).join("")}</div>`;}
+function filteredParas(){const f=state.kfilter;const q=f.q.trim().toLowerCase();return PARA.filter(p=>(f.law==="all"||p.law===f.law)&&(f.cat==="all"||p.cat===f.cat)&&(!f.unmarked||!state.marked[p.id])&&(!q||(p.ref+" "+p.title+" "+p.kurz+" "+p.merk+" "+p.trigger+" "+p.bsp).toLowerCase().includes(q)));}
+function renderListe(b){
+  const f=state.kfilter;
+  b.innerHTML=`<div class="filterbar"><input type="search" id="kq" placeholder="Suchen: z. B. Festwert, Rückstellung, 253, IAS 16…" value="${esc(f.q)}">
+   <select id="kl"><option value="all">HGB + IFRS + Sonstige</option>${["HGB","IFRS","S"].map(l=>`<option value="${l}" ${f.law===l?"selected":""}>${LAW_LABEL[l]}</option>`).join("")}</select>
+   <select id="kc"><option value="all">Alle Themen</option>${Object.keys(CAT_LABEL).map(c=>`<option value="${c}" ${f.cat===c?"selected":""}>${CAT_LABEL[c]}</option>`).join("")}</select>
+   <label class="chip"><input type="checkbox" id="ku" ${f.unmarked?"checked":""}> nur unmarkierte</label></div>
+   <div class="small muted">Farblegende = empfohlene Textmarker-Farbe im Gesetzestext:</div>${legend()}<div id="plist" class="grid" style="gap:10px;margin-top:10px"></div>`;
+  $("#kq").oninput=e=>{state.kfilter.q=e.target.value;save();fillList();};
+  $("#kl").onchange=e=>{state.kfilter.law=e.target.value;save();fillList();};
+  $("#kc").onchange=e=>{state.kfilter.cat=e.target.value;save();fillList();};
+  $("#ku").onchange=e=>{state.kfilter.unmarked=e.target.checked;save();fillList();};
+  function fillList(){const pl=$("#plist");const list=filteredParas();pl.innerHTML=list.length?"":'<div class="card muted">Nichts gefunden.</div>';
+    list.forEach(p=>{const d=document.createElement("div");d.className="card para"+(state.marked[p.id]?" marked":"");d.id="p_"+p.id;
+      const related=AUFGABEN.filter(a=>a.refs.includes(p.id));
+      d.innerHTML=`<div class="ref" style="${catStyle(p.cat)}">${esc(p.ref)}</div>
+      <div><div class="ttl">${esc(p.title)} <span class="tag ${p.law==="HGB"?"hgb":p.law==="IFRS"?"ifrs":""}">${LAW_LABEL[p.law]}</span> <span class="tag">${CAT_LABEL[p.cat]}</span></div><div class="one">${esc(p.kurz)}</div></div>
+      <label class="mark"><input type="checkbox" ${state.marked[p.id]?"checked":""} data-mark="${p.id}">markiert</label>
+      <details class="acc more"><summary>Eselsbrücke, Beispiel, Klausur-Trigger${related.length?` · ${related.length} Aufgabe${related.length>1?"n":""}`:""}</summary><div class="body">
+        <div class="callout merk"><span class="lbl">Eselsbrücke</span>${esc(p.merk)}</div>
+        <div class="callout bsp"><span class="lbl">Beispiel</span>${esc(p.bsp)}</div>
+        <div class="callout"><span class="lbl">Zitiere diese Norm, wenn…</span>${esc(p.trigger)}</div>
+        ${related.length?`<div class="small muted" style="margin-top:6px">Übungsaufgaben dazu:</div><div class="chips">${related.map(a=>`<span class="chip ref" data-task="${a.id}">${a.id} ${esc(a.title)}</span>`).join("")}</div>`:""}
+      </div></details>`;
+      pl.appendChild(d);});
+    pl.querySelectorAll("[data-mark]").forEach(cb=>cb.onchange=()=>{state.marked[cb.dataset.mark]=cb.checked;save();cb.closest(".para").classList.toggle("marked",cb.checked);toast(cb.checked?"Als markiert gespeichert":"Markierung entfernt");});
+    pl.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>{state.currentTask=c.dataset.task;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");});
+  }
+  fillList();
+}
+function renderBlitz(b){
+  const pool=filteredParas().length?filteredParas():PARA;
+  let order=[...pool].sort(()=>Math.random()-.5),i=0;
+  b.innerHTML=`<p class="muted">Vorderseite: die Fundstelle. Überlege, was drinsteht und wann du sie zitierst. Dann umdrehen. <kbd>Leertaste</kbd> dreht, <kbd>→</kbd> nächste Karte.</p>
+  <div class="flash" id="flash"><div class="inner"><div class="face front"><div class="small" style="opacity:.8">Was regelt…</div><div class="big" id="ffront"></div><div class="small" style="opacity:.8;margin-top:10px">Klick zum Umdrehen</div></div><div class="face back" id="fback"></div></div></div>
+  <div class="row" style="justify-content:center"><button class="btn" id="fflip">Umdrehen</button><button class="btn primary" id="fnext">Nächste Karte</button><span class="muted small" id="fcount"></span></div>`;
+  const fl=$("#flash");
+  function show(){const p=order[i%order.length];$("#ffront").textContent=p.ref;$("#fback").innerHTML=`<div class="ttl" style="font-weight:800;font-size:17px">${esc(p.title)}</div><p>${esc(p.kurz)}</p><div class="callout merk"><span class="lbl">Eselsbrücke</span>${esc(p.merk)}</div><div class="callout"><span class="lbl">Zitiere, wenn…</span>${esc(p.trigger)}</div>`;$("#fcount").textContent=`Karte ${i%order.length+1} von ${order.length}`;fl.classList.remove("flipped");}
+  fl.onclick=()=>fl.classList.toggle("flipped");$("#fflip").onclick=()=>fl.classList.toggle("flipped");$("#fnext").onclick=()=>{i++;show();};
+  document.onkeydown=e=>{if(state.tab!=="kompass"||state.mode!=="blitz")return;if(e.code==="Space"){e.preventDefault();fl.classList.toggle("flipped");}if(e.key==="ArrowRight"){i++;show();}};
+  show();
+}
+function renderDuell(b){
+  let score=0,n=0;
+  b.innerHTML=`<p class="muted">Eine Klausursituation, vier Fundstellen: Welche Norm zitierst du? 10 Runden.</p><div class="card" id="duell"></div>`;
+  function round(){
+    if(n>=10){$("#duell").innerHTML=`<h2 style="margin-top:0">Ergebnis: ${score} von 10</h2><p>${score>=9?"Stark, die Fundstellen sitzen.":score>=6?"Solide. Schau dir die verpassten Normen im Kompass an.":"Noch Luft nach oben: Blitzkarten helfen."}</p><button class="btn primary" id="again">Nochmal</button>`;$("#again").onclick=()=>{score=0;n=0;round();};return;}
+    const p=PARA[Math.floor(Math.random()*PARA.length)];
+    const distract=PARA.filter(x=>x.id!==p.id).sort(()=>Math.random()-.5).slice(0,3);
+    const opts=[p,...distract].sort(()=>Math.random()-.5);
+    $("#duell").innerHTML=`<div class="muted small">Runde ${n+1} von 10 · Punkte ${score}</div><div class="sachverhalt">${esc(p.trigger)}</div><div class="small muted">Zusatzhinweis: ${esc(p.bsp)}</div><div style="margin-top:10px">${opts.map(o=>`<button class="quizopt" data-id="${o.id}"><b>${esc(o.ref)}</b> · ${esc(o.title)}</button>`).join("")}</div><div id="dres"></div>`;
+    $("#duell").querySelectorAll(".quizopt").forEach(btn=>btn.onclick=()=>{const good=btn.dataset.id===p.id;n++;if(good)score++;$("#duell").querySelectorAll(".quizopt").forEach(x=>{x.disabled=true;if(x.dataset.id===p.id)x.classList.add("correct");else if(x===btn)x.classList.add("wrong");});$("#dres").innerHTML=`<div class="result ${good?"ok":"bad"}">${good?"Richtig!":"Leider nein."} ${esc(p.ref)}: ${esc(p.kurz)}</div><div class="callout merk"><span class="lbl">Eselsbrücke</span>${esc(p.merk)}</div><button class="btn primary" id="dnext">Weiter</button>`;$("#dnext").onclick=round;});
+  }
+  round();
+}
+function renderKarte(b){
+  const segs=[
+   ["k1","§§ 238–263","Für alle Kaufleute","Buchführung (238), Inventar (240–241a), Bilanz/GuV-Pflicht (242), GoB (243), Ansatz (246–251), Bewertung (252–256a)."],
+   ["k2","§§ 264–289","Ergänzend für Kapitalgesellschaften","Anhang und Generalnorm (264), Größenklassen (267), Gliederung Bilanz (266) und GuV (275), Anhangangaben (284–288), Lagebericht (289)."],
+   ["k3","§§ 290–315e","Konzernabschluss","Aufstellungspflicht (290), Konsolidierung (300 ff.), IFRS-Konzernabschluss (315e)."],
+   ["k2","§§ 316–324","Prüfung","Prüfungspflicht mittelgroß/groß (316), Bestätigungsvermerk (322)."],
+   ["k2","§§ 325–329","Offenlegung","Unternehmensregister (325), Erleichterungen klein/kleinst (326), mittelgroß (327)."],
+   ["k3","IAS 1 / 2 / 16","Darstellung, Vorräte, Sachanlagen","Bestandteile des Abschlusses; produktionsbezogene Vollkosten; AK, Neubewertung, Komponenten."],
+   ["k3","IAS 23 / 36 / 37 / 38","Zinsen, Impairment, Rückstellungen, Immaterielle","Borrowing costs Pflicht; erzielbarer Betrag; drei Ansatzkriterien; F&E sechs Kriterien."],
+   ["k3","IFRS 15 / 16","Umsatz und Leasing","Fünf-Schritte-Modell, zeitraumbezogene Erfüllung; right-of-use."]];
+  b.innerHTML=`<p class="muted">Wo im Gesetz stehst du gerade? Die Landkarte zeigt die Blöcke des HGB-Dritten Buchs und die IFRS-Standards des Kurses.</p><div class="map">${segs.map(s=>`<div class="seg ${s[0]}"><b>${esc(s[1])}</b><div style="font-weight:700">${esc(s[2])}</div><div class="muted">${esc(s[3])}</div></div>`).join("")}</div>
+  <h3>Prüfschema für fast jede Bilanzierungsfrage</h3><ol class="steps"><li><b>Ansatz: Kommt es in die Bilanz?</b>Abstrakte Bilanzierungsfähigkeit (Vermögensgegenstand/Schuld?), dann konkrete (§ 246 Pflicht, § 248/§ 249 Wahlrecht oder Verbot). IFRS: Definitions- und Ansatzkriterien (IAS 16.7, IAS 38.21, IAS 37.14).</li><li><b>Bewertung bei Zugang: Mit welchem Wert?</b>AK (§ 255 Abs. 1 / IAS 16.16) oder HK (§ 255 Abs. 2–3 / IAS 2.12). Rückstellung: Erfüllungsbetrag (§ 253 Abs. 1 S. 2 / IAS 37.36).</li><li><b>Folgebewertung: Was passiert danach?</b>Planmäßige AfA (§ 253 Abs. 3 S. 1), außerplanmäßig (S. 3 / IAS 36), Zuschreibung (§ 253 Abs. 5), Neubewertung (IAS 16.31 / 38.75).</li><li><b>Ausweis: Wo steht es?</b>§ 266 Bilanzposten, § 275 GuV-Posten, Anhangangabe (§§ 284 f.).</li></ol>`;
+}
+function renderPlan(b){
+  const groups={};PARA.forEach(p=>{(groups[p.law]=groups[p.law]||[]).push(p);});
+  b.innerHTML=`<p class="muted no-print">Druckbare Markierliste für das Arbeiten mit den Gesetzestexten (Browser: Drucken). Abgehakte Normen erscheinen mit Haken.</p><div class="row no-print"><button class="btn" onclick="window.print()">Drucken / als PDF sichern</button></div>${legend()}
+  ${["HGB","S","IFRS"].map(l=>groups[l]?`<h2>${LAW_LABEL[l]}</h2><table class="data"><thead><tr><th></th><th>Fundstelle</th><th>Thema</th><th>Farbe</th><th>In einem Satz</th></tr></thead><tbody>${groups[l].map(p=>`<tr><td>${state.marked[p.id]?"✔":"☐"}</td><td><b>${esc(p.ref)}</b></td><td>${esc(p.title)}</td><td><i class="sw-${p.cat}" style="display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle"></i> ${CAT_COLOR[p.cat]}</td><td class="small">${esc(p.kurz)}</td></tr>`).join("")}</tbody></table>`:"").join("")}`;
+}
+
+/* ---------- Fortschritt ---------- */
+function renderFortschritt(m){
+  const s=stats();
+  m.innerHTML=`<h1>Fortschritt</h1><p class="lead">Dein Stand über alle Kapitel. Der Fortschritt wird lokal im Browser gespeichert.</p>
+  <div class="grid cols-3"><div class="card"><div class="muted small">Richtig</div><div class="kpi" style="color:var(--ok)">${s.ok}</div></div><div class="card"><div class="muted small">Teilweise</div><div class="kpi" style="color:var(--warn)">${s.part}</div></div><div class="card"><div class="muted small">Nochmal üben</div><div class="kpi" style="color:var(--bad)">${s.bad}</div></div></div>
+  <h2>Nach Kapitel</h2><div class="grid" id="kp"></div>
+  <h2>Nochmal üben</h2><div class="tasklist" id="redo"></div>
+  <div class="row no-print" style="margin-top:24px"><button class="btn" id="resetP">Aufgaben-Fortschritt zurücksetzen</button><button class="btn" id="resetM">Markierungen zurücksetzen</button></div>`;
+  const kp=$("#kp");Object.keys(KAPITEL).forEach(k=>{const list=AUFGABEN.filter(a=>a.kap==k);if(!list.length)return;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card";d.innerHTML=`<div class="row between"><b>Kap. ${k}: ${esc(KAPITEL[k])}</b><span class="muted small">${ok}/${list.length}</span></div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div><div class="chips">${list.map(a=>`<span class="chip ref" data-task="${a.id}"><span class="status-dot ${statusOf(a.id)}"></span>${a.id}</span>`).join("")}</div>`;kp.appendChild(d);});
+  const redo=$("#redo");const bad=AUFGABEN.filter(a=>["bad","part"].includes(statusOf(a.id)));redo.innerHTML=bad.length?"":'<div class="card muted">Nichts offen. Stark!</div>';
+  bad.forEach(a=>{const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${a.id.replace("A","")}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap}</div></div><span class="status-dot ${statusOf(a.id)}"></span>`;d.onclick=()=>{state.currentTask=a.id;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");};redo.appendChild(d);});
+  m.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>{state.currentTask=c.dataset.task;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");});
+  $("#resetP").onclick=()=>{if(confirm("Aufgaben-Fortschritt wirklich löschen?")){state.progress={};save();render();}};
+  $("#resetM").onclick=()=>{if(confirm("Alle Paragraphen-Markierungen löschen?")){state.marked={};save();render();}};
+}
+
+/* ---------- Init ---------- */
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{if(b.dataset.tab==="ueben"){state.currentTask=null;state.exam=null;}go(b.dataset.tab);});
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===state.tab));
+  document.addEventListener("keydown",e=>{if(state.tab!=="ueben"||!state.currentTask||["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName))return;if(e.key==="ArrowRight"){const n=$("#next");if(n&&!n.disabled)n.click();}if(e.key==="ArrowLeft"){const p=$("#prev");if(p&&!p.disabled)p.click();}});
+  render();
+});
+})();
+
+</script>
+</body></html>
