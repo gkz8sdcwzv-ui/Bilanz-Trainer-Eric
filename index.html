@@ -132,13 +132,13 @@ details.acc .body{padding:0 14px 12px}
 .filterbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
 .filterbar input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
 .para{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 14px}
-.para .ref{font-weight:800;font-size:15px;white-space:nowrap;padding:4px 8px;border-radius:8px;min-width:120px;text-align:center;color:#111}
+.para > .ref{font-weight:800;font-size:15px;white-space:nowrap;padding:4px 8px;border-radius:8px;min-width:120px;text-align:center;color:#111}
 .para .ttl{font-weight:700}
 .para .one{color:var(--ink);margin:2px 0}
 .para .mark{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
 .para .mark input{width:22px;height:22px;accent-color:var(--ok)}
 .para.marked{opacity:.86}
-.para.marked .ref{outline:2px solid var(--ok)}
+.para.marked > .ref{outline:2px solid var(--ok)}
 .para .more{grid-column:1/-1}
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .legend span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
@@ -171,7 +171,7 @@ footer.note{max-width:1100px;margin:30px auto 0;padding:0 16px;color:var(--muted
 kbd{font:12px ui-monospace,Menlo,monospace;background:var(--chip);padding:2px 6px;border-radius:5px;border:1px solid var(--line)}
 @media (max-width:640px){
   .para{grid-template-columns:1fr auto}
-  .para .ref{grid-column:1/-1;text-align:left;min-width:0;justify-self:start}
+  .para > .ref{grid-column:1/-1;text-align:left;min-width:0;justify-self:start}
   .matchrow{grid-template-columns:1fr}
   .numgrid{grid-template-columns:1fr}
   nav.tabs{width:100%;margin-left:0}
@@ -182,7 +182,7 @@ kbd{font:12px ui-monospace,Menlo,monospace;background:var(--chip);padding:2px 6p
   main{max-width:none;padding:0}
   .card{box-shadow:none;border-color:#bbb;break-inside:avoid}
   .para .more{display:block!important}
-  .para .ref{border:1px solid #999}
+  .para > .ref{border:1px solid #999}
 }
 
 </style></head>
