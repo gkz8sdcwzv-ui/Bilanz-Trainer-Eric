@@ -132,13 +132,13 @@ details.acc .body{padding:0 14px 12px}
 .filterbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
 .filterbar input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
 .para{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 14px}
-.para > .ref{font-weight:800;font-size:15px;white-space:nowrap;padding:4px 8px;border-radius:8px;min-width:120px;text-align:center;color:#111}
+.para .ref{font-weight:800;font-size:15px;white-space:nowrap;padding:4px 8px;border-radius:8px;min-width:120px;text-align:center;color:#111}
 .para .ttl{font-weight:700}
 .para .one{color:var(--ink);margin:2px 0}
 .para .mark{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
 .para .mark input{width:22px;height:22px;accent-color:var(--ok)}
 .para.marked{opacity:.86}
-.para.marked > .ref{outline:2px solid var(--ok)}
+.para.marked .ref{outline:2px solid var(--ok)}
 .para .more{grid-column:1/-1}
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .legend span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
@@ -171,7 +171,7 @@ footer.note{max-width:1100px;margin:30px auto 0;padding:0 16px;color:var(--muted
 kbd{font:12px ui-monospace,Menlo,monospace;background:var(--chip);padding:2px 6px;border-radius:5px;border:1px solid var(--line)}
 @media (max-width:640px){
   .para{grid-template-columns:1fr auto}
-  .para > .ref{grid-column:1/-1;text-align:left;min-width:0;justify-self:start}
+  .para .ref{grid-column:1/-1;text-align:left;min-width:0;justify-self:start}
   .matchrow{grid-template-columns:1fr}
   .numgrid{grid-template-columns:1fr}
   nav.tabs{width:100%;margin-left:0}
@@ -182,15 +182,21 @@ kbd{font:12px ui-monospace,Menlo,monospace;background:var(--chip);padding:2px 6p
   main{max-width:none;padding:0}
   .card{box-shadow:none;border-color:#bbb;break-inside:avoid}
   .para .more{display:block!important}
-  .para > .ref{border:1px solid #999}
+  .para .ref{border:1px solid #999}
 }
+
+/* probeklausur */
+.probebar{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:58px;z-index:10;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.ptimer{font-weight:800;font-variant-numeric:tabular-nums}
+.ptimer.over{color:var(--bad)}
+@media print{.probebar{display:none!important}}
 
 </style></head>
 <body>
 <header class="top"><div class="topbar"><div class="logo"><div class="mark">§</div>Bilanz-Trainer</div>
-<nav class="tabs"><button data-tab="start">Start</button><button data-tab="ueben">Üben</button><button data-tab="kompass">§-Kompass</button><button data-tab="fortschritt">Fortschritt</button></nav></div></header>
+<nav class="tabs"><button data-tab="start">Start</button><button data-tab="ueben">Üben</button><button data-tab="extra">Zusatzaufgaben</button><button data-tab="probe">Probeklausur</button><button data-tab="kompass">§-Kompass</button><button data-tab="fortschritt">Fortschritt</button></nav></div></header>
 <main id="main"></main>
-<footer class="note">Inhalte nach den Vorlesungsunterlagen und Musterlösungen des Kurses Bilanzierung (Prof. Dr. L. M. Bauer). Fortschritt und Markierungen werden nur lokal in diesem Browser gespeichert. Gesetzesstand: Schwellenwerte § 267 HGB in der seit 2024 geltenden Fassung.</footer>
+<footer class="note">Inhalte nach den Vorlesungsunterlagen und Musterlösungen des Kurses Bilanzierung (Prof. Dr. L. M. Bauer). Die Zusatzaufgaben und die Probeklausur sind neu erstellte Übungen im Stil des Kurses und keine Originalaufgaben. Fortschritt und Markierungen werden nur lokal in diesem Browser gespeichert. Gesetzesstand: Schwellenwerte § 267 HGB in der seit 2024 geltenden Fassung.</footer>
 <div class="toast" id="toast"></div>
 <script>
 // Paragraphen-Kompass: alle klausurrelevanten Normen aus dem Kurs "Bilanzierung" (Prof. Bauer)
@@ -1105,14 +1111,463 @@ AUFGABEN.push(
  merk:"Je größer, desto mehr: aufstellen, prüfen lassen, veröffentlichen."}
 );
 
+// Zusatzaufgaben: je 2 pro Kapitel (1-9), neu erstellt im Stil der Kursaufgaben mit neuen Zahlen.
+// Kein Originalmaterial aus dem Kurs, die Lösungen folgen aber derselben Methodik wie die Musterlösungen.
+const EXTRA = [];
+EXTRA.push(
+/* ---------------- Kapitel 1 ---------------- */
+{id:"B01",kap:1,law:"HGB",type:"match",extra:true,title:"Funktionen des Jahresabschlusses zuordnen",
+ sachverhalt:"Der Jahresabschluss erfüllt Dokumentations-, Informations- und Zahlungsbemessungsfunktion. Ordnen Sie jedem Praxisfall die Funktion zu, die im Vordergrund steht.",
+ frage:"Welche Funktion steht im Vordergrund?",
+ options:["Dokumentationsfunktion","Informationsfunktion","Zahlungsbemessungsfunktion"],
+ rows:[
+  {t:"Das Finanzamt ermittelt aus der Steuerbilanz die Körperschaftsteuer.",ans:2,exp:"Der Gewinn ist Bemessungsgrundlage für Zahlungen an den Fiskus."},
+  {t:"Eine Bank liest aus der Bilanz Eigenkapitalquote und Verschuldung ab, bevor sie einen Kredit vergibt.",ans:1,exp:"Information über Vermögens- und Finanzlage für externe Adressaten."},
+  {t:"Auch nach sieben Jahren lässt sich anhand der Bücher nachweisen, welche Geschäftsvorfälle zum Ergebnis geführt haben.",ans:0,exp:"Nachweis und Beweiskraft: Kern der Dokumentationsfunktion."},
+  {t:"Der Vorstand erhält eine Tantieme von 2 % des Jahresüberschusses.",ans:2,exp:"Erfolgsabhängige Vergütung knüpft an das Jahresergebnis an: Zahlungsbemessung."},
+  {t:"Die GuV zeigt, dass das Betriebsergebnis negativ, das Finanzergebnis aber positiv ist.",ans:1,exp:"Information über die Ertragslage und die Erfolgsquellen."},
+  {t:"Die Hauptversammlung beschließt aus dem Bilanzgewinn die Dividende.",ans:2,exp:"Ausschüttungsanspruch der Anteilseigner wird aus dem Abschluss abgeleitet."},
+  {t:"Ein Jahresabschluss dient in einem Rechtsstreit als Beweismittel für die Vermögenslage zum Stichtag.",ans:0,exp:"Beweisfunktion gehört zur Dokumentation."}],
+ loesung:"Dokumentation: Nachweis und Beweis. Information: Lage und Erfolgsquellen für Externe. Zahlungsbemessung: Steuer, Dividende, Tantieme.",
+ herleitung:[
+  {t:"Dokumentationsfunktion",d:"Vollständige und nachprüfbare Aufzeichnung der Geschäftsvorfälle (§ 238 Abs. 1, § 242). Sie wirkt rückwärtsgewandt: Was war?"},
+  {t:"Informationsfunktion",d:"Bilanz: Vermögens- und Finanzlage. GuV: Ertragslage. Adressaten sind Gesellschafter, Gläubiger, Mitarbeiter, Öffentlichkeit (Generalnorm § 264 Abs. 2)."},
+  {t:"Zahlungsbemessungsfunktion",d:"Der Abschluss legt fest, wie viel Steuern, Dividende und Tantieme gezahlt werden. Über das Maßgeblichkeitsprinzip (§ 5 Abs. 1 S. 1 EStG) wirkt die Handelsbilanz auf die Steuerbilanz."},
+  {t:"Prüfschema",d:"Frage dich: Geht es um Beweis (Dokumentation), um Wissen für Außenstehende (Information) oder um einen Geldbetrag, der aus dem Gewinn folgt (Zahlungsbemessung)?"}],
+ refs:["hgb242","hgb264","estg5","hgb238"],
+ merk:"Beweis = D, Wissen = I, Geld = Z. Sobald ein Geldbetrag am Gewinn hängt, ist es Zahlungsbemessung."},
+
+{id:"B02",kap:1,law:"HGB",type:"mc",multi:true,extra:true,title:"Bilanz, GuV und Abschlussbestandteile: Was stimmt?",
+ sachverhalt:"Beurteilen Sie die folgenden Aussagen zum Jahresabschluss einer Kapitalgesellschaft.",
+ frage:"Welche Aussagen sind richtig? (Mehrfachauswahl)",
+ options:[
+  {t:"Die Bilanz ist eine Stichtagsrechnung (Bestandsgrößen), die GuV eine Zeitraumrechnung (Stromgrößen).",ok:true,why:"Richtig: Die Bilanz zeigt den Stand am Abschlussstichtag, die GuV die Aufwendungen und Erträge der Periode."},
+  {t:"Die GuV zeigt Mittelherkunft und Mittelverwendung.",ok:false,why:"Falsch: Das leistet die Bilanz (Passiva = Herkunft, Aktiva = Verwendung). Die GuV zeigt die Erfolgsquellen."},
+  {t:"Die Handelsbilanz ist über das Maßgeblichkeitsprinzip Ausgangspunkt der Steuerbilanz.",ok:true,why:"Richtig: § 5 Abs. 1 S. 1 EStG, soweit keine steuerlichen Sondervorschriften greifen."},
+  {t:"Der Jahresabschluss einer Kapitalgesellschaft besteht nur aus Bilanz und GuV.",ok:false,why:"Falsch: Kapitalgesellschaften ergänzen um den Anhang (§ 264 Abs. 1). Mittelgroße und große stellen zusätzlich einen Lagebericht auf."},
+  {t:"Der Einzelkaufmann muss nach § 242 HGB Bilanz und GuV aufstellen, aber keinen Anhang.",ok:true,why:"Richtig: Anhangpflicht gilt nur für Kapitalgesellschaften und gleichgestellte Gesellschaften."}],
+ loesung:"Richtig sind die erste, dritte und fünfte Aussage.",
+ herleitung:[
+  {t:"Bestand und Strom",d:"Bilanz = Zeitpunktrechnung. GuV = Zeitraumrechnung. Der Erfolg der GuV landet im Eigenkapital der Bilanz."},
+  {t:"Bestandteile nach Rechtsform",d:"Alle Kaufleute: Bilanz und GuV (§ 242). Kapitalgesellschaften: zusätzlich Anhang (§ 264 Abs. 1). Mittelgroß und groß: zusätzlich Lagebericht."},
+  {t:"Zusammenhang mit dem Steuerrecht",d:"Maßgeblichkeit: Die Handelsbilanz ist Ausgangspunkt, steuerliche Abweichungen (z. B. Verbot der Drohverlustrückstellung) werden außerhalb korrigiert."}],
+ refs:["hgb242","hgb264","estg5"],
+ merk:"Bilanz = Foto (Stichtag), GuV = Film (Zeitraum). Anhang gibt es nur ab Kapitalgesellschaft."},
+
+/* ---------------- Kapitel 2 ---------------- */
+{id:"B03",kap:2,law:"HGB",type:"num",extra:true,title:"Anschaffungskosten einer Maschine mit Rabatt und Skonto",
+ sachverhalt:"Die Möbelwerke GmbH kauft eine Fräsmaschine. Alle Beträge ohne Umsatzsteuer:\n• Listenpreis 80.000 €, Rabatt 5 % auf den Listenpreis\n• Skonto 2 % auf den Rechnungsbetrag nach Rabatt (wird genutzt)\n• Transportkosten 1.800 €\n• Fundament 2.200 €\n• Montage durch den Lieferanten 3.000 €\n• Schulung der Mitarbeiter 1.500 €\n• Zinsen für den Kredit zur Finanzierung 900 €",
+ frage:"Ermitteln Sie die Anschaffungskosten nach § 255 Abs. 1 HGB.",
+ fields:[{key:"rab",label:"Rabatt",value:4000,unit:"€",tol:1},{key:"sk",label:"Skonto",value:1520,unit:"€",tol:1},{key:"ak",label:"Anschaffungskosten gesamt",value:81480,unit:"€",tol:1}],
+ loesung:"76.000 − 1.520 + 1.800 + 2.200 + 3.000 = 81.480 €. Schulung und Finanzierungszinsen sind keine Anschaffungskosten.",
+ table_solution:{head:["Position","€"],rows:[["Listenpreis","80.000"],["− Rabatt 5 %","− 4.000"],["− Skonto 2 % von 76.000","− 1.520"],["+ Transportkosten","1.800"],["+ Fundament","2.200"],["+ Montage","3.000"],["Schulung","0"],["Finanzierungszinsen","0"]],total:["Anschaffungskosten","81.480"]},
+ herleitung:[
+  {t:"Formel (§ 255 Abs. 1)",d:"Anschaffungspreis + Anschaffungsnebenkosten + nachträgliche Anschaffungskosten ./. Anschaffungspreisminderungen."},
+  {t:"Preisminderungen",d:"Rabatt 5 % von 80.000 = 4.000 € (Rechnungsbetrag 76.000 €). Skonto 2 % von 76.000 = 1.520 €. Beides mindert die AK, weil sie den tatsächlichen Preis senken."},
+  {t:"Nebenkosten",d:"Transport, Fundament und Montage sind dem Gegenstand einzeln zurechenbar und dienen der Betriebsbereitschaft: aktivieren (3 + 2,2 + 1,8 = 7.000 €)."},
+  {t:"Nicht aktivierbar",d:"Schulung ist Aufwand (kein Teil der Betriebsbereitschaft des Gegenstands). Finanzierungskosten sind Zinsaufwand, nicht AK."},
+  {t:"Summe",d:"74.480 + 7.000 = 81.480 €."}],
+ refs:["hgb255_1","hgb253_3"],
+ merk:"Rabatt zuerst, Skonto auf den Rabattpreis. Betriebsbereit machen = AK, Mitarbeiter schulen und Kredit zahlen = Aufwand."},
+
+{id:"B04",kap:2,law:"HGB",type:"num",extra:true,title:"Außerplanmäßige Abschreibung und Wertaufholung (Obergrenze)",
+ sachverhalt:"Die Presswerk AG kauft am 01.01.01 eine Presse für 120.000 €, Nutzungsdauer 8 Jahre, linear, Restwert 0. Am 31.12.03 sinkt der beizulegende Wert dauerhaft auf 50.000 €. Am 31.12.05 sind die Gründe der Wertminderung entfallen, der beizulegende Wert beträgt 52.000 €. Planmäßig wird ab 04 über die Restnutzungsdauer abgeschrieben.",
+ frage:"Ermitteln Sie die planmäßige Abschreibung 01 bis 03, die außerplanmäßige Abschreibung 03, die Abschreibung ab 04, den Buchwert vor Zuschreibung am 31.12.05, die Zuschreibung und den Buchwert danach.",
+ fields:[{key:"afa",label:"Planmäßige Abschreibung 01 bis 03 je Jahr",value:15000,unit:"€",tol:1},{key:"apl",label:"Außerplanmäßige Abschreibung 03",value:25000,unit:"€",tol:1},{key:"afa04",label:"Planmäßige Abschreibung 04 und 05 je Jahr",value:10000,unit:"€",tol:1},{key:"bwv",label:"Buchwert 31.12.05 vor Zuschreibung",value:30000,unit:"€",tol:1},{key:"zu",label:"Zuschreibung 31.12.05",value:15000,unit:"€",tol:1},{key:"bwn",label:"Buchwert 31.12.05 nach Zuschreibung",value:45000,unit:"€",tol:1}],
+ loesung:"15.000 €/Jahr. 03: Buchwert vor apl 75.000, apl 25.000 auf 50.000. Ab 04: 50.000 / 5 = 10.000 €/Jahr. 31.12.05 vor Zuschreibung 30.000 €. Obergrenze sind die fortgeführten AK ohne Wertminderung: 120.000 − 5 × 15.000 = 45.000 €. Zuschreibung 15.000 € (nicht auf 52.000 €).",
+ table_solution:{head:["Jahr","planm. AfA","apl. AfA","Buchwert","fortgef. AK ohne Wertminderung"],rows:[["01","15.000","","105.000","105.000"],["02","15.000","","90.000","90.000"],["03","15.000","25.000","50.000","75.000"],["04","10.000","","40.000","60.000"],["05","10.000","","30.000 → 45.000","45.000"]]},
+ herleitung:[
+  {t:"Planmäßige Abschreibung",d:"120.000 / 8 = 15.000 € (§ 253 Abs. 3 S. 1, 2). Buchwert 31.12.03 vor Wertminderung: 120.000 − 3 × 15.000 = 75.000 €."},
+  {t:"Außerplanmäßige Abschreibung",d:"Dauernde Wertminderung im Anlagevermögen: Pflicht (§ 253 Abs. 3 S. 5). Abschreibung auf 50.000 €, also 25.000 €."},
+  {t:"Neuer Plan",d:"Restnutzungsdauer 8 − 3 = 5 Jahre: 50.000 / 5 = 10.000 € pro Jahr. Buchwert 31.12.05 vor Zuschreibung: 50.000 − 2 × 10.000 = 30.000 €."},
+  {t:"Wertaufholungsgebot (§ 253 Abs. 5 S. 1)",d:"Entfallen die Gründe, ist zuzuschreiben, aber höchstens bis zu den fortgeführten Anschaffungskosten, die ohne die Wertminderung entstanden wären: 120.000 − 5 × 15.000 = 45.000 €."},
+  {t:"Ergebnis",d:"Der beizulegende Wert (52.000) liegt über der Obergrenze (45.000): Zuschreibung 15.000 €, Buchwert 45.000 €."}],
+ refs:["hgb253_3","hgb253_5","hgb253_1"],
+ merk:"Zuschreibung ist gedeckelt: nie höher als der Wert, den der Plan ohne Wertminderung ergeben hätte."},
+
+/* ---------------- Kapitel 3 ---------------- */
+{id:"B05",kap:3,law:"HGB",type:"match",extra:true,title:"Inventurverfahren und Fristen zuordnen",
+ sachverhalt:"Stichtag ist der 31.12. Die Inventurvereinfachungen erlauben unter Bedingungen eine Aufnahme zu anderen Zeitpunkten. Fristen: zeitnah 10 Tage vor oder nach dem Stichtag; vor- oder nachverlegt bis 3 Monate davor und 2 Monate danach, jeweils mit wertmäßiger Fortschreibung bzw. Rückrechnung.",
+ frage:"Welches Verfahren liegt vor bzw. ist die Aufnahme zulässig?",
+ options:["Stichtagsinventur","Zeitnahe Inventur","Vorverlegte Inventur","Nachverlegte Inventur","Permanente Inventur","Nicht zulässig (Frist überschritten)"],
+ rows:[
+  {t:"Alle Bestände werden am 31.12. von den Mitarbeitern gezählt.",ans:0,exp:"Aufnahme genau am Abschlussstichtag."},
+  {t:"Aufnahme am 05.01., alle Bewegungen seit dem 31.12. werden erfasst.",ans:1,exp:"Innerhalb von 10 Tagen nach dem Stichtag, Bewegungen belegt (R 5.3 EStR)."},
+  {t:"Aufnahme am 15.11., der Bestand wird wertmäßig auf den 31.12. fortgeschrieben.",ans:2,exp:"15.11. liegt innerhalb der 3 Monate vor dem Stichtag (frühestens 30.09.)."},
+  {t:"Aufnahme am 20.02. des Folgejahres, wertmäßige Rückrechnung auf den 31.12.",ans:3,exp:"20.02. liegt innerhalb der 2 Monate nach dem Stichtag (spätestens 28./29.02.)."},
+  {t:"Lagerbuchführung erfasst jeden Zu- und Abgang nach Art und Menge; die körperliche Aufnahme erfolgt einmal im Jahr zu einem beliebigen Termin.",ans:4,exp:"Permanente Inventur nach § 241 Abs. 2: Lagerkartei plus mindestens einmal jährliche Prüfung."},
+  {t:"Aufnahme am 20.09., wertmäßige Fortschreibung auf den 31.12.",ans:5,exp:"Mehr als 3 Monate vor dem Stichtag (frühestens 30.09.): unzulässig."}],
+ loesung:"Stichtag, zeitnah, vorverlegt, nachverlegt, permanent, unzulässig.",
+ herleitung:[
+  {t:"Grundsatz",d:"Inventur grundsätzlich als körperliche Bestandsaufnahme zum Stichtag (§ 240 Abs. 2)."},
+  {t:"Zeitnah",d:"R 5.3 Abs. 1 EStR: bis 10 Tage vor oder nach dem Stichtag, sofern alle Bewegungen zwischen Aufnahme und Stichtag belegt erfasst werden."},
+  {t:"Vor- und nachverlegt (§ 241 Abs. 3)",d:"Letzte 3 Monate vor bis erste 2 Monate nach dem Stichtag, mit wertmäßiger Fortschreibung bzw. Rückrechnung. Frühester Termin 30.09., spätester 28./29.02."},
+  {t:"Permanent (§ 241 Abs. 2)",d:"Ordnungsmäßige Lagerbuchführung nach Art und Menge, mindestens einmal im Jahr körperlicher Abgleich."}],
+ refs:["hgb241","estr53","hgb240_1","hgb241a"],
+ merk:"10 Tage zeitnah, 3 Monate davor, 2 Monate danach, permanent braucht ein Lagerbuch."},
+
+{id:"B06",kap:3,law:"HGB",type:"num",extra:true,title:"Inventar, Eigenkapital und Gewinn des Einzelunternehmers",
+ sachverhalt:"Zum 31.12. weist das Inventar des Einzelunternehmers Weber aus: Fuhrpark 48.000 €, Betriebs- und Geschäftsausstattung 17.500 €, Warenbestand 62.000 €, Forderungen aus Lieferungen 31.400 €, Bankguthaben 12.600 €, Kasse 1.900 €, Darlehen 55.000 €, Verbindlichkeiten aus Lieferungen 27.300 €, sonstige Verbindlichkeiten 4.200 €.\nEigenkapital zum Vorjahresstichtag: 79.400 €. Im Jahr entnahm Weber privat 18.000 € und legte 5.000 € ein.",
+ frage:"Ermitteln Sie Vermögen, Schulden, Eigenkapital, den Jahresgewinn und die Eigenkapitalquote (eine Nachkommastelle).",
+ fields:[{key:"v",label:"A. Vermögen gesamt",value:173400,unit:"€",tol:1},{key:"s",label:"B. Schulden gesamt",value:86500,unit:"€",tol:1},{key:"ek",label:"C. Eigenkapital (Reinvermögen)",value:86900,unit:"€",tol:1},{key:"g",label:"Jahresgewinn",value:20500,unit:"€",tol:1},{key:"q",label:"Eigenkapitalquote",value:50.1,unit:"%",tol:0.1}],
+ loesung:"Vermögen 173.400 (AV 65.500 + UV 107.900), Schulden 86.500, Eigenkapital 86.900. Gewinn = EK-Veränderung + Entnahmen − Einlagen = 7.500 + 18.000 − 5.000 = 20.500 €. EK-Quote 86.900 / 173.400 = 50,1 %.",
+ table_solution:{head:["Inventar","€"],rows:[["I. Anlagevermögen: Fuhrpark 48.000, BGA 17.500","65.500"],["II. Umlaufvermögen: Waren 62.000, Forderungen 31.400, Bank 12.600, Kasse 1.900","107.900"],["A. Vermögen","173.400"],["B. Schulden: Darlehen 55.000, Verbindl. LuL 27.300, sonstige 4.200","86.500"]],total:["C. Eigenkapital (A − B)","86.900"]},
+ herleitung:[
+  {t:"Vermögen",d:"Anlagevermögen 48.000 + 17.500 = 65.500 €. Umlaufvermögen 62.000 + 31.400 + 12.600 + 1.900 = 107.900 €. Summe 173.400 €."},
+  {t:"Schulden und Eigenkapital",d:"55.000 + 27.300 + 4.200 = 86.500 €. Reinvermögen 173.400 − 86.500 = 86.900 € (§ 240 Abs. 1, 2)."},
+  {t:"Gewinn beim Einzelunternehmer",d:"Eigenkapitalmehrung 86.900 − 79.400 = 7.500 €. Entnahmen verminderten das EK, Einlagen erhöhten es, also Gewinn = 7.500 + 18.000 − 5.000 = 20.500 €."},
+  {t:"Eigenkapitalquote",d:"86.900 / 173.400 = 50,1 %."}],
+ refs:["hgb240_1","hgb266","hgb247"],
+ merk:"Gewinn = Endkapital − Anfangskapital + Entnahmen − Einlagen."},
+
+/* ---------------- Kapitel 4 ---------------- */
+{id:"B07",kap:4,law:"HGB",type:"num",extra:true,title:"Selbst geschaffene Software nach HGB (Datenwerk AG)",
+ sachverhalt:"Die Datenwerk AG entwickelt ab 01.01.01 eine Branchensoftware für den eigenen Betrieb (kein Verkauf). Bis 30.06.01: Forschungsphase, Kosten 90.000 €. Ab 01.07.01 sind Entwicklungsphase und Aktivierungsabsicht nachgewiesen. Bis 31.12.01 fallen in der Entwicklungsphase an: Einzelkosten 150.000 €, angemessene Gemeinkosten 40.000 €, Kosten der allgemeinen Verwaltung (auf den Zeitraum entfallend) 20.000 €, Vertriebskosten für die geplante Einführungskampagne 15.000 €.\nFertigstellung 31.12.01, Nutzung ab 01.01.02, Nutzungsdauer 5 Jahre, linear, Restwert 0. Latente Steuern bleiben unberücksichtigt.",
+ frage:"a) Höchstbetrag der Aktivierung am 31.12.01? b) Mindestbetrag, wenn das Wahlrecht ausgeübt wird? c) Abschreibung 02 bei Höchstansatz? d) Buchwert 31.12.02? e) Ausschüttungssperre am 31.12.01?",
+ fields:[{key:"max",label:"a) Höchstbetrag Aktivierung",value:210000,unit:"€",tol:1},{key:"min",label:"b) Mindestbetrag bei Aktivierung",value:190000,unit:"€",tol:1},{key:"afa",label:"c) Abschreibung 02 (Höchstansatz)",value:42000,unit:"€",tol:1},{key:"bw",label:"d) Buchwert 31.12.02",value:168000,unit:"€",tol:1},{key:"sperre",label:"e) Ausschüttungssperre 31.12.01",value:210000,unit:"€",tol:1}],
+ loesung:"a) 150.000 + 40.000 + 20.000 = 210.000 €. b) 190.000 € (Einzelkosten und angemessene Gemeinkosten sind Pflicht, sobald aktiviert wird). Forschungskosten (90.000) und Vertriebskosten (15.000) dürfen nie aktiviert werden. c) 210.000 / 5 = 42.000 €. d) 168.000 €. e) 210.000 € (ohne latente Steuern).",
+ herleitung:[
+  {t:"Aktivierungswahlrecht (§ 248 Abs. 2 S. 1)",d:"Selbst geschaffene immaterielle Vermögensgegenstände des Anlagevermögens dürfen aktiviert werden. Es gilt für die Entwicklungsphase."},
+  {t:"Forschung vs. Entwicklung (§ 255 Abs. 2a)",d:"Forschungskosten dürfen nicht aktiviert werden: 90.000 € Aufwand. Entwicklung: Pflichtbestandteile Einzelkosten und angemessene Gemeinkosten (150.000 + 40.000), Wahlrecht für Verwaltungskosten (20.000). Vertrieb ist verboten."},
+  {t:"Abschreibung",d:"Ab Nutzung planmäßig: 210.000 / 5 = 42.000 € pro Jahr; Buchwert 31.12.02: 168.000 €."},
+  {t:"Ausschüttungssperre (§ 268 Abs. 8)",d:"Der aktivierte Betrag, abzüglich passiver latenter Steuern, ist gegen Ausschüttung gesperrt: ohne latente Steuern 210.000 €."},
+  {t:"Abgrenzungsproblem",d:"Lassen sich Forschung und Entwicklung nicht verlässlich trennen, darf nichts aktiviert werden (§ 255 Abs. 2a S. 4)."}],
+ refs:["hgb248","hgb255_2a","hgb255_2","hgb253_3","hgb268_8"],
+ merk:"Forschung nie, Vertrieb nie, Entwicklung darf (Wahlrecht). Aktiviert = ausschüttungsgesperrt."},
+
+{id:"B08",kap:4,law:"IFRS",type:"num",extra:true,title:"Erworbene Lizenz: Impairment und Wertaufholung (IAS 38 / IAS 36)",
+ sachverhalt:"Die Lizenz AG erwirbt am 01.01.01 eine Vertriebslizenz für 600.000 €. Direkt zurechenbare Anwaltskosten 30.000 €, Einführungswerbung 40.000 €. Nutzungsdauer 6 Jahre, linear, Restwert 0, Anschaffungskostenmodell.\nAm 31.12.03 liegt eine Wertminderung vor: Nettoveräußerungspreis 200.000 €, Nutzungswert 220.000 €. Am 31.12.05 sind die Gründe entfallen, der erzielbare Betrag beträgt 190.000 €.",
+ frage:"Ermitteln Sie die Anschaffungskosten, die jährliche Abschreibung, die Wertminderung 03, die Abschreibung ab 04 und die Zuschreibung 05.",
+ fields:[{key:"ak",label:"Anschaffungskosten",value:630000,unit:"€",tol:1},{key:"afa",label:"Planmäßige Abschreibung 01 bis 03 je Jahr",value:105000,unit:"€",tol:1},{key:"imp",label:"Wertminderungsaufwand 31.12.03",value:95000,unit:"€",tol:1},{key:"afa04",label:"Abschreibung 04 je Jahr",value:73333,unit:"€",tol:2},{key:"zu",label:"Zuschreibung 31.12.05",value:31667,unit:"€",tol:2}],
+ loesung:"AK 630.000 (Werbung ist Aufwand). AfA 105.000. Buchwert 31.12.03 vor Impairment 315.000; erzielbarer Betrag = Maximum(200.000; 220.000) = 220.000; Wertminderung 95.000. AfA ab 04: 220.000 / 3 = 73.333. 31.12.05: Buchwert 73.333; Obergrenze 630.000 − 5 × 105.000 = 105.000; Zuschreibung 31.667 €.",
+ table_solution:{head:["Jahr","AfA","Impairment / Zuschreibung","Buchwert"],rows:[["01","105.000","","525.000"],["02","105.000","","420.000"],["03","105.000","− 95.000","220.000"],["04","73.333","","146.667"],["05","73.333","+ 31.667","105.000"]]},
+ herleitung:[
+  {t:"Anschaffungskosten (IAS 38.27)",d:"Kaufpreis 600.000 + direkt zurechenbare Kosten 30.000 = 630.000 €. Einführungswerbung ist nach IAS 38.69 Aufwand."},
+  {t:"Planmäßige Abschreibung (IAS 38.97)",d:"630.000 / 6 = 105.000 € pro Jahr. Buchwert 31.12.03: 315.000 €."},
+  {t:"Erzielbarer Betrag (IAS 36.18)",d:"Höherer Wert aus Nettoveräußerungspreis (200.000) und Nutzungswert (220.000) = 220.000 €. Wertminderung 315.000 − 220.000 = 95.000 € (erfolgswirksam)."},
+  {t:"Neuer Plan",d:"Restnutzungsdauer 3 Jahre: 220.000 / 3 = 73.333 € pro Jahr. Buchwert 31.12.05 vor Zuschreibung: 73.333 €."},
+  {t:"Wertaufholung (IAS 36.114, 36.117)",d:"Zuschreibung höchstens bis zum Buchwert, der ohne Impairment bestünde: 630.000 − 5 × 105.000 = 105.000 €. Erzielbarer Betrag 190.000 liegt darüber, also Zuschreibung 105.000 − 73.333 = 31.667 €."}],
+ refs:["ias38_8","ias38_97","ias36","ias16_62"],
+ merk:"Impairment: auf den höheren von Veräußerungswert und Nutzungswert. Zuschreibung nie über den fiktiven Buchwert ohne Impairment."},
+
+/* ---------------- Kapitel 5 ---------------- */
+{id:"B09",kap:5,law:"HGB",type:"num",extra:true,title:"Zeitanteilige Abschreibung und Verkauf einer Maschine",
+ sachverhalt:"Die Müller GmbH erwirbt am 01.04.01 eine CNC-Maschine: Listenpreis 156.000 € netto, Fracht und Montage 12.000 €, bei Zahlung abgezogenes Skonto 3.000 €. Nutzungsdauer 8 Jahre, linear, Restwert 0, Abschreibung monatsgenau. Am 30.09.04 wird die Maschine für 70.000 € netto verkauft.",
+ frage:"Ermitteln Sie die Anschaffungskosten, die Abschreibung 01, den Buchwert zum Verkaufszeitpunkt und das Verkaufsergebnis.",
+ fields:[{key:"ak",label:"Anschaffungskosten",value:165000,unit:"€",tol:1},{key:"afa01",label:"Abschreibung 01 (9 Monate)",value:15468.75,unit:"€",tol:1},{key:"bw",label:"Buchwert 30.09.04",value:92812.5,unit:"€",tol:1},{key:"v",label:"Verlust aus dem Abgang",value:22812.5,unit:"€",tol:1}],
+ loesung:"AK 165.000. Jahres-AfA 20.625. 01: 9 Monate = 15.468,75. 02 und 03: je 20.625. 04: 9 Monate = 15.468,75. Summe 72.187,50, Buchwert 92.812,50. Verkaufserlös 70.000 → Verlust 22.812,50 €.",
+ table_solution:{head:["Jahr","AfA","Buchwert Ende"],rows:[["01 (9 Monate)","15.468,75","149.531,25"],["02","20.625,00","128.906,25"],["03","20.625,00","108.281,25"],["04 (bis 30.09.)","15.468,75","92.812,50"]],total:["Abgang 30.09.04: Erlös 70.000, Verlust","","22.812,50"]},
+ herleitung:[
+  {t:"Anschaffungskosten",d:"156.000 + 12.000 − 3.000 = 165.000 € (Skonto ist Preisminderung)."},
+  {t:"Jahres-AfA",d:"165.000 / 8 = 20.625 €. Im Zugangsjahr 9/12 (April bis Dezember): 15.468,75 €."},
+  {t:"Abschreibung bis zum Abgang",d:"Im Verkaufsjahr wird bis zum Abgangsmonat abgeschrieben: Januar bis September = 9/12 = 15.468,75 €."},
+  {t:"Buchwert und Ergebnis",d:"165.000 − (15.468,75 + 2 × 20.625 + 15.468,75) = 92.812,50 €. Erlös 70.000 − Buchwert 92.812,50 = − 22.812,50 € (sonstiger betrieblicher Aufwand)."}],
+ refs:["hgb255_1","hgb253_3","hgb247"],
+ merk:"Zugang und Abgang: immer nur die Monate im Besitz abschreiben, dann Buchwert gegen Erlös."},
+
+{id:"B10",kap:5,law:"both",type:"num",extra:true,title:"Komponentenansatz Küstenmotorschiff (HGB vs. IFRS)",
+ sachverhalt:"Die Nordlicht Reederei AG erwirbt Anfang 01 ein Küstenmotorschiff für netto 24 Mio. €: Rumpf 12 Mio. € (Nutzungsdauer 30 Jahre), Antrieb 7,2 Mio. € (12 Jahre), Ausrüstung 4,8 Mio. € (8 Jahre). Restwerte 0, lineare Abschreibung. Nach HGB wird das Schiff als Gesamtobjekt über 20 Jahre abgeschrieben.",
+ frage:"Ermitteln Sie die jährliche Abschreibung nach HGB (Gesamtobjekt) und nach IFRS je Komponente und gesamt sowie die Buchwerte zum Ende von Jahr 06 (in Mio. €).",
+ fields:[{key:"hgb",label:"HGB: jährliche Abschreibung",value:1.2,unit:"Mio.",tol:0.005},{key:"r",label:"IFRS: Rumpf p.a.",value:0.4,unit:"Mio.",tol:0.005},{key:"a",label:"IFRS: Antrieb p.a.",value:0.6,unit:"Mio.",tol:0.005},{key:"au",label:"IFRS: Ausrüstung p.a.",value:0.6,unit:"Mio.",tol:0.005},{key:"i",label:"IFRS: gesamt p.a.",value:1.6,unit:"Mio.",tol:0.005},{key:"bh",label:"Buchwert Ende 06 nach HGB",value:16.8,unit:"Mio.",tol:0.01},{key:"bi",label:"Buchwert Ende 06 nach IFRS",value:14.4,unit:"Mio.",tol:0.01}],
+ loesung:"HGB: 24 / 20 = 1,2 Mio. p.a., Buchwert nach 6 Jahren 24 − 7,2 = 16,8 Mio. IFRS: 0,4 + 0,6 + 0,6 = 1,6 Mio. p.a.; Buchwerte Rumpf 9,6 + Antrieb 3,6 + Ausrüstung 1,2 = 14,4 Mio.",
+ table_solution:{head:["Komponente","AK (Mio.)","ND","AfA p.a.","Buchwert Ende 06"],rows:[["Rumpf","12,0","30","0,4","9,6"],["Antrieb","7,2","12","0,6","3,6"],["Ausrüstung","4,8","8","0,6","1,2"]],total:["IFRS gesamt (HGB: 1,2 p.a., 16,8)","24,0","","1,6","14,4"]},
+ herleitung:[
+  {t:"HGB",d:"Gesamtobjekt zu AK, planmäßig über 20 Jahre: 24 / 20 = 1,2 Mio. Komponentenweise Abschreibung nur ausnahmsweise (IDW RH HFA 1.016)."},
+  {t:"IFRS (IAS 16.43)",d:"Jeder Teil mit bedeutsamen AK im Verhältnis zum Gesamtwert und abweichender Nutzungsdauer wird gesondert abgeschrieben: 12/30 = 0,4; 7,2/12 = 0,6; 4,8/8 = 0,6."},
+  {t:"Buchwerte nach 6 Jahren",d:"IFRS: 12 − 2,4 = 9,6; 7,2 − 3,6 = 3,6; 4,8 − 3,6 = 1,2, zusammen 14,4 Mio. HGB: 24 − 6 × 1,2 = 16,8 Mio."},
+  {t:"Aussage",d:"IFRS schreibt kurzlebige Teile schneller ab: höhere Abschreibung in den frühen Jahren, niedrigerer Buchwert."}],
+ refs:["ias16_43","idw1016","hgb253_3"],
+ merk:"Komponenten: jedes Teil mit eigener Nutzungsdauer. IFRS Pflicht, HGB nur Ausnahme."},
+
+/* ---------------- Kapitel 6 ---------------- */
+{id:"B11",kap:6,law:"HGB",type:"num",extra:true,title:"Vorratsbewertung: Fifo, Lifo, Durchschnitt und Niederstwert",
+ sachverhalt:"Die Elektro-Handel GmbH führt einen Artikel (gleichartige Handelsware). Anfangsbestand 01.01.: 400 Stück à 12,00 €. Zugänge: 15.03. 600 Stück à 13,00 €, 10.07. 800 Stück à 15,00 €, 20.11. 200 Stück à 14,00 €. Inventurbestand 31.12.: 700 Stück. Wiederbeschaffungspreis am Stichtag: 13,50 € je Stück.",
+ frage:"Bewerten Sie den Endbestand a) nach Fifo, b) nach Lifo (periodisch), c) nach dem gewogenen Durchschnitt. Ermitteln Sie d) den Bilanzansatz bei Fifo nach strengem Niederstwertprinzip und e) die erforderliche Abschreibung.",
+ fields:[{key:"fifo",label:"a) Endbestand Fifo",value:10300,unit:"€",tol:1},{key:"lifo",label:"b) Endbestand Lifo (periodisch)",value:8700,unit:"€",tol:1},{key:"avg",label:"c) Endbestand gewogener Durchschnitt",value:9590,unit:"€",tol:1},{key:"nwp",label:"d) Bilanzansatz Fifo nach Niederstwert",value:9450,unit:"€",tol:1},{key:"ab",label:"e) Abschreibung auf den niedrigeren Wert",value:850,unit:"€",tol:1}],
+ loesung:"Gesamtwert 27.400 € / 2.000 Stück = 13,70 €. Fifo: 200 × 14 + 500 × 15 = 10.300. Lifo: 400 × 12 + 300 × 13 = 8.700. Durchschnitt: 700 × 13,70 = 9.590. Niederstwert: 700 × 13,50 = 9.450 € (Fifo: Abschreibung 850 €; Durchschnitt: 140 €; Lifo bleibt bei 8.700).",
+ table_solution:{head:["Verfahren","Endbestand 700 Stück","nach Niederstwert (9.450)"],rows:[["Fifo (neueste Zugänge bleiben)","10.300","9.450"],["Lifo periodisch (älteste bleiben)","8.700","8.700"],["Gewogener Durchschnitt (13,70)","9.590","9.450"]]},
+ herleitung:[
+  {t:"Gesamtmenge und Gesamtwert",d:"Menge 400 + 600 + 800 + 200 = 2.000. Wert 4.800 + 7.800 + 12.000 + 2.800 = 27.400 €."},
+  {t:"Fifo (§ 256)",d:"Zuerst eingekauft, zuerst verbraucht: Der Endbestand besteht aus den neuesten Zugängen: 200 × 14 + 500 × 15 = 10.300 €."},
+  {t:"Lifo (§ 256)",d:"Zuletzt eingekauft, zuerst verbraucht: Der Endbestand besteht aus den ältesten Beständen: 400 × 12 + 300 × 13 = 8.700 €. Nach IFRS ist Lifo verboten (IAS 2.25)."},
+  {t:"Durchschnitt (§ 240 Abs. 4)",d:"27.400 / 2.000 = 13,70 €; 700 × 13,70 = 9.590 €."},
+  {t:"Strenges Niederstwertprinzip (§ 253 Abs. 4)",d:"Umlaufvermögen: Abschreibung auf den niedrigeren Börsen- oder Marktpreis, bei Handelsware der Wiederbeschaffungspreis 13,50 €. 700 × 13,50 = 9.450 €. Fifo 10.300 − 9.450 = 850 €."}],
+ refs:["hgb256","hgb240_4","hgb253_4","ias2"],
+ merk:"Steigende Preise: Fifo hat den höchsten, Lifo den niedrigsten Endbestand. Umlaufvermögen: immer gegen den Marktpreis prüfen."},
+
+{id:"B12",kap:6,law:"IFRS",type:"num",extra:true,title:"Parkhaus: Umsatz nach Leistungsfortschritt mit Kostenüberschreitung",
+ sachverhalt:"Die Brückenbau AG errichtet für eine Stadt ein Parkhaus. Festpreis 20 Mio. €, bei Vertragsschluss geplante Gesamtkosten 16 Mio. €. Der Leistungsfortschritt wird nach den angefallenen Kosten bemessen (cost-to-cost). Kosten bis 31.12.01: 4 Mio. €, kumuliert bis 31.12.02: 12 Mio. € (Plan Gesamtkosten unverändert 16 Mio. €). Bei Fertigstellung Ende 03 betragen die Gesamtkosten 17 Mio. € (Überschreitung vollständig in 03). Zahlungen der Stadt bleiben außer Betracht.",
+ frage:"Ermitteln Sie den Umsatz 01, 02 und 03 (IFRS 15, zeitraumbezogen), den Fertigstellungsgrad Ende 02 und den Gesamtgewinn.",
+ fields:[{key:"u1",label:"Umsatz 01",value:5,unit:"Mio.",tol:0.01},{key:"g2",label:"Fertigstellungsgrad Ende 02",value:75,unit:"%",tol:0.1},{key:"u2",label:"Umsatz 02",value:10,unit:"Mio.",tol:0.01},{key:"u3",label:"Umsatz 03",value:5,unit:"Mio.",tol:0.01},{key:"g",label:"Gesamtgewinn",value:3,unit:"Mio.",tol:0.01}],
+ loesung:"01: 4/16 = 25 % → Umsatz 5. 02: 12/16 = 75 % → kumuliert 15, Umsatz 02 = 10. 03: kumuliert 20, Umsatz 03 = 5, Kosten 03 = 5, Gewinn 03 = 0. Gesamtgewinn 20 − 17 = 3 Mio. (1 + 2 + 0).",
+ table_solution:{head:["Jahr","Grad kumuliert","Umsatz kumuliert","Umsatz Jahr","Kosten Jahr","Gewinn Jahr"],rows:[["01","25 %","5","5","4","1"],["02","75 %","15","10","8","2"],["03","100 %","20","5","5","0"]],total:["Summe","","","20","17","3"]},
+ herleitung:[
+  {t:"Zeitraumbezogen (IFRS 15.35)",d:"Der Kunde kontrolliert den entstehenden Vermögenswert laufend: Umsatz nach Leistungsfortschritt."},
+  {t:"Jahr 01",d:"Grad 4/16 = 25 %. Umsatz 20 × 25 % = 5 Mio. Kosten 4, Gewinn 1."},
+  {t:"Jahr 02 (kumulativ rechnen)",d:"Grad kumuliert 12/16 = 75 %, kumulierter Umsatz 15 Mio. Umsatz 02 = 15 − 5 = 10 Mio. Kosten 02 = 12 − 4 = 8, Gewinn 2."},
+  {t:"Jahr 03",d:"Fertigstellung: kumulierter Umsatz 20. Umsatz 03 = 20 − 15 = 5. Kosten 03 = 17 − 12 = 5. Gewinn 0: Die Kostenüberschreitung frisst den restlichen Gewinn."},
+  {t:"HGB-Kontrast",d:"Nach dem Realisationsprinzip erfolgt der Gewinnausweis erst bei Abnahme (Completed Contract), das Zwischenergebnis wäre 0."}],
+ refs:["ifrs15_35","ifrs15_5","hgb252"],
+ merk:"Immer kumuliert rechnen und das Vorjahr abziehen. Zahlungen sind für den Umsatz irrelevant."},
+
+/* ---------------- Kapitel 7 ---------------- */
+{id:"B13",kap:7,law:"HGB",type:"num",extra:true,title:"Strukturbilanz und Kennzahlen (Nord GmbH)",
+ sachverhalt:"Aufbereitete Bilanz der Nord GmbH zum Stichtag:",
+ table:{head:["Aktiva","€","Passiva","€"],rows:[["Anlagevermögen","3.600.000","Eigenkapital","1.890.000"],["Vorräte","900.000","Langfristiges Fremdkapital","1.710.000"],["Forderungen","750.000","Kurzfristiges Fremdkapital","1.800.000"],["Liquide Mittel","150.000","",""]],total:["Bilanzsumme","5.400.000","Bilanzsumme","5.400.000"]},
+ frage:"Ermitteln Sie die Kennzahlen (in %, eine Nachkommastelle).",
+ fields:[{key:"ai",label:"Anlageintensität",value:66.7,unit:"%",tol:0.15},{key:"ekq",label:"Eigenkapitalquote",value:35,unit:"%",tol:0.15},{key:"vg",label:"Verschuldungsgrad (FK / EK)",value:185.7,unit:"%",tol:0.15},{key:"d1",label:"Deckungsgrad I",value:52.5,unit:"%",tol:0.15},{key:"d2",label:"Deckungsgrad II",value:100,unit:"%",tol:0.15},{key:"l1",label:"Liquidität 1. Grades",value:8.3,unit:"%",tol:0.15},{key:"l2",label:"Liquidität 2. Grades",value:50,unit:"%",tol:0.15},{key:"l3",label:"Liquidität 3. Grades",value:100,unit:"%",tol:0.15}],
+ loesung:"Anlageintensität 66,7 %, EK-Quote 35,0 %, Verschuldungsgrad 185,7 %, Deckungsgrad I 52,5 %, II 100,0 %, Liquidität 1. Grades 8,3 %, 2. Grades 50,0 %, 3. Grades 100,0 %. Die goldene Bilanzregel ist gerade erfüllt, die Liquidität 2. Grades ist mit 50 % schwach.",
+ table_solution:{head:["Kennzahl","Formel","Wert"],rows:[["Anlageintensität","AV / Bilanzsumme","66,7 %"],["EK-Quote","EK / Bilanzsumme","35,0 %"],["Verschuldungsgrad","FK / EK = 3.510 / 1.890","185,7 %"],["Deckungsgrad I","EK / AV","52,5 %"],["Deckungsgrad II","(EK + lfr. FK) / AV","100,0 %"],["Liquidität 1","liquide Mittel / kfr. FK","8,3 %"],["Liquidität 2","(liquide Mittel + Forderungen) / kfr. FK","50,0 %"],["Liquidität 3","UV / kfr. FK","100,0 %"]]},
+ herleitung:[
+  {t:"Konstitution und Finanzierung",d:"3.600 / 5.400 = 66,7 %. EK 1.890 / 5.400 = 35,0 %. Fremdkapital 1.710 + 1.800 = 3.510, im Verhältnis zum EK 185,7 %."},
+  {t:"Deckungsgrade",d:"I: 1.890 / 3.600 = 52,5 %. II: (1.890 + 1.710) / 3.600 = 100,0 %."},
+  {t:"Liquiditätsgrade",d:"1: 150 / 1.800 = 8,3 %. 2: (150 + 750) / 1.800 = 50,0 %. 3: 1.800 / 1.800 = 100,0 %."},
+  {t:"Beurteilung",d:"Langfristiges Kapital deckt das AV exakt (goldene Bilanzregel gerade erfüllt). Die Zahlungsfähigkeit ist von der Verwertung der Vorräte abhängig, weil Forderungen und Kasse nur die Hälfte der kurzfristigen Schulden decken."}],
+ refs:["hgb266","hgb264"],
+ merk:"Deckungsgrad: von unten (wer finanziert das AV). Liquidität: von oben (reicht das UV für kurzfristige Schulden)."},
+
+{id:"B14",kap:7,law:"HGB",type:"num",extra:true,title:"Rentabilität, Kapitalumschlag und Leverage (Süd AG)",
+ sachverhalt:"Die Süd AG weist aus: Jahresüberschuss 480.000 €, Zinsaufwand 220.000 €, Umsatzerlöse 6.000.000 €, Eigenkapital 3.200.000 €, Gesamtkapital 8.000.000 €. Als Umsatzrentabilität gilt (JÜ + Zinsaufwand) / Umsatz.",
+ frage:"Ermitteln Sie Eigenkapitalrentabilität, Gesamtkapitalrentabilität, Umsatzrentabilität, Kapitalumschlag und den durchschnittlichen Fremdkapitalzinssatz. Zeigen Sie, dass Umsatzrentabilität × Kapitalumschlag = Gesamtkapitalrentabilität.",
+ fields:[{key:"ekr",label:"Eigenkapitalrentabilität",value:15,unit:"%",tol:0.1},{key:"gkr",label:"Gesamtkapitalrentabilität",value:8.75,unit:"%",tol:0.05},{key:"ur",label:"Umsatzrentabilität",value:11.67,unit:"%",tol:0.05},{key:"ku",label:"Kapitalumschlag (Umsatz / Gesamtkapital)",value:0.75,unit:"",tol:0.01},{key:"z",label:"Fremdkapitalzinssatz",value:4.58,unit:"%",tol:0.05}],
+ loesung:"EKR 480/3.200 = 15 %. GKR (480 + 220)/8.000 = 8,75 %. UR 700/6.000 = 11,67 %. Kapitalumschlag 6.000/8.000 = 0,75. Probe: 11,67 % × 0,75 = 8,75 %. FK = 4.800.000, Zins 220/4.800 = 4,58 %. Leverage-Effekt positiv, weil GKR (8,75 %) > FK-Zins (4,58 %).",
+ herleitung:[
+  {t:"Eigenkapitalrentabilität",d:"JÜ / EK = 480.000 / 3.200.000 = 15 %."},
+  {t:"Gesamtkapitalrentabilität",d:"(JÜ + Fremdkapitalzinsen) / Gesamtkapital = 700.000 / 8.000.000 = 8,75 %. Zinsen werden zurückaddiert, weil sie die Vergütung des Fremdkapitals sind."},
+  {t:"Du-Pont-Zerlegung",d:"GKR = Umsatzrentabilität × Kapitalumschlag = 11,67 % × 0,75 = 8,75 %. Rentabilität sinkt entweder durch geringe Marge oder durch langsamen Kapitalumschlag."},
+  {t:"Leverage-Effekt",d:"Fremdkapital = 8.000.000 − 3.200.000 = 4.800.000 €, Zinssatz 220/4.800 = 4,58 %. Solange die Gesamtkapitalrentabilität über dem Fremdkapitalzins liegt, steigert zusätzliches Fremdkapital die EK-Rentabilität."}],
+ refs:["hgb275"],
+ merk:"GKR = Marge × Umschlag. Fremdkapital hebelt die EK-Rendite, solange GKR > Fremdkapitalzins."},
+
+/* ---------------- Kapitel 8 ---------------- */
+{id:"B15",kap:8,law:"HGB",type:"num",extra:true,title:"Rückstellung für Rückbau: Preissteigerung und Abzinsung",
+ sachverhalt:"Die Tiefbau AG ist öffentlich-rechtlich zum Rückbau einer Deponie am 31.12.07 verpflichtet. Aus heutiger Sicht (31.12.01) würde der Rückbau 400.000 € kosten; erwartet wird eine jährliche Kostensteigerung von 3 %. Der Abzinsungssatz (Durchschnittszins der Bundesbank für 6 Jahre Restlaufzeit) beträgt 1,5 % p.a. Die Annahmen bleiben im Jahr 02 unverändert.",
+ frage:"Ermitteln Sie den Erfüllungsbetrag, die Rückstellung zum 31.12.01 und 31.12.02 sowie den Zinsaufwand 02.",
+ fields:[{key:"erf",label:"Erfüllungsbetrag (31.12.07)",value:477621,unit:"€",tol:2},{key:"r1",label:"Rückstellung 31.12.01",value:436804,unit:"€",tol:2},{key:"r2",label:"Rückstellung 31.12.02",value:443357,unit:"€",tol:2},{key:"z",label:"Zinsaufwand 02 (Aufzinsung)",value:6552,unit:"€",tol:2}],
+ loesung:"Erfüllungsbetrag 400.000 × 1,03^6 = 477.621 €. Rückstellung 31.12.01: 477.621 / 1,015^6 = 436.804 €. 31.12.02: 477.621 / 1,015^5 = 443.357 €. Zinsaufwand 02 = 6.552 €.",
+ herleitung:[
+  {t:"Ansatz (§ 249 Abs. 1 S. 1)",d:"Öffentlich-rechtliche Verpflichtung, Höhe und Zeitpunkt der Kosten ungewiss: Rückstellung für ungewisse Verbindlichkeit."},
+  {t:"Erfüllungsbetrag (§ 253 Abs. 1 S. 2)",d:"Künftige Preis- und Kostensteigerungen sind zu berücksichtigen: 400.000 × 1,03^6 = 477.621 €."},
+  {t:"Abzinsung (§ 253 Abs. 2 S. 1)",d:"Restlaufzeit über 1 Jahr: Abzinsung mit dem laufzeitadäquaten Durchschnittszins. 31.12.01: 477.621 / 1,015^6 = 436.804 €."},
+  {t:"Folgejahr",d:"31.12.02: Restlaufzeit 5 Jahre: 477.621 / 1,015^5 = 443.357 €. Zuführung = Aufzinsung 6.552 €, auszuweisen im Zinsaufwand (§ 277 Abs. 5)."},
+  {t:"IFRS-Vergleich",d:"IAS 37.36 verlangt die bestmögliche Schätzung des Erfüllungsbetrags, Abzinsung bei wesentlichem Zinseffekt mit einem Zins vor Steuern."}],
+ refs:["hgb249","hgb253_1","hgb253_2","hgb277","ias37_36"],
+ merk:"Erst hochrechnen (Preissteigerung), dann abzinsen. Jedes Jahr wächst die Rückstellung um den Zins."},
+
+{id:"B16",kap:8,law:"HGB",type:"match",extra:true,title:"Rückstellung: Pflicht, Wahlrecht oder Verbot?",
+ sachverhalt:"Prüfen Sie, ob und mit welcher Grundlage nach HGB eine Rückstellung zu bilden ist.",
+ frage:"Welche Aussage trifft zu?",
+ options:["Pflicht: ungewisse Verbindlichkeit (§ 249 Abs. 1 S. 1)","Pflicht: drohender Verlust aus schwebendem Geschäft (§ 249 Abs. 1 S. 1)","Pflicht: Sonderfall nach § 249 Abs. 1 S. 2 (Instandhaltung, Kulanz)","Verboten (reine Aufwandsrückstellung)"],
+ rows:[
+  {t:"Vertraglich zugesicherte 2-jährige Garantie auf verkaufte Maschinen, Erfahrungswerte zeigen Inanspruchnahme.",ans:0,exp:"Rechtliche Verpflichtung dem Grunde nach, Höhe und Inanspruchnahme ungewiss."},
+  {t:"Der Hersteller will verkaufte Fahrzeuge auch nach Ablauf der Garantie aus Imagegründen ohne rechtliche Verpflichtung kostenlos nachbessern.",ans:2,exp:"Kulanzgewährleistung: Pflicht nach § 249 Abs. 1 S. 2 Nr. 2."},
+  {t:"Eine im Dezember fällige Dachreparatur wird unterlassen und im Februar des Folgejahres nachgeholt.",ans:2,exp:"Nachholung innerhalb von 3 Monaten: Pflicht nach § 249 Abs. 1 S. 2 Nr. 1."},
+  {t:"Die Dachreparatur wird erst im Juli des Folgejahres nachgeholt.",ans:3,exp:"Frist von 3 Monaten überschritten: Aufwandsrückstellung, nicht zulässig."},
+  {t:"Vorsorge für eine geplante Großrenovierung in 3 Jahren ohne rechtliche Verpflichtung.",ans:3,exp:"Keine Außenverpflichtung: Rückstellungsverbot."},
+  {t:"Ein Liefervertrag über 5.000 Stück zu 18 € je Stück, die Selbstkosten betragen inzwischen 21 €, Lieferung steht noch aus.",ans:1,exp:"Verpflichtungsüberschuss im schwebenden Geschäft: Drohverlustrückstellung (Imparitätsprinzip). Steuerlich verboten (§ 5 Abs. 4a EStG)."}],
+ loesung:"Garantie: Pflicht. Kulanz: Pflicht (S. 2 Nr. 2). Instandhaltung binnen 3 Monaten: Pflicht (S. 2 Nr. 1). Nachholung später: verboten. Großrenovierung: verboten. Drohverlust: Pflicht.",
+ herleitung:[
+  {t:"Außenverpflichtung",d:"Rückstellungen setzen eine Verpflichtung gegenüber Dritten voraus. Reine Eigenvorsorge (Aufwandsrückstellung) ist verboten."},
+  {t:"Ausnahmen in § 249 Abs. 1 S. 2",d:"Nr. 1: unterlassene Instandhaltung, Nachholung innerhalb von 3 Monaten im Folgejahr (Abraumbeseitigung im Folgejahr). Nr. 2: Gewährleistungen ohne rechtliche Verpflichtung (Kulanz)."},
+  {t:"Drohverlust",d:"Schwebendes Geschäft mit Verpflichtungsüberschuss: Verlust sofort. Hier 5.000 × 3 € = 15.000 €. Steuerlich nicht abzugsfähig (§ 5 Abs. 4a EStG)."},
+  {t:"Prüfreihenfolge",d:"1. Ist eine Verpflichtung gegenüber Dritten da? 2. Wenn nein: greift S. 2? 3. Sonst Verbot."}],
+ refs:["hgb249","estg5_4a","hgb252","ias37_14"],
+ merk:"Ohne Außenverpflichtung nur zwei Ausnahmen: Instandhaltung binnen 3 Monaten, Kulanz."},
+
+/* ---------------- Kapitel 9 ---------------- */
+{id:"B17",kap:9,law:"HGB",type:"match",extra:true,title:"Größenklassen nach § 267 und § 267a HGB",
+ sachverhalt:"Die Werte gelten jeweils an den letzten beiden Abschlussstichtagen (Rechtsfolgen treten damit ein). Schwellenwerte: Kleinst 450.000 € Bilanzsumme / 900.000 € Umsatz / 10 Arbeitnehmer; klein 7,5 Mio. € / 15 Mio. € / 50; mittelgroß 25 Mio. € / 50 Mio. € / 250. Es müssen mindestens zwei von drei Merkmalen überschritten werden.",
+ frage:"Ordnen Sie jede Gesellschaft ihrer Größenklasse zu.",
+ options:["Kleinstkapitalgesellschaft","klein","mittelgroß","groß"],
+ rows:[
+  {t:"Bilanzsumme 420.000 €, Umsatz 850.000 €, 8 Arbeitnehmer",ans:0,exp:"Alle drei Kleinst-Grenzen werden eingehalten."},
+  {t:"Bilanzsumme 6,9 Mio. €, Umsatz 16,2 Mio. €, 45 Arbeitnehmer",ans:1,exp:"Nur der Umsatz überschreitet die Klein-Grenze, also kein Wechsel."},
+  {t:"Bilanzsumme 9,0 Mio. €, Umsatz 21 Mio. €, 60 Arbeitnehmer",ans:2,exp:"Alle drei Klein-Grenzen überschritten, die Mittelgroß-Grenzen eingehalten."},
+  {t:"Bilanzsumme 27 Mio. €, Umsatz 48 Mio. €, 240 Arbeitnehmer",ans:2,exp:"Nur die Bilanzsumme überschreitet die Mittelgroß-Grenze: nicht groß."},
+  {t:"Bilanzsumme 30 Mio. €, Umsatz 52 Mio. €, 180 Arbeitnehmer",ans:3,exp:"Bilanzsumme und Umsatz überschreiten die Mittelgroß-Grenzen: zwei von drei, also groß."},
+  {t:"Bilanzsumme 3 Mio. €, Umsatz 5 Mio. €, 20 Arbeitnehmer; Aktien am geregelten Markt notiert",ans:3,exp:"Kapitalmarktorientiert: gilt stets als groß (§ 267 Abs. 3 S. 2)."}],
+ loesung:"a) Kleinst, b) klein, c) mittelgroß, d) mittelgroß, e) groß, f) groß.",
+ herleitung:[
+  {t:"Zwei-von-drei-Regel",d:"Eine Klasse wird verlassen, wenn mindestens zwei der drei Merkmale an zwei aufeinanderfolgenden Stichtagen über- oder unterschritten werden (§ 267 Abs. 4)."},
+  {t:"Fall b)",d:"Nur ein Merkmal (Umsatz 16,2 > 15) überschreitet die Klein-Grenze: bleibt klein."},
+  {t:"Fall d) und e)",d:"d): Nur 27 > 25 überschritten. e): 30 > 25 und 52 > 50: zwei Merkmale."},
+  {t:"Kapitalmarkt",d:"Kapitalmarktorientierte Kapitalgesellschaften gelten stets als groß (§ 267 Abs. 3 S. 2)."},
+  {t:"Rechtsfolgen",d:"Kleinst: Hinterlegung der Bilanz. Klein: keine Prüfung, kein Lagebericht. Mittelgroß/groß: Prüfung (§ 316), Lagebericht, Offenlegung (§§ 325 ff.)."}],
+ refs:["hgb267","hgb316","hgb325","hgb264"],
+ merk:"450 T / 900 T / 10 – 7,5 / 15 / 50 – 25 / 50 / 250. Zwei von drei, Börse = groß."},
+
+{id:"B18",kap:9,law:"both",type:"mc",multi:true,extra:true,title:"Konzernabschluss: Was stimmt?",
+ sachverhalt:"Die Muttergesellschaft M-AG beherrscht die T1-GmbH und die T2-GmbH.",
+ frage:"Welche Aussagen zum Konzernabschluss sind richtig? (Mehrfachauswahl)",
+ options:[
+  {t:"Eine Muttergesellschaft hat grundsätzlich einen Konzernabschluss aufzustellen, wenn sie ein anderes Unternehmen beherrscht (§ 290 HGB).",ok:true,why:"Richtig: Maßgeblich ist die Beherrschung (Control)."},
+  {t:"Ein kapitalmarktorientiertes Mutterunternehmen muss den Konzernabschluss nach IFRS aufstellen (§ 315e HGB).",ok:true,why:"Richtig: Für kapitalmarktorientierte Mutterunternehmen gelten die IFRS, wie sie in der EU anzuwenden sind."},
+  {t:"Der Konzernabschluss ersetzt den Einzelabschluss der Muttergesellschaft vollständig.",ok:false,why:"Falsch: Der Einzelabschluss bleibt Grundlage für Steuern und Gewinnausschüttung."},
+  {t:"Konzerninterne Forderungen und Verbindlichkeiten werden im Konzernabschluss eliminiert (Schuldenkonsolidierung).",ok:true,why:"Richtig: Der Konzern wird wie eine wirtschaftliche Einheit dargestellt, interne Beziehungen heben sich auf."},
+  {t:"Die Dividende der M-AG wird aus dem Konzernjahresüberschuss berechnet.",ok:false,why:"Falsch: Ausschüttungsgrundlage ist der Bilanzgewinn des Einzelabschlusses der M-AG."}],
+ loesung:"Richtig sind die erste, zweite und vierte Aussage.",
+ herleitung:[
+  {t:"Aufstellungspflicht (§ 290)",d:"Beherrschender Einfluss auf ein Tochterunternehmen löst die Pflicht aus; Befreiungen bestehen z. B. für kleine Konzerne (§ 293)."},
+  {t:"Rechnungslegungsstandard",d:"Kapitalmarktorientierte Mutterunternehmen: IFRS (§ 315e). Sonst HGB (§§ 290 ff.) oder freiwillig IFRS."},
+  {t:"Konsolidierung",d:"Kapital-, Schulden-, Aufwands- und Ertragskonsolidierung sowie Zwischenergebniseliminierung stellen den Konzern als Einheit dar."},
+  {t:"Funktion",d:"Der Konzernabschluss hat reine Informationsfunktion. Zahlungsbemessung (Steuern, Dividende) erfolgt auf Basis der Einzelabschlüsse."}],
+ refs:["hgb290","hgb264","hgb267"],
+ merk:"Konzernabschluss informiert, Einzelabschluss bemisst. Intern raus, extern rein."}
+);
+
+// Probeklausur: neu erstellt im Stil der Kursaufgaben (keine Originalklausur).
+const PROBE_META = {titel:"Probeklausur Bilanzierung",dauer:120,punkte:100};
+const PROBE = [];
+PROBE.push(
+{id:"K01",kap:2,law:"HGB",type:"match",probe:true,punkte:12,title:"Grundsätze ordnungsmäßiger Buchführung",
+ sachverhalt:"Jeder der folgenden Fälle verstößt gegen genau einen Grundsatz ordnungsmäßiger Buchführung.",
+ frage:"Gegen welchen Grundsatz wird verstoßen?",
+ options:["Vollständigkeit (§ 246 Abs. 1)","Bilanzidentität (§ 252 Abs. 1 Nr. 1)","Bewertungsstetigkeit (§ 252 Abs. 1 Nr. 6)","Klarheit und Übersichtlichkeit (§ 243 Abs. 2)","Vorsichts- und Realisationsprinzip (§ 252 Abs. 1 Nr. 4)","Periodenabgrenzung (§ 252 Abs. 1 Nr. 5)","Einzelbewertung (§ 252 Abs. 1 Nr. 3)","Unternehmensfortführung (§ 252 Abs. 1 Nr. 2)"],
+ rows:[
+  {t:"Die Eröffnungsbilanz 02 weist Forderungen von 45.000 € aus, die Schlussbilanz 01 zeigte 40.000 €.",ans:1,exp:"Die Wertansätze der Eröffnungsbilanz müssen mit der Schlussbilanz des Vorjahres übereinstimmen."},
+  {t:"Gleichartige Vorräte wurden bisher nach dem Durchschnitt bewertet, nun ohne sachlichen Grund nach Fifo.",ans:2,exp:"Beibehaltung der Bewertungsmethoden (materielle Bilanzkontinuität)."},
+  {t:"Wertpapiere werden mit einem nicht realisierten Kursgewinn von 30.000 € zum höheren Kurs ausgewiesen.",ans:4,exp:"Gewinne nur, wenn realisiert; Höchstgrenze sind die Anschaffungskosten."},
+  {t:"Die Miete für Januar 02 wird im Dezember 01 überwiesen und vollständig als Aufwand 01 gebucht.",ans:5,exp:"Aufwand gehört in die Periode der wirtschaftlichen Verursachung: aktiver Rechnungsabgrenzungsposten."},
+  {t:"Ein Posten 'Diverses' fasst Grundstücke, Forderungen und Bankguthaben zusammen.",ans:3,exp:"Der Abschluss muss klar und übersichtlich gegliedert sein."},
+  {t:"Ein vor dem Stichtag geliefertes und übergebenes Fahrzeug wird nicht bilanziert, weil die Rechnung noch fehlt.",ans:0,exp:"Alle Vermögensgegenstände und Schulden gehören in die Bilanz, maßgeblich ist die wirtschaftliche Zurechnung."}],
+ loesung:"1 Bilanzidentität, 2 Bewertungsstetigkeit, 3 Vorsichts-/Realisationsprinzip, 4 Periodenabgrenzung, 5 Klarheit, 6 Vollständigkeit.",
+ herleitung:[
+  {t:"Ansatz und Bewertung",d:"Vollständigkeit (§ 246 Abs. 1) regelt das Ob, die Grundsätze des § 252 Abs. 1 das Wie."},
+  {t:"Die drei Stetigkeiten",d:"Identität: Eröffnung = Schluss Vorjahr. Bewertungsstetigkeit: gleiche Methode. Darstellungsstetigkeit: gleiche Gliederung (§ 265 Abs. 1)."},
+  {t:"Vorsicht",d:"Imparitätisches Realisationsprinzip: Verluste sofort, Gewinne erst bei Realisation."}],
+ refs:["hgb246_1","hgb252","hgb243","hgb265"],
+ merk:"§ 252 Abs. 1: Identität, Going Concern, Einzelbewertung, Vorsicht, Periodenabgrenzung, Stetigkeit."},
+
+{id:"K02",kap:2,law:"HGB",type:"num",probe:true,punkte:14,title:"Herstellungskosten und Bilanzansatz (Möbelwerke GmbH)",
+ sachverhalt:"Die Möbelwerke GmbH stellt Stühle her. Kosten je Stück:\n• Holz 85 €, Beschläge 15 €\n• Fertigungslöhne 70 €\n• Materialgemeinkosten 12 €, Fertigungsgemeinkosten 28 €\n• Abschreibung der Produktionsmaschinen 18 €\n• freiwillige soziale Leistungen (Kantine) 9 €\n• allgemeine Verwaltung 22 €\n• Vertriebsgemeinkosten 14 €\n• Zinsen für einen speziell zur Herstellung aufgenommenen Kredit, Herstellungszeitraum, 6 €\nProduziert wurden 400 Stück, davon 300 verkauft. 100 Stück liegen am 31.12. auf Lager.",
+ frage:"Ermitteln Sie Unter- und Obergrenze der Herstellungskosten je Stück nach HGB, den Bilanzwert des Lagerbestands bei Unter- und Obergrenze sowie den Teil der Vertriebskosten, der aktiviert werden darf.",
+ fields:[{key:"u",label:"HK Untergrenze je Stück",value:228,unit:"€",tol:0.01},{key:"o",label:"HK Obergrenze je Stück",value:265,unit:"€",tol:0.01},{key:"bu",label:"Lagerbestand bei Untergrenze (100 Stück)",value:22800,unit:"€",tol:1},{key:"bo",label:"Lagerbestand bei Obergrenze (100 Stück)",value:26500,unit:"€",tol:1},{key:"v",label:"Aktivierbare Vertriebskosten je Stück",value:0,unit:"€",tol:0.01}],
+ loesung:"Untergrenze 85 + 15 + 70 + 12 + 28 + 18 = 228 €. Obergrenze: + 9 + 22 + 6 = 265 €. Lager: 22.800 bis 26.500 €. Vertriebskosten dürfen nie aktiviert werden.",
+ table_solution:{head:["Posten","€","HGB min","HGB max"],rows:[["Holz und Beschläge","100","100","100"],["Fertigungslöhne","70","70","70"],["Material- und Fertigungsgemeinkosten","40","40","40"],["AfA Produktionsmaschinen","18","18","18"],["Freiwillige soziale Leistungen","9","−","9"],["Allgemeine Verwaltung","22","−","22"],["Fremdkapitalzinsen (Herstellungszeitraum)","6","−","6"],["Vertriebsgemeinkosten","14","−","−"]],total:["Herstellungskosten je Stück","","228","265"]},
+ herleitung:[
+  {t:"Pflicht (§ 255 Abs. 2 S. 2)",d:"Materialeinzelkosten, Fertigungseinzelkosten, angemessene Material- und Fertigungsgemeinkosten, fertigungsbedingte Abschreibung: 100 + 70 + 40 + 18 = 228 €."},
+  {t:"Wahlrechte (S. 3, Abs. 3)",d:"Freiwillige soziale Leistungen 9, allgemeine Verwaltung 22, herstellungsbezogene Fremdkapitalzinsen 6: Obergrenze 265 €."},
+  {t:"Verbot (S. 4)",d:"Vertriebskosten und Forschungskosten dürfen nicht einbezogen werden."},
+  {t:"Lagerbestand",d:"100 Stück × 228 = 22.800 € bis 100 × 265 = 26.500 €. Die 300 verkauften Stück gehen als Aufwand in die GuV (Umsatzkostenverfahren) bzw. bleiben im Materialaufwand (Gesamtkostenverfahren mit Bestandserhöhung)."}],
+ refs:["hgb255_2","hgb255_3","hgb253_1"],
+ merk:"Einzelkosten + Produktions-Gemeinkosten = Untergrenze. Verwaltung, Soziales, Zinsen = Wahl. Vertrieb = Tabu."},
+
+{id:"K03",kap:3,law:"HGB",type:"num",probe:true,punkte:12,title:"Permanente Inventur: gleitender Durchschnitt",
+ sachverhalt:"Für einen Rohstoff (Schüttgut) wird die Lagerbuchführung nach dem gleitenden Durchschnitt geführt (Bestandsfortschreibung, Abgänge zum aktuellen Durchschnittspreis):\n• Anfangsbestand 1.000 kg zu 5,00 €\n• 10.02. Zugang 600 kg zu 5,50 €\n• 15.03. Abgang 900 kg\n• 20.06. Zugang 1.500 kg zu 6,00 €\n• 10.09. Abgang 1.200 kg\n• 05.11. Zugang 400 kg zu 6,40 €",
+ frage:"Ermitteln Sie den Durchschnittspreis nach dem Zugang vom 10.02., den Wert des Abgangs vom 15.03., den Durchschnittspreis nach dem 20.06., den Wert des Abgangs vom 10.09. und den Endbestand.",
+ fields:[{key:"a1",label:"Durchschnittspreis nach 10.02.",value:5.19,unit:"€/kg",tol:0.01},{key:"w1",label:"Wert Abgang 15.03.",value:4668.75,unit:"€",tol:1},{key:"a2",label:"Durchschnittspreis nach 20.06.",value:5.74,unit:"€/kg",tol:0.01},{key:"w2",label:"Wert Abgang 10.09.",value:6889.77,unit:"€",tol:1},{key:"eb",label:"Wert Endbestand (1.400 kg)",value:8301.48,unit:"€",tol:1}],
+ loesung:"Nach 10.02.: 8.300 / 1.600 = 5,1875 €/kg. Abgang 15.03.: 900 × 5,1875 = 4.668,75 €. Nach 20.06.: 12.631,25 / 2.200 = 5,7415 €/kg. Abgang 10.09.: 1.200 × 5,7415 = 6.889,77 €. Endbestand: 5.741,48 + 2.560 = 8.301,48 € (1.400 kg).",
+ table_solution:{head:["Datum","Bewegung","Bestand kg","Bestand €","Ø €/kg"],rows:[["01.01.","Anfang","1.000","5.000,00","5,0000"],["10.02.","+ 600 × 5,50","1.600","8.300,00","5,1875"],["15.03.","− 900","700","3.631,25","5,1875"],["20.06.","+ 1.500 × 6,00","2.200","12.631,25","5,7415"],["10.09.","− 1.200","1.000","5.741,48","5,7415"],["05.11.","+ 400 × 6,40","1.400","8.301,48","5,9296"]],total:["Endbestand","","1.400","8.301,48",""]},
+ herleitung:[
+  {t:"Gleitender Durchschnitt",d:"Nach jedem Zugang wird der Durchschnittspreis neu berechnet: Bestandswert / Bestandsmenge. Abgänge werden zum letzten Durchschnitt bewertet."},
+  {t:"Nach 10.02. und 15.03.",d:"(5.000 + 3.300) / 1.600 = 5,1875. Abgang 900 × 5,1875 = 4.668,75; Rest 700 kg = 3.631,25 €."},
+  {t:"Nach 20.06. und 10.09.",d:"(3.631,25 + 9.000) / 2.200 = 5,7415. Abgang 1.200 × 5,7415 = 6.889,77; Rest 1.000 kg = 5.741,48 €."},
+  {t:"Endbestand",d:"5.741,48 + 400 × 6,40 = 8.301,48 € für 1.400 kg. Kontrolle: Zugänge 19.860 − Abgänge 11.558,52 = 8.301,48 €."}],
+ refs:["hgb240_4","hgb241","hgb252"],
+ merk:"Gleitend: nach jedem Zugang neu mitteln. Abgänge zum aktuellen Durchschnitt, Kontrolle über die Gesamtsumme."},
+
+{id:"K04",kap:5,law:"IFRS",type:"num",probe:true,punkte:12,title:"Neubewertungsmodell Bürogebäude (IAS 16)",
+ sachverhalt:"Die Verwaltungs AG erwirbt am 01.01.01 ein Bürogebäude für 600.000 €, Nutzungsdauer 30 Jahre, linear, Restwert 0. Am 31.12.01 (nach planmäßiger Abschreibung) wird auf den Fair Value von 725.000 € neu bewertet. Am 31.12.02 beträgt der Fair Value 630.000 €. Eine Umbuchung der Neubewertungsrücklage in die Gewinnrücklagen unterbleibt.",
+ frage:"Ermitteln Sie die Abschreibung 01, die Neubewertungsrücklage am 31.12.01, die Abschreibung 02, den Buchwert am 31.12.02 vor der erneuten Bewertung, die Neubewertungsrücklage nach der Abwertung und den erfolgswirksamen Aufwand aus der Abwertung.",
+ fields:[{key:"a1",label:"Abschreibung 01",value:20000,unit:"€",tol:1},{key:"r1",label:"Neubewertungsrücklage 31.12.01",value:145000,unit:"€",tol:1},{key:"a2",label:"Abschreibung 02",value:25000,unit:"€",tol:1},{key:"b2",label:"Buchwert 31.12.02 vor Neubewertung",value:700000,unit:"€",tol:1},{key:"r2",label:"Neubewertungsrücklage nach Abwertung",value:75000,unit:"€",tol:1},{key:"aw",label:"Erfolgswirksamer Aufwand aus Abwertung",value:0,unit:"€",tol:1}],
+ loesung:"01: AfA 20.000, Buchwert 580.000, Neubewertung auf 725.000: Rücklage 145.000. 02: AfA 725.000 / 29 = 25.000, Buchwert 700.000. Abwertung auf 630.000 = 70.000, vollständig gegen die Rücklage (145.000 → 75.000). Kein Aufwand in der GuV.",
+ table_solution:{head:["Datum","planm. AfA","Neubewertung","Rücklage","Buchwert"],rows:[["31.12.01","− 20.000","+ 145.000","145.000","725.000"],["31.12.02","− 25.000","","145.000","700.000"],["31.12.02 Neubewertung","","− 70.000 (gegen Rücklage)","75.000","630.000"]]},
+ herleitung:[
+  {t:"Abschreibung vor Neubewertung",d:"600.000 / 30 = 20.000 €; fortgeführte AK 580.000 €."},
+  {t:"Aufwertung (IAS 16.39)",d:"725.000 − 580.000 = 145.000 € erfolgsneutral in die Neubewertungsrücklage (sonstiges Ergebnis)."},
+  {t:"Folgejahr",d:"Abschreibung vom neubewerteten Betrag über die Restnutzungsdauer von 29 Jahren: 725.000 / 29 = 25.000 €. Buchwert 700.000 €."},
+  {t:"Abwertung (IAS 16.40)",d:"700.000 − 630.000 = 70.000 €. Eine Minderung wird zuerst mit einer vorhandenen Neubewertungsrücklage desselben Vermögenswerts verrechnet: 145.000 − 70.000 = 75.000 €. Aufwand in der GuV: 0 €."}],
+ refs:["ias16_30","ias16_39","ias16_62"],
+ merk:"Aufwertung neutral in die Rücklage. Abwertung zuerst gegen die Rücklage, erst der Rest ist Aufwand."},
+
+{id:"K05",kap:6,law:"both",type:"num",probe:true,punkte:12,title:"Vorräte: Niedrigerer Wert am Absatzmarkt",
+ sachverhalt:"Die Fertigungs AG bewertet zum Stichtag drei Produktgruppen. Maßgeblich ist der Nettoveräußerungswert (erwarteter Verkaufspreis abzüglich noch anfallender Fertigungskosten und Vertriebskosten), die Anschaffungs-/Herstellungskosten sind die Obergrenze.",
+ table:{head:["Produkt","Stück","HK je Stück (€)","erw. Verkaufspreis (€)","Vertriebskosten (€)","noch anfallende Fertigungskosten (€)"],rows:[["P1","300","40","52","6","8"],["P2","200","25","40","5","0"],["P3","150","60","55","7","0"]]},
+ frage:"Ermitteln Sie je Produkt den Bilanzansatz sowie die Summe und die gesamte Abwertung.",
+ fields:[{key:"p1",label:"Bilanzansatz P1",value:11400,unit:"€",tol:1},{key:"p2",label:"Bilanzansatz P2",value:5000,unit:"€",tol:1},{key:"p3",label:"Bilanzansatz P3",value:7200,unit:"€",tol:1},{key:"s",label:"Bilanzansatz gesamt",value:23600,unit:"€",tol:1},{key:"ab",label:"Abwertung gesamt",value:2400,unit:"€",tol:1}],
+ loesung:"P1: NRV 52 − 8 − 6 = 38 < HK 40 → 300 × 38 = 11.400 (Abwertung 600). P2: NRV 35 > HK 25 → 25 × 200 = 5.000. P3: NRV 55 − 7 = 48 < 60 → 150 × 48 = 7.200 (Abwertung 1.800). Gesamt 23.600 €, Abwertung 2.400 €.",
+ table_solution:{head:["Produkt","HK","Nettoveräußerungswert","Ansatz je Stück","Bilanzansatz"],rows:[["P1","40","38","38","11.400"],["P2","25","35","25","5.000"],["P3","60","48","48","7.200"]],total:["Summe","","","","23.600"]},
+ herleitung:[
+  {t:"Prinzip",d:"Vorräte werden höchstens mit den AHK angesetzt; liegt der Wert am Absatzmarkt darunter, ist abzuwerten (HGB strenges Niederstwertprinzip, IAS 2.9 Niedrigerer Wert aus Kosten und Nettoveräußerungswert)."},
+  {t:"Nettoveräußerungswert",d:"Erwarteter Verkaufspreis − noch anfallende Fertigungskosten − Vertriebskosten. P1: 52 − 8 − 6 = 38. P2: 40 − 5 = 35. P3: 55 − 7 = 48."},
+  {t:"Vergleich je Produkt",d:"Einzelbewertung: Der niedrigere Wert zählt für jedes Produkt einzeln: P1 38, P2 25 (AHK), P3 48."},
+  {t:"Summe",d:"11.400 + 5.000 + 7.200 = 23.600 €. Abwertung 600 + 0 + 1.800 = 2.400 €."},
+  {t:"Wichtig",d:"Gewinne aus P2 (Nettoveräußerungswert über HK) dürfen nicht verrechnet oder ausgewiesen werden (Realisationsprinzip, Einzelbewertung)."}],
+ refs:["hgb253_4","ias2","hgb252"],
+ merk:"Niedrigerer von Kosten und Nettoveräußerungswert, je Produkt einzeln. Gewinne bleiben außen vor."},
+
+{id:"K06",kap:7,law:"HGB",type:"num",probe:true,punkte:10,title:"Erfolgsspaltung und Cash Flow (Gamma AG)",
+ sachverhalt:"Die Gamma AG weist einen Jahresüberschuss von 640.000 € aus. Darin enthalten sind:\n• Gewinn aus dem Verkauf eines Grundstücks (Ertrag) 120.000 €\n• Zinserträge aus Wertpapieren 35.000 €\n• Zinsaufwendungen für Darlehen 48.000 €\n• Brandschaden im Lager, nicht versichert (Aufwand) 60.000 €\n• Abschreibungen auf Sachanlagen 210.000 €\n• Zuschreibungen auf Sachanlagen 30.000 €\n• Zuführung zu langfristigen Rückstellungen 55.000 €\n• Auflösung langfristiger Rückstellungen 20.000 €\nUmsatzerlöse 5.700.000 €.",
+ frage:"Ermitteln Sie das ordentliche Betriebsergebnis (ohne aperiodische und betriebsfremde Posten), den Cash Flow (JÜ + zahlungsunwirksame Aufwendungen − zahlungsunwirksame Erträge) und die Cash-Flow-Umsatzrate.",
+ fields:[{key:"obe",label:"Ordentliches Betriebsergebnis",value:593000,unit:"€",tol:1},{key:"cf",label:"Cash Flow",value:855000,unit:"€",tol:1},{key:"r",label:"Cash-Flow-Umsatzrate",value:15,unit:"%",tol:0.1}],
+ loesung:"Betriebsergebnis: 640.000 − 120.000 − 35.000 + 48.000 + 60.000 = 593.000 €. Cash Flow: 640.000 + 210.000 − 30.000 + 55.000 − 20.000 = 855.000 €. Umsatzrate 855.000 / 5.700.000 = 15 %.",
+ table_solution:{head:["Erfolgsspaltung","€"],rows:[["Jahresüberschuss","640.000"],["− Veräußerungsgewinn Grundstück (aperiodisch)","− 120.000"],["− Zinserträge (Finanzergebnis)","− 35.000"],["+ Zinsaufwendungen (Finanzergebnis)","+ 48.000"],["+ Brandschaden (aperiodisch)","+ 60.000"]],total:["Ordentliches Betriebsergebnis","593.000"]},
+ herleitung:[
+  {t:"Betriebsfremd und aperiodisch eliminieren",d:"Erträge abziehen, Aufwendungen addieren: Grundstücksgewinn (− 120.000), Zinserträge (− 35.000), Zinsaufwand (+ 48.000), Brandschaden (+ 60.000)."},
+  {t:"Cash Flow (indirekt)",d:"Zahlungsunwirksame Aufwendungen addieren: Abschreibungen 210.000, Rückstellungszuführung 55.000. Zahlungsunwirksame Erträge abziehen: Zuschreibung 30.000, Auflösung 20.000."},
+  {t:"Cash-Flow-Umsatzrate",d:"Cash Flow / Umsatz = 855.000 / 5.700.000 = 15 %: von 100 € Umsatz bleiben 15 € als Finanzierungsmittel."},
+  {t:"Abgrenzung",d:"Der Grundstücksgewinn ist zahlungswirksam, aber nicht nachhaltig: Er bleibt im Cash Flow, fehlt aber im ordentlichen Betriebsergebnis."}],
+ refs:["hgb275","hgb277","ias1"],
+ merk:"Erfolgsspaltung: Ertrag raus = minus, Aufwand raus = plus. Cash Flow: nur Zahlungsunwirksames korrigieren."},
+
+{id:"K07",kap:8,law:"HGB",type:"num",probe:true,punkte:10,title:"Gewährleistungsrückstellung und Prozessrückstellung",
+ sachverhalt:"a) Die Maschinenbau AG gewährt 24 Monate Gewährleistung. Der Umsatz 01 betrug 2.400.000 €. Erfahrungsgemäß fällt über die gesamte Garantiezeit ein Aufwand von 2,5 % des Umsatzes an. Bis zum 31.12.01 wurden bereits Reparaturen von 14.000 € abgewickelt. Auf Abzinsung ist zu verzichten.\n\nb) Die Fa. Klar verklagt die Beklagte Bau AG auf 150.000 € Schadensersatz. Die Verfahrenskosten (Gericht, Anwalt) von 18.000 € trägt der Verlierer. Das Gericht schlägt einen Vergleich vor: Beide Parteien tragen je die Hälfte von Schaden und Kosten. Beide werden zustimmen.",
+ frage:"Ermitteln Sie a) die Gewährleistungsrückstellung zum 31.12.01, b) die Rückstellung der Bau AG (Beklagte) und c) die Rückstellung der Fa. Klar (Klägerin).",
+ fields:[{key:"a",label:"a) Gewährleistungsrückstellung",value:46000,unit:"€",tol:1},{key:"b",label:"b) Rückstellung der Bau AG (Beklagte)",value:84000,unit:"€",tol:1},{key:"c",label:"c) Rückstellung der Fa. Klar (Klägerin)",value:9000,unit:"€",tol:1}],
+ loesung:"a) 2,5 % × 2.400.000 = 60.000 − bereits angefallene 14.000 = 46.000 €. b) Hälfte von 150.000 + 18.000 = 84.000 €. c) Klägerin trägt nur die Hälfte der Kosten: 9.000 €.",
+ herleitung:[
+  {t:"Gewährleistung (§ 249 Abs. 1 S. 1)",d:"Vertragliche Garantie: Rückstellung für ungewisse Verbindlichkeiten, Bewertung zum Erfüllungsbetrag nach Erfahrungswerten (§ 253 Abs. 1 S. 2)."},
+  {t:"Betrag a)",d:"Erwarteter Gesamtaufwand 60.000 €, davon bereits verbraucht 14.000 €. Restverpflichtung 46.000 €."},
+  {t:"Prozess Beklagte b)",d:"Bei erwartetem Vergleich: Hälfte von Schaden (150.000) und Kosten (18.000) = 84.000 €. Aufwand: sonstige betriebliche Aufwendungen."},
+  {t:"Prozess Klägerin c)",d:"Die Klägerin hat keinen Schaden zu zahlen, sondern nur das Kostenrisiko: Hälfte von 18.000 = 9.000 €."}],
+ refs:["hgb249","hgb253_1","hgb253_2","ias37_14"],
+ merk:"Beklagter: Schaden + Kosten. Kläger: nur Kosten. Gewährleistung: Erwartungswert minus bereits Verbrauchtes."},
+
+{id:"K08",kap:4,law:"both",type:"open",probe:true,punkte:8,title:"Selbst geschaffene immaterielle Vermögensgegenstände: HGB und IFRS",
+ sachverhalt:"Die Datenwerk AG hat im Jahr 01 eine Branchensoftware für den Eigengebrauch entwickelt. Die Entwicklungskosten betragen 210.000 €, die Forschungskosten 90.000 €.",
+ frage:"a) Dürfen oder müssen die Kosten nach HGB aktiviert werden (Begründung)? b) Welche Rechtsfolge besteht für die Ausschüttung? c) Worin unterscheidet sich die Behandlung nach IFRS (IAS 38)?",
+ loesung:"a) HGB: Aktivierungswahlrecht für Entwicklungskosten (§ 248 Abs. 2 S. 1, § 255 Abs. 2a), Forschungskosten Aufwand; bei fehlender Trennbarkeit keine Aktivierung. Abschreibung planmäßig. b) Ausschüttungssperre (§ 268 Abs. 8) i. H. des aktivierten Betrags abzüglich passiver latenter Steuern. c) IFRS: Forschung Aufwand; Entwicklung Pflicht zur Aktivierung, sobald alle sechs Kriterien nach IAS 38.57 erfüllt sind (technische Realisierbarkeit, Fertigstellungsabsicht, Nutzungsfähigkeit, wahrscheinlicher Nutzen, Ressourcen, verlässliche Bewertung); keine Nachaktivierung früherer Aufwendungen.",
+ herleitung:[
+  {t:"HGB: Wahlrecht",d:"Selbst geschaffene immaterielle Vermögensgegenstände des Anlagevermögens: Aktivierungswahlrecht (§ 248 Abs. 2 S. 1). Forschung nie (§ 255 Abs. 2a S. 3). Marken, Drucktitel, Verlagsrechte, Kundenlisten: Verbot (S. 2)."},
+  {t:"Herstellungskosten der Entwicklung",d:"Pflichtbestandteile nach § 255 Abs. 2 (Einzelkosten, angemessene Gemeinkosten), Wahlrecht für Verwaltungskosten; Vertrieb verboten. Nicht trennbar: nichts aktivieren."},
+  {t:"Ausschüttungssperre (§ 268 Abs. 8)",d:"Aktivierte Beträge abzüglich hierfür gebildeter passiver latenter Steuern dürfen nur ausgeschüttet werden, wenn frei verfügbare Rücklagen mindestens in dieser Höhe verbleiben (Gläubigerschutz)."},
+  {t:"IFRS",d:"IAS 38.54 ff.: Forschung Aufwand. Entwicklung: Aktivierungspflicht, wenn alle sechs Nachweise vorliegen. Folgebewertung: planmäßig ab Nutzung, Neubewertung nur bei aktivem Markt. Keine Ausschüttungssperre."}],
+ refs:["hgb248","hgb255_2a","hgb268_8","ias38_57","ias38_63"],
+ merk:"HGB: Entwicklung darf, Forschung nie, Sperre. IFRS: Entwicklung muss bei erfüllten Kriterien, Forschung nie."},
+
+{id:"K09",kap:9,law:"HGB",type:"match",probe:true,punkte:10,title:"Größenklassen im Zeitablauf (Zwei-Stichtage-Regel)",
+ sachverhalt:"Die Hanse GmbH war bisher eine kleine Kapitalgesellschaft (nicht kapitalmarktorientiert). Schwellenwerte: klein 7,5 Mio. € Bilanzsumme / 15 Mio. € Umsatz / 50 Arbeitnehmer; mittelgroß 25 Mio. € / 50 Mio. € / 250. Zwei von drei Merkmalen entscheiden, die Rechtsfolgen ändern sich erst nach zwei aufeinanderfolgenden Stichtagen.",
+ table:{head:["Jahr","Bilanzsumme (Mio. €)","Umsatz (Mio. €)","Ø Arbeitnehmer"],rows:[["01","7,2","14,8","48"],["02","8,1","16,0","52"],["03","8,4","17,2","55"],["04","7,0","14,0","48"],["05","7,3","14,5","49"]]},
+ frage:"Welcher Größenklasse gehört die Gesellschaft in den einzelnen Jahren an (Rechtsfolge)?",
+ options:["Kleinstkapitalgesellschaft","klein","mittelgroß","groß"],
+ rows:[
+  {t:"Jahr 01",ans:1,exp:"Alle drei Merkmale innerhalb der Klein-Grenzen."},
+  {t:"Jahr 02",ans:1,exp:"Alle drei Merkmale erstmals über der Klein-Grenze, aber erst an einem Stichtag: bleibt klein."},
+  {t:"Jahr 03",ans:2,exp:"Zweiter Stichtag in Folge über den Klein-Grenzen: Rechtsfolgen mittelgroß ab 03."},
+  {t:"Jahr 04",ans:2,exp:"Wieder unter den Klein-Grenzen, aber erst am ersten Stichtag: bleibt mittelgroß."},
+  {t:"Jahr 05",ans:1,exp:"Zweiter Stichtag in Folge unter den Klein-Grenzen: Rechtsfolgen klein ab 05."}],
+ loesung:"01 klein, 02 klein, 03 mittelgroß, 04 mittelgroß, 05 klein.",
+ herleitung:[
+  {t:"Schwellen",d:"Klein: BS ≤ 7,5 Mio., Umsatz ≤ 15 Mio., ≤ 50 Arbeitnehmer. Zwei von drei Merkmalen genügen für die Zuordnung."},
+  {t:"Zwei-Stichtage-Regel (§ 267 Abs. 4)",d:"Wechsel der Rechtsfolgen erst, wenn die Merkmale an zwei aufeinanderfolgenden Abschlussstichtagen über- oder unterschritten werden."},
+  {t:"Ablauf",d:"02: erste Überschreitung, 03: zweite Überschreitung → mittelgroß. 04: erste Unterschreitung (bleibt mittelgroß), 05: zweite Unterschreitung → klein."},
+  {t:"Rechtsfolgen",d:"Mittelgroß: Prüfung (§ 316) und Lagebericht (§ 289), Offenlegung mit Erleichterungen (§ 327). Klein: keine Prüfung, kein Lagebericht."}],
+ refs:["hgb267","hgb316","hgb325","hgb289"],
+ merk:"Zwei Stichtage rein, zwei Stichtage raus. Ein einzelner Ausreißer ändert nichts."}
+);
+
 /* Bilanz-Trainer: Logik */
 (function(){
 const LS_KEY="bilanztrainer_v1";
 const CAT_LABEL={ansatz:"Ansatz",bewertung:"Bewertung",ausweis:"Ausweis / Gliederung",gob:"GoB / Grundsätze",rst:"Rückstellungen",inventur:"Inventur / Vereinfachung",analyse:"Analyse",allg:"Allgemein / Pflichten"};
 const CAT_COLOR={ansatz:"Gelb",bewertung:"Grün",ausweis:"Blau",gob:"Orange",rst:"Rosa",inventur:"Türkis",analyse:"Lila",allg:"Grau"};
 const LAW_LABEL={HGB:"HGB",IFRS:"IFRS",S:"Sonstige"};
+const TRAIN=[...AUFGABEN,...EXTRA],ALL=[...TRAIN,...PROBE];
+const taskById=id=>ALL.find(a=>a.id===id);
+const numOf=id=>id.replace(/^A/,"");
+const DEF_FILTER=()=>({kap:0,law:"all",status:"all"});
 let state=load();
-function load(){try{return Object.assign({progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"},JSON.parse(localStorage.getItem(LS_KEY)||"{}"));}catch(e){return {progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"};}}
+function load(){try{return Object.assign({progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},filterX:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"},JSON.parse(localStorage.getItem(LS_KEY)||"{}"));}catch(e){return {progress:{},marked:{},tab:"start",filter:{kap:0,law:"all",status:"all"},filterX:{kap:0,law:"all",status:"all"},kfilter:{law:"all",cat:"all",q:"",unmarked:false},mode:"liste"};}}
 function save(){localStorage.setItem(LS_KEY,JSON.stringify(state));}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -1132,19 +1587,19 @@ function parseNum(str){
 }
 function numOk(field,input){const cands=parseNum(input);if(!cands.length)return false;const tol=field.tol!=null?field.tol:Math.max(0.5,Math.abs(field.value)*0.002);return cands.some(c=>Math.abs(c-field.value)<=tol+1e-9);}
 function statusOf(id){return (state.progress[id]||{}).status||"";}
-function setStatus(id,st){state.progress[id]=Object.assign(state.progress[id]||{},{status:st,at:Date.now(),tries:((state.progress[id]||{}).tries||0)+1});save();}
+function setStatus(id,st,frac){state.progress[id]=Object.assign(state.progress[id]||{},{status:st,frac:frac!=null?frac:(st==="ok"?1:st==="part"?0.5:0),at:Date.now(),tries:((state.progress[id]||{}).tries||0)+1});save();}
 function lawTag(l){return l==="both"?'<span class="tag both">HGB + IFRS</span>':l==="IFRS"?'<span class="tag ifrs">IFRS</span>':'<span class="tag hgb">HGB</span>';}
 function refChips(ids){return '<div class="chips">'+ids.map(id=>{const p=paraById(id);if(!p)return "";return `<span class="chip ref law-${p.law}" data-para="${p.id}" title="${esc(p.title)}">§ ${esc(p.ref.replace(/^§+\s*/,""))}</span>`;}).join("")+'</div>';}
 
 /* ---------- Navigation ---------- */
 function go(tab){state.tab=tab;save();document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));render();}
-function render(){const m=$("#main");m.innerHTML="";if(state.tab==="start")renderStart(m);else if(state.tab==="ueben")renderUeben(m);else if(state.tab==="kompass")renderKompass(m);else if(state.tab==="fortschritt")renderFortschritt(m);window.scrollTo(0,0);}
+function render(){const m=$("#main");m.innerHTML="";if(state.tab==="start")renderStart(m);else if(state.tab==="ueben")renderUeben(m);else if(state.tab==="kompass")renderKompass(m);else if(state.tab==="extra")renderUeben(m);else if(state.tab==="probe")renderProbe(m);else if(state.tab==="fortschritt")renderFortschritt(m);window.scrollTo(0,0);}
 
 /* ---------- Start ---------- */
-function stats(){const total=AUFGABEN.length;let ok=0,part=0,bad=0;AUFGABEN.forEach(a=>{const s=statusOf(a.id);if(s==="ok")ok++;else if(s==="part")part++;else if(s==="bad")bad++;});const marked=Object.values(state.marked).filter(Boolean).length;return {total,ok,part,bad,done:ok+part+bad,marked,ptotal:PARA.length};}
+function stats(){const total=TRAIN.length;let ok=0,part=0,bad=0;TRAIN.forEach(a=>{const s=statusOf(a.id);if(s==="ok")ok++;else if(s==="part")part++;else if(s==="bad")bad++;});const marked=Object.values(state.marked).filter(Boolean).length;return {total,ok,part,bad,done:ok+part+bad,marked,ptotal:PARA.length};}
 function renderStart(m){
   const s=stats();
-  m.innerHTML=`<h1>Hallo Eric 👋</h1><p class="lead">Klausurtraining Bilanzierung: ${AUFGABEN.length} Originalaufgaben aus dem Kurs mit Lösungsweg, dazu der Paragraphen-Kompass mit ${PARA.length} Normen zum Markieren im Gesetzestext.</p>
+  m.innerHTML=`<h1>Hallo Eric 👋</h1><p class="lead">Klausurtraining Bilanzierung: ${AUFGABEN.length} Originalaufgaben aus dem Kurs und ${EXTRA.length} Zusatzaufgaben mit neuen Zahlen, jeweils mit Lösungsweg. Dazu eine Probeklausur mit Timer und Auswertung sowie der Paragraphen-Kompass mit ${PARA.length} Normen zum Markieren im Gesetzestext.</p>
   <div class="grid cols-3">
    <div class="card"><div class="muted small">Aufgaben richtig gelöst</div><div class="kpi">${s.ok}<small>von ${s.total}</small></div><div class="bar"><span style="width:${s.total?100*s.ok/s.total:0}%"></span></div></div>
    <div class="card"><div class="muted small">Aufgaben bearbeitet</div><div class="kpi">${s.done}<small>von ${s.total}</small></div><div class="bar"><span style="width:${s.total?100*s.done/s.total:0}%"></span></div></div>
@@ -1153,6 +1608,8 @@ function renderStart(m){
   <div class="row" style="margin:16px 0">
    <button class="btn primary" id="btnWeiter">Weiter üben</button>
    <button class="btn" id="btnKlausur">Zufällige Klausur (6 Aufgaben)</button>
+   <button class="btn" id="btnExtra">Zusatzaufgaben</button>
+   <button class="btn" id="btnProbe">Probeklausur</button>
    <button class="btn" id="btnDuell">§-Duell starten</button>
    <button class="btn" id="btnBlitz">§-Blitzkarten</button>
   </div>
@@ -1163,32 +1620,71 @@ function renderStart(m){
    <div class="card"><h3>2. Paragraphen-Kompass</h3><p class="small">Jede Norm in einem Satz, mit Eselsbrücke, Beispiel und Klausur-Trigger. Hake ab, was du im HGB/IFRS-Text markiert hast. Die Farbe zeigt die Textmarker-Farbe nach Thema. Mit den Blitzkarten und dem §-Duell prüfst du, ob die Fundstellen sitzen.</p></div>
   </div>`;
   const g=$("#kapGrid");
-  Object.keys(KAPITEL).forEach(k=>{const list=AUFGABEN.filter(a=>a.kap==k);if(!list.length)return;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card clickable";d.innerHTML=`<div class="muted small">Kapitel ${k}</div><div style="font-weight:800">${esc(KAPITEL[k])}</div><div class="small muted">${list.length} Aufgaben, ${ok} gelöst</div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div>`;d.onclick=()=>{state.filter={kap:+k,law:"all",status:"all"};state.currentTask=null;go("ueben");};g.appendChild(d);});
-  $("#btnWeiter").onclick=()=>{const next=AUFGABEN.find(a=>statusOf(a.id)!=="ok")||AUFGABEN[0];state.filter={kap:0,law:"all",status:"all"};state.currentTask=next.id;go("ueben");};
-  $("#btnKlausur").onclick=()=>{const pool=[...AUFGABEN].sort(()=>Math.random()-.5).slice(0,6).map(a=>a.id);state.exam=pool;state.currentTask=pool[0];go("ueben");};
+  Object.keys(KAPITEL).forEach(k=>{const list=AUFGABEN.filter(a=>a.kap==k);if(!list.length)return;const ex=EXTRA.filter(a=>a.kap==k);const exOk=ex.filter(a=>statusOf(a.id)==="ok").length;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card clickable";d.innerHTML=`<div class="muted small">Kapitel ${k}</div><div style="font-weight:800">${esc(KAPITEL[k])}</div><div class="small muted">${list.length} Aufgaben, ${ok} gelöst</div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div>${ex.length?`<div class="chips"><span class="chip ref" data-extra="${k}">+ ${ex.length} Zusatzaufgaben, ${exOk} gelöst</span></div>`:""}`;d.onclick=()=>{state.filter={kap:+k,law:"all",status:"all"};state.exam=null;state.currentTask=null;go("ueben");};const xc=d.querySelector("[data-extra]");if(xc)xc.onclick=e=>{e.stopPropagation();state.filterX={kap:+k,law:"all",status:"all"};state.exam=null;state.currentTask=null;go("extra");};g.appendChild(d);});
+  $("#btnWeiter").onclick=()=>{const next=AUFGABEN.find(a=>statusOf(a.id)!=="ok")||AUFGABEN[0];state.filter=DEF_FILTER();state.exam=null;state.currentTask=next.id;go("ueben");};
+  $("#btnKlausur").onclick=()=>{const pool=[...TRAIN].sort(()=>Math.random()-.5).slice(0,6).map(a=>a.id);state.exam=pool;state.examKind="random";state.currentTask=pool[0];go("ueben");};
+  $("#btnExtra").onclick=()=>{state.currentTask=null;state.exam=null;go("extra");};
+  $("#btnProbe").onclick=()=>{state.currentTask=null;state.exam=null;go("probe");};
   $("#btnDuell").onclick=()=>{state.mode="duell";go("kompass");};
   $("#btnBlitz").onclick=()=>{state.mode="blitz";go("kompass");};
 }
 
 /* ---------- Üben ---------- */
-function filteredTasks(){if(state.exam&&state.exam.length)return state.exam.map(id=>AUFGABEN.find(a=>a.id===id));const f=state.filter;return AUFGABEN.filter(a=>(!f.kap||a.kap===f.kap)&&(f.law==="all"||a.law===f.law||(f.law!=="all"&&a.law==="both"))&&(f.status==="all"||(f.status==="open"&&statusOf(a.id)!=="ok")||(f.status==="ok"&&statusOf(a.id)==="ok")));}
+const scope=()=>state.tab==="extra"?"extra":"main";
+const fkey=()=>scope()==="extra"?"filterX":"filter";
+const inProbe=()=>!!(state.probe&&state.exam&&state.examKind==="probe");
+function filteredTasks(){if(state.exam&&state.exam.length)return state.exam.map(taskById);const f=state[fkey()];const base=scope()==="extra"?EXTRA:AUFGABEN;return base.filter(a=>(!f.kap||a.kap===f.kap)&&(f.law==="all"||a.law===f.law||a.law==="both")&&(f.status==="all"||(f.status==="open"&&statusOf(a.id)!=="ok")||(f.status==="ok"&&statusOf(a.id)==="ok")));}
+function openTask(id){const t=taskById(id);if(!t)return;state.exam=null;state.currentTask=id;if(t.extra){state.filterX=DEF_FILTER();go("extra");}else{state.filter=DEF_FILTER();go("ueben");}}
 function renderUeben(m){
-  if(state.currentTask){const t=AUFGABEN.find(a=>a.id===state.currentTask);if(t){renderTask(m,t);return;}}
-  const f=state.filter;
-  m.innerHTML=`<h1>Übungsaufgaben</h1><p class="lead">Alle Aufgaben stammen aus den Vorlesungsunterlagen; die Lösungen folgen den Musterlösungen des Kurses.</p>
+  if(state.currentTask){const t=taskById(state.currentTask);if(t){renderTask(m,t);return;}}
+  const x=scope()==="extra";const f=state[fkey()];
+  m.innerHTML=`<h1>${x?"Zusatzaufgaben":"Übungsaufgaben"}</h1><p class="lead">${x?"Je zwei neue Aufgaben pro Kapitel im Stil der Kursaufgaben, mit neuen Zahlen. Das sind keine Originalaufgaben, die Lösungen folgen aber derselben Methodik wie die Musterlösungen.":"Alle Aufgaben stammen aus den Vorlesungsunterlagen; die Lösungen folgen den Musterlösungen des Kurses."}</p>
   <div class="filterbar">
     <select id="fKap"><option value="0">Alle Kapitel</option>${Object.keys(KAPITEL).map(k=>`<option value="${k}" ${f.kap==k?"selected":""}>Kap. ${k}: ${esc(KAPITEL[k])}</option>`).join("")}</select>
     <select id="fLaw"><option value="all" ${f.law==="all"?"selected":""}>HGB und IFRS</option><option value="HGB" ${f.law==="HGB"?"selected":""}>nur HGB</option><option value="IFRS" ${f.law==="IFRS"?"selected":""}>nur IFRS</option></select>
     <select id="fStatus"><option value="all" ${f.status==="all"?"selected":""}>Alle</option><option value="open" ${f.status==="open"?"selected":""}>Noch nicht gelöst</option><option value="ok" ${f.status==="ok"?"selected":""}>Gelöst</option></select>
   </div><div class="tasklist" id="tl"></div>`;
-  ["fKap","fLaw","fStatus"].forEach(id=>$("#"+id).onchange=()=>{state.filter={kap:+$("#fKap").value,law:$("#fLaw").value,status:$("#fStatus").value};state.exam=null;save();render();});
+  ["fKap","fLaw","fStatus"].forEach(id=>$("#"+id).onchange=()=>{state[fkey()]={kap:+$("#fKap").value,law:$("#fLaw").value,status:$("#fStatus").value};state.exam=null;save();render();});
   const tl=$("#tl");const list=filteredTasks();
   if(!list.length)tl.innerHTML='<div class="card muted">Keine Aufgaben für diesen Filter.</div>';
-  list.forEach((a,i)=>{const st=statusOf(a.id);const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${a.id.replace("A","")}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap} · ${esc(KAPITEL[a.kap])} · ${typeLabel(a.type)}</div></div>${lawTag(a.law)}<span class="status-dot ${st}" title="${st||"offen"}"></span>`;d.onclick=()=>{state.currentTask=a.id;save();render();};tl.appendChild(d);});
+  list.forEach((a,i)=>{const st=statusOf(a.id);const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${numOf(a.id)}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap} · ${esc(KAPITEL[a.kap])} · ${typeLabel(a.type)}</div></div>${lawTag(a.law)}<span class="status-dot ${st}" title="${st||"offen"}"></span>`;d.onclick=()=>{state.currentTask=a.id;save();render();};tl.appendChild(d);});
 }
 function typeLabel(t){return {num:"Rechnen",mc:"Auswahl",match:"Zuordnen",open:"Freitext"}[t]||t;}
 function tableHtml(tb){if(!tb)return "";return `<table class="data"><thead><tr>${tb.head.map((h,i)=>`<th class="${i?"num":""}">${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${i?"num":""}">${esc(c)}</td>`).join("")}</tr>`).join("")}${tb.total?`<tr class="total">${tb.total.map((c,i)=>`<td class="${i?"num":""}">${esc(c)}</td>`).join("")}</tr>`:""}</tbody></table>`;}
+/* Antworten einsammeln, wiederherstellen und bewerten (für den Probeklausur-Modus) */
+function collect(t){const a={};
+  if(t.type==="num"){a.num={};t.fields.forEach(f=>{a.num[f.key]=$("#in_"+f.key).value;});}
+  else if(t.type==="mc"){a.mc=[...document.querySelectorAll('input[name="mc"]:checked')].map(i=>+i.value);}
+  else if(t.type==="match"){a.match=t.rows.map((r,i)=>document.querySelector(`select[data-i="${i}"]`).value);}
+  else a.own=$("#own").value;
+  return a;}
+function restore(t,a){if(!a)return;
+  if(t.type==="num"&&a.num)t.fields.forEach(f=>{$("#in_"+f.key).value=a.num[f.key]||"";});
+  else if(t.type==="mc"&&a.mc)document.querySelectorAll('input[name="mc"]').forEach(i=>{i.checked=a.mc.includes(+i.value);});
+  else if(t.type==="match"&&a.match)t.rows.forEach((r,i)=>{document.querySelector(`select[data-i="${i}"]`).value=a.match[i]||"";});
+  else if(t.type==="open"&&a.own!=null)$("#own").value=a.own;}
+function grade(t,a){a=a||{};let ok=0,n=0;
+  if(t.type==="num"){t.fields.forEach(f=>{n++;if(numOk(f,(a.num||{})[f.key]||""))ok++;});}
+  else if(t.type==="mc"){n=1;const ch=a.mc||[];ok=t.options.every((o,i)=>o.ok===ch.includes(i))?1:0;}
+  else if(t.type==="match"){t.rows.forEach((r,i)=>{n++;const v=(a.match||[])[i];if(v!==undefined&&v!==""&&+v===r.ans)ok++;});}
+  return {ok,n};}
+function answered(t,a){if(!a)return false;
+  if(t.type==="num")return Object.values(a.num||{}).some(v=>String(v).trim()!=="");
+  if(t.type==="mc")return (a.mc||[]).length>0;
+  if(t.type==="match")return (a.match||[]).some(v=>v!=="");
+  return String(a.own||"").trim()!=="";}
+function startTimer(live){clearInterval(window._pt);if(!$("#ptimer"))return;
+  const upd=()=>{const e=$("#ptimer");if(!e){clearInterval(window._pt);return;}
+    if(!live){e.textContent="Auswertung";return;}
+    const left=PROBE_META.dauer*60-Math.floor((Date.now()-state.probe.start)/1000);const a=Math.abs(left);
+    const s=String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0");
+    e.textContent=left>=0?"Restzeit "+s:"Zeit abgelaufen (+"+s+")";e.classList.toggle("over",left<0);};
+  upd();if(live)window._pt=setInterval(upd,1000);}
+function finishProbe(){const P=state.probe;P.done=true;P.end=Date.now();state.currentTask=null;state.exam=null;save();go("probe");}
+function confirmFinish(){const P=state.probe;const n=PROBE.filter(t=>answered(t,P.ans[t.id])).length;
+  if(confirm(`${n} von ${PROBE.length} Aufgaben bearbeitet. Probeklausur jetzt abgeben und auswerten?`))finishProbe();}
 function renderTask(m,t){
+  const probe=inProbe(),live=probe&&!state.probe.done;
   const list=filteredTasks();const idx=list.findIndex(a=>a.id===t.id);
   const prev=idx>0?list[idx-1]:null,next=idx<list.length-1?list[idx+1]:null;
   let inter="";
@@ -1197,13 +1693,8 @@ function renderTask(m,t){
   else if(t.type==="match")inter=`<div class="matchgrid">${t.rows.map((r,i)=>`<div class="matchrow" data-i="${i}"><div>${esc(r.t)}</div><select data-i="${i}"><option value="">bitte wählen…</option>${t.options.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join("")}</select></div>`).join("")}</div>`;
   else inter=`<textarea class="own" id="own" placeholder="Schreibe deine Lösung in Stichpunkten auf, bevor du die Musterlösung aufdeckst…"></textarea>`;
   const st=statusOf(t.id);
-  m.innerHTML=`<div class="row between no-print"><button class="btn small ghost" id="back">← Zur Liste</button><span class="muted small">${state.exam?"Klausurmodus · ":""}Aufgabe ${idx+1} von ${list.length}</span></div>
-  <div class="card" style="margin-top:10px">
-   <div class="task-head"><div><div class="muted small">Kapitel ${t.kap} · ${esc(KAPITEL[t.kap])} · ${typeLabel(t.type)}</div><h1 style="margin:2px 0">${esc(t.title)}</h1></div><div class="row">${lawTag(t.law)}${st?`<span class="tag ${st==="ok"?"ok":st==="part"?"warn":"bad"}">${st==="ok"?"gelöst":st==="part"?"teilweise":"nochmal"}</span>`:""}</div></div>
-   <div class="sachverhalt">${esc(t.sachverhalt)}</div>${tableHtml(t.table)}
-   <div class="frage">${esc(t.frage)}</div>
-   ${inter}
-   <div class="row no-print" style="margin-top:12px"><button class="btn primary" id="check">${t.type==="open"?"Musterlösung aufdecken":"Prüfen"}</button><button class="btn ghost" id="reveal">Lösung zeigen</button></div>
+  const pbar=probe?`<div class="probebar no-print"><span class="ptimer" id="ptimer"></span>${live?`<button class="btn small primary" id="pfinish">Abgeben und auswerten</button>`:`<button class="btn small" id="pres">Zur Auswertung</button>`}</div>`:"";
+  const solHtml=live?"":`<div class="row no-print" style="margin-top:12px"><button class="btn primary" id="check">${t.type==="open"?"Musterlösung aufdecken":"Prüfen"}</button><button class="btn ghost" id="reveal">Lösung zeigen</button></div>
    <div id="result"></div>
    <div class="solution hidden" id="sol">
      <h2 style="margin-top:0">Lösung</h2><p>${esc(t.loesung)}</p>${tableHtml(t.table_solution)}
@@ -1211,33 +1702,88 @@ function renderTask(m,t){
      <h3>Referenzen (anklicken öffnet den Kompass)</h3>${refChips(t.refs)}
      ${t.merk?`<div class="callout merk"><span class="lbl">Merkhilfe</span>${esc(t.merk)}</div>`:""}
      ${t.type==="open"?`<div class="selfcheck"><span class="muted small" style="align-self:center">Selbsteinschätzung:</span><button class="btn small" data-self="ok">Gewusst</button><button class="btn small" data-self="part">Teilweise</button><button class="btn small" data-self="bad">Nicht gewusst</button></div>`:""}
-   </div>
+   </div>`;
+  m.innerHTML=`${pbar}<div class="row between no-print"><button class="btn small ghost" id="back">← ${probe?"Übersicht":"Zur Liste"}</button><span class="muted small">${state.exam?(probe?"Probeklausur · ":"Klausurmodus · "):""}Aufgabe ${idx+1} von ${list.length}</span></div>
+  <div class="card" id="taskcard" style="margin-top:10px">
+   <div class="task-head"><div><div class="muted small">Kapitel ${t.kap} · ${esc(KAPITEL[t.kap])} · ${typeLabel(t.type)}${t.punkte?` · ${t.punkte} Punkte`:""}</div><h1 style="margin:2px 0">${esc(t.title)}</h1></div><div class="row">${lawTag(t.law)}${st?`<span class="tag ${st==="ok"?"ok":st==="part"?"warn":"bad"}">${st==="ok"?"gelöst":st==="part"?"teilweise":"nochmal"}</span>`:""}</div></div>
+   <div class="sachverhalt">${esc(t.sachverhalt)}</div>${tableHtml(t.table)}
+   <div class="frage">${esc(t.frage)}</div>
+   ${inter}
+   ${live?`<div class="small muted" style="margin-top:10px">Deine Antworten werden automatisch gespeichert. Lösungen und Herleitung gibt es erst nach der Abgabe.</div>`:solHtml}
   </div>
   <div class="navbtns no-print"><button class="btn" id="prev" ${prev?"":"disabled"}>← Vorherige</button><button class="btn" id="next" ${next?"":"disabled"}>Nächste →</button></div>`;
   $("#back").onclick=()=>{state.currentTask=null;state.exam=null;save();render();};
   $("#prev").onclick=()=>{if(prev){state.currentTask=prev.id;save();render();}};
   $("#next").onclick=()=>{if(next){state.currentTask=next.id;save();render();}};
+  if(probe){startTimer(live);}
+  if(live){
+    const card=$("#taskcard");restore(t,state.probe.ans[t.id]);
+    const sv=()=>{state.probe.ans[t.id]=collect(t);save();};
+    card.addEventListener("input",sv);card.addEventListener("change",sv);
+    $("#pfinish").onclick=()=>{sv();confirmFinish();};
+    return;
+  }
+  if(probe&&$("#pres"))$("#pres").onclick=()=>{state.currentTask=null;state.exam=null;go("probe");};
   document.querySelectorAll(".chip.ref").forEach(c=>c.onclick=()=>openPara(c.dataset.para));
   const showSol=()=>{$("#sol").classList.remove("hidden");};
   $("#reveal").onclick=()=>{showSol();revealAnswers(t);if(!statusOf(t.id))setStatus(t.id,"bad");};
-  document.querySelectorAll("[data-self]").forEach(b=>b.onclick=()=>{setStatus(t.id,b.dataset.self);toast("Gespeichert");render();});
+  document.querySelectorAll("[data-self]").forEach(b=>b.onclick=()=>{setStatus(t.id,b.dataset.self);if(probe)state.probe.self[t.id]=({ok:1,part:0.5,bad:0})[b.dataset.self];save();toast("Gespeichert");render();});
   $("#check").onclick=()=>{
     if(t.type==="open"){showSol();return;}
     let ok=0,n=0;
     if(t.type==="num"){t.fields.forEach(f=>{n++;const inp=$(`#in_${f.key}`);const good=numOk(f,inp.value);inp.classList.toggle("ok",good);inp.classList.toggle("bad",!good);if(good)ok++;});}
     else if(t.type==="mc"){const chosen=[...document.querySelectorAll('input[name="mc"]:checked')].map(i=>+i.value);t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);el.classList.remove("correct","wrong","missed");if(o.ok&&chosen.includes(i))el.classList.add("correct");else if(!o.ok&&chosen.includes(i))el.classList.add("wrong");else if(o.ok)el.classList.add("missed");});n=1;const allOk=t.options.every((o,i)=>o.ok===chosen.includes(i));ok=allOk?1:0;mcExplain(t);}
     else if(t.type==="match"){t.rows.forEach((r,i)=>{n++;const sel=document.querySelector(`select[data-i="${i}"]`);const row=document.querySelector(`.matchrow[data-i="${i}"]`);const good=sel.value!==""&&+sel.value===r.ans;row.classList.toggle("ok",good);row.classList.toggle("bad",!good);if(good)ok++;let exp=row.querySelector(".exp");if(!exp){exp=document.createElement("div");exp.className="exp";row.appendChild(exp);}exp.textContent=(good?"Richtig: ":"Richtig wäre: "+t.options[r.ans]+". ")+(r.exp||"");});}
-    const st=ok===n?"ok":ok>0?"part":"bad";setStatus(t.id,st);
+    const st=ok===n?"ok":ok>0?"part":"bad";setStatus(t.id,st,n?ok/n:0);
     $("#result").innerHTML=`<div class="result ${st}">${st==="ok"?"Alles richtig! 🎉":st==="part"?`${ok} von ${n} richtig. Schau dir die Herleitung an.`:"Noch nicht. Die Herleitung unten zeigt den Weg."}</div>`;
     showSol();if(st!=="ok")revealAnswers(t,true);
   };
-  if(st&&t.type!=="open"){/* nothing: let user retry */}
+  if(probe){restore(t,state.probe.ans[t.id]);$("#check").click();}
 }
 function mcExplain(t){t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);if(!el.querySelector(".why")&&o.why){const d=document.createElement("div");d.className="small muted why";d.style.width="100%";d.textContent=o.why;el.appendChild(d);}});}
 function revealAnswers(t,onlyWrong){
   if(t.type==="num")t.fields.forEach(f=>{const inp=$(`#in_${f.key}`);if(!onlyWrong||!inp.classList.contains("ok"))$(`#ex_${f.key}`).textContent="→ "+fmt(f.value,f.unit);});
   else if(t.type==="mc"){t.options.forEach((o,i)=>{const el=document.querySelector(`.opt[data-i="${i}"]`);if(o.ok&&!el.classList.contains("correct"))el.classList.add("missed");});mcExplain(t);}
   else if(t.type==="match")t.rows.forEach((r,i)=>{const row=document.querySelector(`.matchrow[data-i="${i}"]`);if(onlyWrong&&row.classList.contains("ok"))return;let exp=row.querySelector(".exp");if(!exp){exp=document.createElement("div");exp.className="exp";row.appendChild(exp);}exp.textContent="Lösung: "+t.options[r.ans]+". "+(r.exp||"");});
+}
+
+/* ---------- Probeklausur ---------- */
+function renderProbe(m){
+  clearInterval(window._pt);
+  if(state.currentTask&&state.exam){const t=taskById(state.currentTask);if(t){renderTask(m,t);return;}}
+  const P=state.probe,tot=PROBE_META.punkte;
+  const fmtP=x=>String(x).replace(".",",");
+  if(!P){
+    m.innerHTML=`<h1>${esc(PROBE_META.titel)}</h1><p class="lead">Neu erstellte Probeklausur im Stil der Kursaufgaben, keine Originalklausur. ${PROBE.length} Aufgaben, ${tot} Punkte, ${PROBE_META.dauer} Minuten.</p>
+    <div class="card"><h3 style="margin-top:0">So läuft es ab</h3>
+     <ul class="small"><li>Der Timer startet mit dem Klick auf „Probeklausur starten“. Er zeigt nur die Zeit an und beendet nichts automatisch.</li><li>Antworten werden automatisch gespeichert, du kannst zwischen den Aufgaben springen und später fortsetzen.</li><li>Lösungen, Herleitungen und Punkte gibt es erst nach „Abgeben und auswerten“.</li><li>Lege Taschenrechner und Gesetzestexte bereit, wenn sie auch in der echten Klausur erlaubt sind.</li></ul>
+     <table class="data"><thead><tr><th>Aufgabe</th><th>Kapitel</th><th>Art</th><th class="num">Punkte</th></tr></thead><tbody>${PROBE.map((t,i)=>`<tr><td>${i+1}</td><td>${t.kap}: ${esc(KAPITEL[t.kap])}</td><td>${typeLabel(t.type)}</td><td class="num">${t.punkte}</td></tr>`).join("")}</tbody><tr class="total"><td colspan="3">Summe</td><td class="num">${tot}</td></tr></table>
+     <button class="btn primary" id="pstart">Probeklausur starten</button></div>`;
+    $("#pstart").onclick=()=>{state.probe={ids:PROBE.map(a=>a.id),start:Date.now(),done:false,ans:{},self:{}};PROBE.forEach(a=>{delete state.progress[a.id];});state.exam=[...state.probe.ids];state.examKind="probe";state.currentTask=state.probe.ids[0];save();render();};
+    return;
+  }
+  if(!P.done){
+    m.innerHTML=`<div class="probebar no-print"><span class="ptimer" id="ptimer"></span><button class="btn small primary" id="pfinish">Abgeben und auswerten</button></div>
+    <h1>${esc(PROBE_META.titel)} läuft</h1><p class="lead">Springe zu einer Aufgabe oder arbeite der Reihe nach weiter.</p>
+    <div class="tasklist" id="pl"></div>`;
+    PROBE.forEach((t,i)=>{const d=document.createElement("div");d.className="card clickable task-item";const done=answered(t,P.ans[t.id]);d.innerHTML=`<div class="num">${i+1}</div><div style="flex:1"><div class="title">Aufgabe ${i+1} · ${t.punkte} Punkte</div><div class="meta">Kap. ${t.kap} · ${esc(KAPITEL[t.kap])} · ${typeLabel(t.type)}</div></div><span class="tag ${done?"ok":""}">${done?"bearbeitet":"offen"}</span>`;d.onclick=()=>{state.exam=[...P.ids];state.examKind="probe";state.currentTask=t.id;save();render();};$("#pl").appendChild(d);});
+    $("#pfinish").onclick=confirmFinish;startTimer(true);
+    return;
+  }
+  const rows=PROBE.map(t=>{let frac=null;if(t.type==="open")frac=P.self[t.id]!=null?P.self[t.id]:null;else{const g=grade(t,P.ans[t.id]);frac=g.n?g.ok/g.n:0;}return {t,frac,pts:frac==null?null:Math.round(t.punkte*frac*2)/2};});
+  const sum=rows.reduce((s,r)=>s+(r.pts||0),0),pct=100*sum/tot,openSelf=rows.some(r=>r.frac==null);
+  const verdict=pct>=90?"sehr gut":pct>=80?"gut":pct>=65?"befriedigend":pct>=50?"ausreichend (bestanden)":"nicht bestanden";
+  const mins=Math.round(((P.end||Date.now())-P.start)/60000);
+  m.innerHTML=`<h1>Auswertung ${esc(PROBE_META.titel)}</h1>
+  <div class="grid cols-3"><div class="card"><div class="muted small">Punkte</div><div class="kpi">${fmtP(sum)}<small>von ${tot}</small></div><div class="bar"><span style="width:${pct}%"></span></div></div>
+  <div class="card"><div class="muted small">Ergebnis</div><div class="kpi">${Math.round(pct)} %</div><div class="small muted">${verdict}${openSelf?" (vorläufig, Freitext noch offen)":""}</div></div>
+  <div class="card"><div class="muted small">Bearbeitungszeit</div><div class="kpi">${mins}<small>von ${PROBE_META.dauer} Min.</small></div></div></div>
+  <p class="small muted">Grobe Orientierung: ab 50 % bestanden. Die echte Notenskala legt die Dozentin bzw. der Dozent fest. Freitextaufgaben bewertest du selbst: Aufgabe ansehen, Musterlösung lesen, „Selbsteinschätzung“ wählen.</p>
+  <table class="data"><thead><tr><th>Aufgabe</th><th>Kapitel</th><th class="num">Punkte</th><th></th></tr></thead><tbody></tbody></table>
+  <div class="row no-print" style="margin-top:16px"><button class="btn" id="pnew">Neue Probeklausur starten</button></div>`;
+  const tb=m.querySelector("tbody");
+  rows.forEach((r,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${i+1}</td><td>${r.t.kap}: ${esc(KAPITEL[r.t.kap])}</td><td class="num">${r.pts==null?"offen":fmtP(r.pts)+" / "+r.t.punkte}</td><td class="num"><button class="btn small">Ansehen</button></td>`;tr.querySelector("button").onclick=()=>{state.exam=[...P.ids];state.examKind="probe";state.currentTask=r.t.id;save();render();};tb.appendChild(tr);});
+  $("#pnew").onclick=()=>{if(confirm("Auswertung verwerfen und eine neue Probeklausur beginnen?")){state.probe=null;state.exam=null;state.currentTask=null;save();render();}};
 }
 
 /* ---------- Kompass ---------- */
@@ -1266,7 +1812,7 @@ function renderListe(b){
   $("#ku").onchange=e=>{state.kfilter.unmarked=e.target.checked;save();fillList();};
   function fillList(){const pl=$("#plist");const list=filteredParas();pl.innerHTML=list.length?"":'<div class="card muted">Nichts gefunden.</div>';
     list.forEach(p=>{const d=document.createElement("div");d.className="card para"+(state.marked[p.id]?" marked":"");d.id="p_"+p.id;
-      const related=AUFGABEN.filter(a=>a.refs.includes(p.id));
+      const related=TRAIN.filter(a=>a.refs.includes(p.id));
       d.innerHTML=`<div class="ref" style="${catStyle(p.cat)}">${esc(p.ref)}</div>
       <div><div class="ttl">${esc(p.title)} <span class="tag ${p.law==="HGB"?"hgb":p.law==="IFRS"?"ifrs":""}">${LAW_LABEL[p.law]}</span> <span class="tag">${CAT_LABEL[p.cat]}</span></div><div class="one">${esc(p.kurz)}</div></div>
       <label class="mark"><input type="checkbox" ${state.marked[p.id]?"checked":""} data-mark="${p.id}">markiert</label>
@@ -1278,7 +1824,7 @@ function renderListe(b){
       </div></details>`;
       pl.appendChild(d);});
     pl.querySelectorAll("[data-mark]").forEach(cb=>cb.onchange=()=>{state.marked[cb.dataset.mark]=cb.checked;save();cb.closest(".para").classList.toggle("marked",cb.checked);toast(cb.checked?"Als markiert gespeichert":"Markierung entfernt");});
-    pl.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>{state.currentTask=c.dataset.task;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");});
+    pl.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>openTask(c.dataset.task));
   }
   fillList();
 }
@@ -1329,24 +1875,24 @@ function renderPlan(b){
 /* ---------- Fortschritt ---------- */
 function renderFortschritt(m){
   const s=stats();
-  m.innerHTML=`<h1>Fortschritt</h1><p class="lead">Dein Stand über alle Kapitel. Der Fortschritt wird lokal im Browser gespeichert.</p>
+  m.innerHTML=`<h1>Fortschritt</h1><p class="lead">Dein Stand über alle Kapitel (Kursaufgaben und Zusatzaufgaben). Der Fortschritt wird lokal im Browser gespeichert.</p>
   <div class="grid cols-3"><div class="card"><div class="muted small">Richtig</div><div class="kpi" style="color:var(--ok)">${s.ok}</div></div><div class="card"><div class="muted small">Teilweise</div><div class="kpi" style="color:var(--warn)">${s.part}</div></div><div class="card"><div class="muted small">Nochmal üben</div><div class="kpi" style="color:var(--bad)">${s.bad}</div></div></div>
   <h2>Nach Kapitel</h2><div class="grid" id="kp"></div>
   <h2>Nochmal üben</h2><div class="tasklist" id="redo"></div>
   <div class="row no-print" style="margin-top:24px"><button class="btn" id="resetP">Aufgaben-Fortschritt zurücksetzen</button><button class="btn" id="resetM">Markierungen zurücksetzen</button></div>`;
-  const kp=$("#kp");Object.keys(KAPITEL).forEach(k=>{const list=AUFGABEN.filter(a=>a.kap==k);if(!list.length)return;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card";d.innerHTML=`<div class="row between"><b>Kap. ${k}: ${esc(KAPITEL[k])}</b><span class="muted small">${ok}/${list.length}</span></div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div><div class="chips">${list.map(a=>`<span class="chip ref" data-task="${a.id}"><span class="status-dot ${statusOf(a.id)}"></span>${a.id}</span>`).join("")}</div>`;kp.appendChild(d);});
-  const redo=$("#redo");const bad=AUFGABEN.filter(a=>["bad","part"].includes(statusOf(a.id)));redo.innerHTML=bad.length?"":'<div class="card muted">Nichts offen. Stark!</div>';
-  bad.forEach(a=>{const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${a.id.replace("A","")}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap}</div></div><span class="status-dot ${statusOf(a.id)}"></span>`;d.onclick=()=>{state.currentTask=a.id;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");};redo.appendChild(d);});
-  m.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>{state.currentTask=c.dataset.task;state.exam=null;state.filter={kap:0,law:"all",status:"all"};go("ueben");});
+  const kp=$("#kp");Object.keys(KAPITEL).forEach(k=>{const list=TRAIN.filter(a=>a.kap==k);if(!list.length)return;const ok=list.filter(a=>statusOf(a.id)==="ok").length;const d=document.createElement("div");d.className="card";d.innerHTML=`<div class="row between"><b>Kap. ${k}: ${esc(KAPITEL[k])}</b><span class="muted small">${ok}/${list.length}</span></div><div class="bar"><span style="width:${100*ok/list.length}%"></span></div><div class="chips">${list.map(a=>`<span class="chip ref" data-task="${a.id}"><span class="status-dot ${statusOf(a.id)}"></span>${a.id}</span>`).join("")}</div>`;kp.appendChild(d);});
+  const redo=$("#redo");const bad=TRAIN.filter(a=>["bad","part"].includes(statusOf(a.id)));redo.innerHTML=bad.length?"":'<div class="card muted">Nichts offen. Stark!</div>';
+  bad.forEach(a=>{const d=document.createElement("div");d.className="card clickable task-item";d.innerHTML=`<div class="num">${numOf(a.id)}</div><div style="flex:1"><div class="title">${esc(a.title)}</div><div class="meta">Kap. ${a.kap}</div></div><span class="status-dot ${statusOf(a.id)}"></span>`;d.onclick=()=>openTask(a.id);redo.appendChild(d);});
+  m.querySelectorAll("[data-task]").forEach(c=>c.onclick=()=>openTask(c.dataset.task));
   $("#resetP").onclick=()=>{if(confirm("Aufgaben-Fortschritt wirklich löschen?")){state.progress={};save();render();}};
   $("#resetM").onclick=()=>{if(confirm("Alle Paragraphen-Markierungen löschen?")){state.marked={};save();render();}};
 }
 
 /* ---------- Init ---------- */
 document.addEventListener("DOMContentLoaded",()=>{
-  document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{if(b.dataset.tab==="ueben"){state.currentTask=null;state.exam=null;}go(b.dataset.tab);});
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{if(["ueben","extra","probe"].includes(b.dataset.tab)){state.currentTask=null;state.exam=null;}go(b.dataset.tab);});
   document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===state.tab));
-  document.addEventListener("keydown",e=>{if(state.tab!=="ueben"||!state.currentTask||["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName))return;if(e.key==="ArrowRight"){const n=$("#next");if(n&&!n.disabled)n.click();}if(e.key==="ArrowLeft"){const p=$("#prev");if(p&&!p.disabled)p.click();}});
+  document.addEventListener("keydown",e=>{if(!["ueben","extra","probe"].includes(state.tab)||!state.currentTask||["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName))return;if(e.key==="ArrowRight"){const n=$("#next");if(n&&!n.disabled)n.click();}if(e.key==="ArrowLeft"){const p=$("#prev");if(p&&!p.disabled)p.click();}});
   render();
 });
 })();
